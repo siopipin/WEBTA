@@ -11584,3 +11584,50 @@ footer .btn {
 	padding: 1px 2px;
 	cursor: pointer;
 }
+
+
+/* epub */
+#main {
+  /* height: 500px; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  /* left: 40px; */
+/*   -webkit-transform: translate(40px, 0);
+  -moz-transform: translate(40px, 0); */
+
+  /* border-radius: 5px 0px 0px 5px; */
+  border-radius: 5px;
+  background: #fff;
+  overflow: hidden;
+  -webkit-transition: -webkit-transform .4s, width .2s;
+  -moz-transition: -webkit-transform .4s, width .2s;
+  -ms-transition: -webkit-transform .4s, width .2s;
+
+  -moz-box-shadow:    inset 0 0 50px rgba(0,0,0,.1);
+  -webkit-box-shadow: inset 0 0 50px rgba(0,0,0,.1);
+  -ms-box-shadow: inset 0 0 50px rgba(0,0,0,.1);
+  box-shadow:         inset 0 0 50px rgba(0,0,0,.1);
+}
+
+#titlebar {
+  height: 8%;
+  min-height: 20px;
+  padding: 10px;
+  /* margin: 0 50px 0 50px; */
+  position: relative;
+  color: #4f4f4f;
+  font-weight: 100;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  opacity: .5;
+  text-align: center;
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -ms-transition: opacity .5s;
+  z-index: 10;
+}
+
+#titlebar:hover {
+  opacity: 1;
+}

@@ -15,4 +15,28 @@
     <link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/google-roboto-300-700.css" rel="stylesheet" />
     
+    <!-- EPUB -->
+
+    <!-- <link href="<?php echo base_url(); ?>assets/css/epub/normalize.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/epub/main.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/epub/popup.css" rel="stylesheet" /> -->
+
+    <script src="<?php echo base_url(); ?>assets/js/epub/libs/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/epub/libs/zip.min.js"></script>
+    <script>
+            "use strict";
+
+            document.onreadystatechange = function () {
+              if (document.readyState == "complete") {
+                window.reader = ePubReader("https://s3.amazonaws.com/moby-dick/", {
+                   restore: true
+                 });
+              }
+            };
+
+    </script>
+
+    <script src="<?php echo base_url(); ?>assets/js/epub/libs/screenfull.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/epub/epub.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/epub/reader.js"></script>
 </head>

@@ -1,7 +1,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-        <div class="col-lg-12"><br>
+            <div class="col-lg-12"><br>
                 <ol class="breadcrumb">
                     <li>
                         <a href="<?php echo site_url('controller_buku/bukuTerpinjam/') ?>">Buku Terpinjam</a>
@@ -73,8 +73,12 @@
                                                                 $date = new DateTime($tglkembali);
                                                                 $sisawaktu = $date->diff($now)->format("%d hari, %h jam dan %i menit");
                                                             ?>
-                                                            <button class="btn btn-primary btn-block"><small><?php echo $sisawaktu;?></small> </button>
-                                                            <button class="btn btn-danger btn-block" onclick="validate(this)" value="<?php echo $buku['t_idtransaksi'];?>">Kembalikan</button>
+                                                            <button
+                                                                class="btn btn-primary btn-block"><small><?php echo $sisawaktu;?></small>
+                                                            </button>
+                                                            <button class="btn btn-danger btn-block"
+                                                                onclick="validate(this)"
+                                                                value="<?php echo $buku['t_idtransaksi'];?>">Kembalikan</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -138,13 +142,43 @@
                             </div>
                             <?php  $fileName = $dokumen['d_namadekrip']; ?>
                             <?php echo "<script type='text.javascript'>alert('".base_url('decrypt/'.$fileName)."');</script>";?>
-                            <div class="card-content">
-                                <object data="<?php
+                            <div class="card-content" style="height: 750px;">
+
+
+                                <div id="main">
+
+                                    <div id="titlebar">
+                                        <div id="opener">
+                                            <a id="slider" class="icon-menu">Menu</a>
+                                        </div>
+                                        <div id="metainfo">
+                                            <span id="book-title"></span>
+                                            <span id="title-seperator">&nbsp;&nbsp;–&nbsp;&nbsp;</span>
+                                            <span id="chapter-title"></span>
+                                        </div>
+                                        <div id="title-controls">
+                                            <a id="bookmark" class="icon-bookmark-empty">Bookmark</a>
+                                            <a id="setting" class="icon-cog">Settings</a>
+                                            <a id="fullscreen" class="icon-resize-full">Fullscreen</a>
+                                        </div>
+                                    </div>
+
+                                    <div id="divider"></div>
+                                    <div id="prev" class="arrow">‹</div>
+                                    <div id="viewer"></div>
+                                    <div id="next" class="arrow">›</div>
+
+                                    <div id="loader"><img src="img/loader.gif"></div>
+                                </div>
+
+
+
+                                <!-- <object data="<?php
                                 echo base_url('decrypt/'.$fileName); 
                                 ?>" 
                                 type="application/pdf" width="100%" height="700px">
                                     <p>Alternative text - include a link <a href="myfile.pdf">to the PDF!</a></p>
-                                </object>
+                                </object> -->
                             </div>
                         </div>
                     </div>
@@ -153,7 +187,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Review dan Rating</h4>
                                 <p class="category">
-                                    Beri ulasan buku 
+                                    Beri ulasan buku
                                 </p>
                                 <?php echo $this->session->flashdata('msg'); ?>
                             </div>
@@ -164,17 +198,20 @@
                                     </div>
                                     <div class="card-content">
                                         <h4 class="card-title">Form Ulasan</h4>
-                                        <form method="POST" action="<?php echo base_url('controller_buku/ulas/'.$cek['b_idbuku']) ?>">
-                                            
+                                        <form method="POST"
+                                            action="<?php echo base_url('controller_buku/ulas/'.$cek['b_idbuku']) ?>">
+
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Beri Ulasan Buku</label>
-                                                <textarea name="vulasan" rows="7" class="form-control"> <?php echo $ulasan['r_ulasan']; ?> </textarea>
+                                                <textarea name="vulasan" rows="7"
+                                                    class="form-control"> <?php echo $ulasan['r_ulasan']; ?> </textarea>
                                                 <span class="text-danger"><?php echo form_error('vulasan'); ?></span>
                                             </div>
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Beri Rating</label>
                                                 <input class="rating" type="hidden" value="5">
-                                                <select class="form-control" name="vrating" value="<?php echo $ulasan['r_ulasan']; ?>" required>
+                                                <select class="form-control" name="vrating"
+                                                    value="<?php echo $ulasan['r_ulasan']; ?>" required>
                                                     <!--<option default value=>Beri rating</option>-->
                                                     <option value="10">Sangat Bagus</option>
                                                     <option value="8">Bagus</option>
@@ -189,8 +226,8 @@
                                                     <input type="checkbox" name="vcekbox"> Saya memberi ulasan
                                                     sesuai untuk buku yang telah saya baca.
                                                 </label>
-                                                
-                                            </div> 
+
+                                            </div>
                                             <button type="submit" class="btn btn-fill btn-rose">Submit</button>
                                         </form>
                                     </div>
@@ -206,7 +243,6 @@
 
 <script src="<?php echo base_url()?>assets/js/sweetalert2.js"></script>
 <script>
-
 function validate(a) {
     var id = a.value;
     swal({
@@ -219,11 +255,10 @@ function validate(a) {
         reverseButtons: false,
         buttonsStyling: true
     }).then(function() {
-        $(location).attr('href','<?php echo base_url()?>controller_buku/kembalikan/'+id);
+        $(location).attr('href', '<?php echo base_url()?>controller_buku/kembalikan/' + id);
     }, function(dismiss) {
         // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-        if (dismiss === 'cancel') {
-        }
+        if (dismiss === 'cancel') {}
     });
 }
 </script>

@@ -40,6 +40,13 @@
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+
+<!-- EPUB -->
+
+
+
+
+
 <script type="text/javascript">
 	$(document).ready(function () {
 
