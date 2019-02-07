@@ -134,22 +134,46 @@
                     </div>
                     <div class="tab-pane" id="tasks-1">
                         <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Baca Buku Online</h4>
-                                <p class="category">
-                                    E-Reader Buku
-                                </p>
-                            </div>
+                            
                             <?php  $fileName = $dokumen['d_namadekrip']; ?>
                             <?php echo "<script type='text.javascript'>alert('".base_url('decrypt/'.$fileName)."');</script>";?>
-                            <div class="card-content" style="height: 750px;">
 
+
+                            <div class="card-content" style="height: 950px;">
+
+
+                                <div id="sidebar">
+                                    <div id="panels">
+                                        <!-- <input id="searchBox" placeholder="search" type="search"> -->
+
+                                        <!-- <a id="show-Search" class="show_view icon-search" data-view="Search">Search</a> -->
+                                        <a id="show-Toc" class="show_view icon-list-1 active" data-view="Toc">TOC</a>
+                                        <a id="show-Bookmarks" class="show_view icon-bookmark"
+                                            data-view="Bookmarks">Bookmarks</a>
+                                        <!-- <a id="show-Notes" class="show_view icon-edit" data-view="Notes">Notes</a> -->
+
+                                    </div>
+                                    <div id="tocView" class="view">
+                                    </div>
+                                    <div id="searchView" class="view">
+                                        <ul id="searchResults"></ul>
+                                    </div>
+                                    <div id="bookmarksView" class="view">
+                                        <ul id="bookmarks"></ul>
+                                    </div>
+                                    <div id="notesView" class="view">
+                                        <div id="new-note">
+                                            <textarea id="note-text"></textarea>
+                                            <button id="note-anchor">Anchor</button>
+                                        </div>
+                                        <ol id="notes"></ol>
+                                    </div>
+                                </div>
 
                                 <div id="main">
-
                                     <div id="titlebar">
                                         <div id="opener">
-                                            <a id="slider" class="icon-menu">Menu</a>
+                                            <a id="slider" class="fa fa-address-card-o">Menu</a>
                                         </div>
                                         <div id="metainfo">
                                             <span id="book-title"></span>
@@ -157,6 +181,7 @@
                                             <span id="chapter-title"></span>
                                         </div>
                                         <div id="title-controls">
+                                            
                                             <a id="bookmark" class="icon-bookmark-empty">Bookmark</a>
                                             <a id="setting" class="icon-cog">Settings</a>
                                             <a id="fullscreen" class="icon-resize-full">Fullscreen</a>
@@ -170,6 +195,20 @@
 
                                     <div id="loader"><img src="img/loader.gif"></div>
                                 </div>
+                                <div class="modal md-effect-1" id="settings-modal">
+                                    <div class="md-content">
+                                        <h3>Settings</h3>
+                                        <div>
+                                            <p>
+                                                <input type="checkbox" id="sidebarReflow" name="sidebarReflow">Reflow
+                                                text when sidebars are open.
+                                            </p>
+                                        </div>
+                                        <div class="closer icon-cancel-circled"></div>
+                                    </div>
+                                </div>
+                                <div class="overlay"></div>
+
 
 
 
@@ -262,3 +301,16 @@ function validate(a) {
     });
 }
 </script>
+
+<script>
+            "use strict";
+
+            document.onreadystatechange = function () {
+              if (document.readyState == "complete") {
+                window.reader = ePubReader("https://s3.amazonaws.com/moby-dick/", {
+                   restore: true
+                 });
+              }
+            };
+
+    </script>
