@@ -491,8 +491,8 @@ class model_buku extends CI_Model
             if($found){
                 unlink($fileDekrip) or die("Couldn't delete file");
             }
-            
-            $mysqli->query("UPDATE tbl_transaksi SET t_status='N' WHERE t_idbuku=" . $idbuku. " AND t_idpengguna ".$iduser." AND t_status = 'Y' ");
+            $mysqli->query("UPDATE `tbl_buku` SET b_jumlah = b_jumlah+1 WHERE b_idbuku =".$idbuku);
+            $mysqli->query("UPDATE tbl_transaksi SET t_status='N' WHERE t_idbuku=" . $idbuku. " AND t_idpengguna = ".$iduser." AND t_status = 'Y' ");
             echo "<script type='text/javascript'> alert('Waktu Peminjaman Buku telah Berakhir !')</script>";
         } elseif (strlen($namaDekrip) < 1) { // jika file belum di dekrip, lakukan dekripsi
 
