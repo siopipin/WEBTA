@@ -2,6 +2,17 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-12"><br>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="<?php echo site_url('controller_page/databuku/') ?>">Buku</a>
+                    <li class="active">Enkripsi Buku</li>
+                    </li>
+                </ol>
+                <?php  echo $this->session->flashdata('msg'); 
+                    //include "daftar_klasifikasi.php";
+                ?>
+            </div>
             <div class="col-sm-8 col-md-8 col-md-offset-2">
                 <div class="card">
                     <div class="card-header">
@@ -32,8 +43,9 @@
                                             <fieldset>
 
                                                 <!-- Pilih Buku yang akan disimpan dokumennya -->
-                                                <select name="vidbuku" class="selectpicker" data-style="btn btn-primary btn-round"
-                                                    title="Pilih Judul Buku" data-size="7">
+                                                <select name="vidbuku" class="selectpicker"
+                                                    data-style="btn btn-primary btn-round" title="Pilih Judul Buku"
+                                                    data-size="7">
                                                     <option disabled selected>Pilih Buku
                                                         yang dienkripsi
                                                     </option>
@@ -57,10 +69,10 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    
+
                                                     <div class="col-lg-12 form-group label-floating">
-                                                        <input class="form-control" placeholder="Password"
-                                                            id="pass" name="pass" type="hidden" value="">
+                                                        <input class="form-control" placeholder="Password" id="pass"
+                                                            name="pass" type="hidden" value="">
                                                     </div>
                                                 </div>
                                                 <div id="errors"></div>

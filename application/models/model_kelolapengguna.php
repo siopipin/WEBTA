@@ -22,6 +22,13 @@ class model_kelolapengguna extends CI_Model {
         return $q;
     }
 
+    public function deletePengguna($idpengguna)
+    {
+        $this->db->where('p_id', $idpengguna);
+        $this->db->delete('tbl_pengguna');
+
+    }
+
 }
                         
 /* End of file model_kelolapengguna.php */

@@ -103,7 +103,7 @@
                                 <!-- If you want to add a checkbox to this form, uncomment this code -->
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="optionsCheckboxes" checked> I agree to the
+                                        <input type="checkbox" name="optionsCheckboxes" checked required> I agree to the
                                         <a href="#">terms and conditions</a>.
                                     </label>
                                 </div>

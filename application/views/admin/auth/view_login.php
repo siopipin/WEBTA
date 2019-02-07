@@ -19,7 +19,9 @@
                             </div>
                         </div>
                         <p class="category text-center">
-                            <?php echo $this->session->flashdata('msg'); ?>
+                                <?php  echo $this->session->flashdata('msg'); 
+                            
+                                 ?>
                             <br>
                             <div class="text-center">
                                 Or Be Classical
@@ -33,6 +35,8 @@
                                 <div class="form-group label-floating">
                                     <label class="control-label">Nama Pengguna</label>
                                     <input type="text" id="nama_pengguna" name="nama_pengguna" class="form-control">
+                                    <span
+                                    class="text-danger"><?php echo form_error('nama_pengguna'); ?></span>
                                 </div>
                             </div>
                             <div class="input-group">
@@ -42,6 +46,8 @@
                                 <div class="form-group label-floating">
                                     <label class="control-label">Kata Sandi</label>
                                     <input type="password" id="kata_sandi" name="kata_sandi" class="form-control">
+                                    <span
+                                    class="text-danger"><?php echo form_error('kata_sandi'); ?></span>
                                 </div>
                             </div>
                         </div>

@@ -79,9 +79,6 @@
                                                     close
                                                 </li>
                                             </button>
-                                            <!-- <a href="#" onclick="validate(this)" value="<?php echo $row->b_idbuku;?>"
-                                                class="btn btn-simple btn-danger btn-icon"><i
-                                                    class="material-icons">close</i></a> -->
 
                                         </td>
                                     </tr>

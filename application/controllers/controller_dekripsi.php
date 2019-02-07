@@ -14,6 +14,10 @@ class controller_dekripsi extends CI_Controller
         $this->aesinitvector = openssl_random_pseudo_bytes(16);
 
         $this->load->model('model_buku');
+        if ($this->session->userdata('masuk') != true) {
+            $url = base_url();
+            redirect($url);
+        }
     }
 
     public function index()

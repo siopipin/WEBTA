@@ -155,6 +155,21 @@
                         </div>
 
                         <div class="row">
+                            <label class="col-sm-2 label-on-left">Teks Bahasa</label>
+                            <div class="col-sm-10">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <select class="form-control" name="vbahasa" value="Bahasa Indonesia"
+                                        data-placeholder="Klasifikasi" required>
+                                        <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                                    </select>
+                                    <span class="text-danger"><?php echo form_error('vbahasa'); ?></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <label class="col-sm-2 label-on-left">Tahun Terbit</label>
                             <div class="col-sm-10">
                                 <div class="form-group label-floating is-empty">
@@ -166,7 +181,7 @@
                             </div>
                         </div>
 
-                        
+
 
                         <div class="row">
                             <label class="col-sm-2 label-on-left">Cover Buku</label>

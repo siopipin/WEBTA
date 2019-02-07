@@ -12,6 +12,11 @@ class controller_enkripsi extends CI_Controller
         $this->load->library('aes');
         $this->load->model('model_buku');
         $this->aesinitvector = openssl_random_pseudo_bytes(16);
+
+        if ($this->session->userdata('masuk') != true) {
+            $url = base_url();
+            redirect($url);
+        }
     }
 
 

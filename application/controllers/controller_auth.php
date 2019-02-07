@@ -15,6 +15,7 @@ class Controller_auth extends CI_Controller
         $this->load->model('model_auth');
         $this->load->model('model_landing');
         $this->load->model('model_buku');
+        
     }
 
     public function index()
@@ -109,9 +110,10 @@ class Controller_auth extends CI_Controller
                         $this->session->set_userdata($pengguna_data);
                         redirect('controller_auth');
                     } else { // jika username dan password tidak ditemukan atau salah
-                        $url = base_url();
-                        echo $this->session->set_flashdata('msg', 'Username Atau Password Salah');
-                        redirect($url);
+                        
+                        echo $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center" role="alert">Username Atau Password Salah!!</div>');
+                        redirect('controller_auth/login/', 'refresh');
+                        
                     }
                 }
             } else {
@@ -155,17 +157,20 @@ class Controller_auth extends CI_Controller
             if ($this->model_auth->insertuser($data)) {
                 if ($this->sendemail($email, $saltid)) {
                     // successfully sent mail to user email
-                    $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Please confirm the mail sent to your email id to complete the registration.</div>');
-                    redirect(base_url());
+                    echo $this->session->set_flashdata('msg', '<div class="alert alert-success text-center" role="alert">Silahkan konfirmasi pendaftaran anda di email untuk melengkapi pendaftaran!!</div>');
+
+                    
+                    redirect('controller_auth/login/', 'refresh');
                 } else {
-                    $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please try again ...</div>');
-                    redirect(base_url());
+                    echo $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center" role="alert">Silahkan Coba Lagi!!</div>');
+
+                redirect('controller_auth/login/', 'refresh');
                 }
-                redirect(base_url());
+                redirect('controller_auth/login/', 'refresh');
 
             } else {
                 $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Something Wrong. Please try again ...</div>');
-                redirect(base_url());
+                redirect('controller_auth/login/', 'refresh');
             }
         }
     }
@@ -187,7 +192,7 @@ class Controller_auth extends CI_Controller
         $this->email->from('TAperpus@gmail.com', 'CodesQuery');
         $this->email->to($email);
         $this->email->subject('Please Verify Your Email Address');
-        $message = "<html><head><head></head><body><p>Hi,</p><p>Thanks for registration with CodesQuery.</p><p>Please click below link to verify your email.</p>" . $url . "<br/><p>Sincerely,</p><p>CodesQuery Team</p></body></html>";
+        $message = "<html><head><head></head><body><p>Hallo,</p><p>Terimakasih telah mendaftar pada sistem EPERPUS.</p><p>Silahkan menuju link dibawah ini untuk melengkapi pendaftaran anda.</p>" . $url . "<br/><p>Sincerely,</p><p>EPERPUS | SIO | ALBERT | HERU</p></body></html>";
         $this->email->message($message);
         return $this->email->send();
     }
@@ -195,11 +200,12 @@ class Controller_auth extends CI_Controller
     public function confirmation($key)
     {
         if ($this->model_auth->verifyemail($key)) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Your Email Address is successfully verified!</div>');
-            redirect(base_url());
+            echo $this->session->set_flashdata('msg', '<div class="alert alert-success text-center" role="alert">Alamat email mu telah berhasil di konfirmasi, terima kasih!!</div>');
+            
+            redirect('controller_auth/login/', 'refresh');
         } else {
-            $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Your Email Address Verification Failed. Please try again later...</div>');
-            redirect(base_url());
+            echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Verifikasi email salah, silahkan ulangi kembali!!</div>');
+            redirect('controller_auth/login/', 'refresh');
         }
     }
 

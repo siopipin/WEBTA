@@ -1,6 +1,18 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+        <div class="col-lg-12"><br>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="<?php echo site_url('controller_buku/bukuTerpinjam/') ?>">Buku Terpinjam</a>
+                    <li class="active">Baca Buku</li>
+                    </li>
+                </ol>
+                <?php  echo $this->session->flashdata('msg'); 
+                    //include "daftar_klasifikasi.php";
+                ?>
+            </div>
+
             <div class="col-md-10 col-md-offset-1">
                 <h3 class="title text-center">Selamat Membaca Buku <br><b
                         style="color:orange"><?php echo $cek['b_judul']; ?></b></h3>
@@ -11,11 +23,6 @@
                         <li class="active">
                             <a href="#description-1" role="tab" data-toggle="tab">
                                 <i class="material-icons">info</i> Informasi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#schedule-1" role="tab" data-toggle="tab">
-                                <i class="material-icons">lock_open</i> Dekripsi
                             </a>
                         </li>
                         <li>
@@ -118,22 +125,6 @@
 
                                     </ul>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="schedule-1">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Dekripsi Buku</h4>
-                                <p class="category">
-                                    Buku kunci buku dengan key
-                                </p>
-                            </div>
-                            <div class="card-content">
-                                Efficiently unleash cross-media information without cross-media value. Quickly maximize
-                                timely deliverables for real-time schemas.
-                                <br />
-                                <br /> Dramatically maintain clicks-and-mortar solutions without functional solutions.
                             </div>
                         </div>
                     </div>

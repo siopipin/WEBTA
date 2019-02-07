@@ -2,14 +2,19 @@
 <section class="banner-area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12 col-md-12">
+                <?php echo $this->session->flashdata('msg');
+                ?>
+            </div>
+            <div class="col-lg-6 col-md-6">
                 <div class="sampul">
                     <img src="<?php echo base_url('assets/img/buku/'.$edit['b_sampul']);?>"
                         style="width: 100%;height: 640px;background-repeat: no-repeat;background-position: center;background-size: cover"
                         alt="buku">
                 </div>
             </div>
-            <div class="col-lg-6 align-self-center">
+            <div class="col-lg-6 col-md-6 align-self-center">
+                
                 <div class="banner-text">
                     <p class="py-3">
                         <?php
@@ -45,8 +50,7 @@
         <div class="row">
             <a name="detail"></a>
             <div class="col-lg-8">
-                <?php echo $this->session->flashdata('msg');
-                ?>
+                
                 <div class="main-content">
                     <div class="single-content1">
                         <div class="single-job mb-4 d-lg-flex justify-content-between">
@@ -95,6 +99,7 @@
                             $mysqli = new mysqli("localhost", "root", "", "db_perpus");       
                             $query2 = $mysqli->query("SELECT * FROM `tbl_transaksi` WHERE t_idpengguna = ".$_SESSION['ses_id']." AND t_idbuku = ".$idBuku." AND t_status = 'Y'");
                             $result = mysqli_num_rows($query2);
+                        
                             if($result==0){                        
                         ?>
                         <a href="<?php echo base_url('controller_buku/simpanTransaksi/'.$edit['b_idbuku']) ?>"
@@ -104,9 +109,10 @@
                             <?php } else {
                                 ?>
                         <a href="<?php echo base_url('controller_buku/baca/'.$idBuku) ?>">
-                            <div class="btn btn-rose btn-block">
-                                Baca
-                            </div>
+                            
+                            <button class="btn btn-success btn-block">
+                                Baca Buku
+                            </button>
                         </a>
                             <?php } ?>
                     </div>

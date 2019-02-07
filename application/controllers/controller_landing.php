@@ -12,6 +12,10 @@ class controller_landing extends CI_Controller
         // load model
         $this->load->model('model_landing');
         $this->load->model('model_buku');
+        if ($this->session->userdata('masuk') != true) {
+            $url = base_url();
+            redirect($url);
+        }
     }
 
     public function index()
@@ -140,9 +144,18 @@ class controller_landing extends CI_Controller
               ';
             }
         } else {
-            $output .= '<tr>
-                 <td colspan="5">Buku tidak ditemukan</td>
-                </tr>';
+            $output .= '
+                
+            <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="home-tab">
+                <div class="single-job mb-4 d-lg-flex justify-content-between">
+                    <div class="text-center">
+                        <h4> Buku Tidak Ditemukan, Silahkan periksa kata pencarian anda! </h4>
+                    </div>    
+                </div>
+            </div>
+        </div>
+            ';
         }
         echo $output;
 

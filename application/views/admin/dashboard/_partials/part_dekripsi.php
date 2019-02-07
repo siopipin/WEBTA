@@ -2,6 +2,17 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-12"><br>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="<?php echo site_url('controller_page/databuku/') ?>">Buku</a>
+                    <li class="active">Dekripsi Buku</li>
+                    </li>
+                </ol>
+                <?php  echo $this->session->flashdata('msg'); 
+                    //include "daftar_klasifikasi.php";
+                ?>
+            </div>
             <div class="col-sm-8 col-md-8 col-md-offset-2">
                 <div class="card">
                     <div class="card-header">
@@ -32,8 +43,9 @@
                                             <fieldset>
 
                                                 <!-- Pilih Buku yang akan disimpan dokumennya -->
-                                                <select name="vnamaenkrip" class="selectpicker" data-style="btn btn-primary btn-round"
-                                                    title="Pilih Judul Buku" data-size="7">
+                                                <select name="vnamaenkrip" class="selectpicker"
+                                                    data-style="btn btn-primary btn-round" title="Pilih Judul Buku"
+                                                    data-size="7">
                                                     <option disabled selected>Pilih Buku
                                                         yang dienkripsi
                                                     </option>
@@ -66,7 +78,9 @@
                                                 <div id="errors"></div>
 
                                                 <div class="form-footer text-right">
-                                                    <button type="submit" name="dekripfile" class="btn btn-primary center-block" name="enkrip" value="Dekrip File">Submit</button>
+                                                    <button type="submit" name="dekripfile"
+                                                        class="btn btn-primary center-block" name="enkrip"
+                                                        value="Dekrip File">Submit</button>
                                                 </div>
                                             </fieldset>
                                         </form>
@@ -79,13 +93,13 @@
                                         </center>
                                     </div>
                                     <?php } elseif (!empty($success)) { ?>
-                                        <div class='alert alert-success'>
-                                            <a href='#' class='close' data-dismiss='alert'>&times;</a>
-                                            <center>
-                                                <?php echo $success; ?>
-                                            </center>
-                                        </div>
-                                <?php }	?>
+                                    <div class='alert alert-success'>
+                                        <a href='#' class='close' data-dismiss='alert'>&times;</a>
+                                        <center>
+                                            <?php echo $success; ?>
+                                        </center>
+                                    </div>
+                                    <?php }	?>
 
                                 </div>
                             </div>

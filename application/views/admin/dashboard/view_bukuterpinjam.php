@@ -1,6 +1,18 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+        <div class="col-lg-12"><br>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="<?php echo site_url('controller_dashboard/index/') ?>">Dashboard</a>
+                    <li class="active">Buku Terpinjam</li>
+                    </li>
+                </ol>
+                <?php  echo $this->session->flashdata('msg'); 
+                    //include "daftar_klasifikasi.php";
+                ?>
+            </div>
+
             <div class="col-md-12">
             <?php echo $this->session->flashdata('msg'); ?>
             <h3>Buku Terpinjam</h3>

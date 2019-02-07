@@ -15,6 +15,11 @@ class controller_buku extends CI_Controller
         $this->load->library('encrypt');
         $this->load->library('aes');
         $this->aesinitvector = openssl_random_pseudo_bytes(16);
+
+        if ($this->session->userdata('masuk') != true) {
+            $url = base_url();
+            redirect($url);
+        }
     }
 
     public function index()
@@ -27,6 +32,8 @@ class controller_buku extends CI_Controller
     {
 
         $this->_validasi();
+        $this->form_validation->set_rules('vbahasa', 'Bahasa', 'required');
+        
 
         if ($this->form_validation->run() == false) {
             echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Terjadi kesalahan input, silahkan cek masukkan anda !</div>');
@@ -204,7 +211,8 @@ class controller_buku extends CI_Controller
 
         }
     }
-
+    
+    
     public function delete()
     {
 
@@ -380,7 +388,7 @@ class controller_buku extends CI_Controller
             if($cek->num_rows() > 0)
             {
                 $this->model_buku->insertRating("UPDATE",$data);
-                echo $this->session->set_flashdata('msg', '<div class="alert alert-succes" role="alert">Anda Telah Mengulas Buku ini !</div>');
+                echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Terimakasih Anda Telah Mengulas Buku ini !</div>');
                 redirect('controller_buku/baca/'.$idbuku, 'refresh');
              
             }

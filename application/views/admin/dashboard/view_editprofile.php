@@ -9,12 +9,13 @@
 
                     
                     <div class="wizard-header">
+                        <?php echo $this->session->flashdata('msg'); 
+                        ?>
                         <h3 class="wizard-title">
                             Edit Profile Pengguna
                         </h3>
                         <h5>Lengkapi informasi data diri untuk menggunakan semua layanan pada aplikasi ini.</h5>
-                        <?php echo $this->session->flashdata('msg'); 
-                        ?>
+                        
                     </div>
                     <div class="wizard-navigation">
                         <ul>
@@ -170,8 +171,10 @@
 
                                                 
                              <?php }else{ ?>
+                                <a href="<?php echo site_url('controller_kelolapengguna/hapusPengguna/'.$profile['p_id']) ?>"
+                                class="btn btn-finish btn-fill btn-danger btn-wd">Hapus</a>
                                 <a href="<?php echo site_url('controller_kelolapengguna/daftarpengguna/') ?>"
-                                class="btn btn-finish btn-fill btn-rose btn-wd">Kembali Ke Daftar Pengguna</a>               
+                                class="btn btn-finish btn-fill btn-rose btn-wd">Kembali Ke Daftar Pengguna</a>                  
                                 <?php } ?>
                             
                         </div>

@@ -30,6 +30,18 @@ class controller_kelolapengguna extends CI_Controller {
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
 
+    public function hapusPengguna()
+    {
+
+        $id = $this->uri->segment(3);
+        $this->model_kelolapengguna->deletePengguna($id);
+        $url = site_url('controller_kelolapengguna/daftarPengguna');
+        echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Pengguna Berhasil dihapus!!</div>');
+
+        redirect($url);
+
+    }
+
     public function verifikasiPengguna()
     {
         // $data['totalpinjam'] = $this->model_kelolapengguna->totalTransaksi()->row_array();

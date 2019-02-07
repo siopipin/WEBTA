@@ -3,6 +3,9 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <?php echo $this->session->flashdata('msg'); ?>
+            </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="orange">
@@ -74,23 +77,29 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- KONTEN DEMO -->
 <?php elseif ($this->session->userdata('akses') == '0') : ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+        <div class="col-lg-12 col-md-12">
+                <?php echo $this->session->flashdata('msg'); ?>
+        </div>
+        </div>
+        <h1>KONTENT MEMBER</h1>
+    </div>
+</div>
+
+<!-- KONTEN MEMBER -->
+
+<?php else : ?>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <?php echo $this->session->flashdata('msg'); ?>
+            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-icon" data-background-color="green">
@@ -493,15 +502,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- KONTEN MEMBER -->
-
-<?php else : ?>
-<div class="content">
-    <div class="container-fluid">
-        <h1>KONTENT MEMBER</h1>
     </div>
 </div>
 <?php endif; ?>

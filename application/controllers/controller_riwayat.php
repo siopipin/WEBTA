@@ -8,6 +8,10 @@ public function __construct()
 {
     parent::__construct();
     $this->load->model('model_buku');
+    if ($this->session->userdata('masuk') != true) {
+        $url = base_url();
+        redirect($url);
+    }
     
 }
 public function index()
