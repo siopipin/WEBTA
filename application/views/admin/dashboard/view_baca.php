@@ -136,9 +136,7 @@
                         <div class="card">
                             
                             <?php  $fileName = $dokumen['d_namadekrip']; ?>
-                            <?php echo "<script type='text.javascript'>alert('".base_url('decrypt/'.$fileName)."');</script>";?>
-
-
+                            <!-- <?php //echo "<script type='text.javascript'>alert('".base_url('decrypt/'.$fileName)."');</script>";?> -->
                             <div class="card-content" style="height: 950px;">
 
 
@@ -212,7 +210,7 @@
 
 
                                 <!-- <object data="<?php
-                                echo base_url('decrypt/'.$fileName); 
+                                //echo base_url('decrypt/'.$fileName); 
                                 ?>" 
                                 type="application/pdf" width="100%" height="700px">
                                     <p>Alternative text - include a link <a href="myfile.pdf">to the PDF!</a></p>
@@ -347,7 +345,9 @@ function validate(a) {
 
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
-        window.reader = ePubReader("https://s3.amazonaws.com/moby-dick/", {
+            window.reader = ePubReader("http://localhost:8080/TAPerpus/decrypt/<?php echo $fileName;?>", {
+        //window.reader = ePubReader("https://s3.amazonaws.com/moby-dick/", {
+            //window.reader = ePubReader("http://localhost:8080/TAPerpus/decrypt/Test.epub", {
             restore: true
             });
         }
