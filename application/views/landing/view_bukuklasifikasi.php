@@ -43,15 +43,15 @@
                         ?>
 
 
-                                    <div class="card">
-                                        <img src="<?php echo base_url('assets/img/buku/' . $row->b_sampul); ?>" class="card-img-top"
-                                            alt="cover">
-                                        <div class="card-body">
-                                            <p class="card-title"><strong><?php echo $row->b_judul; ?></strong></p>
-                                            <p class="card-text"><small><?php echo $cetak; ?>...</small></p>
-                                        </div>
-                                        <ul class="list-group list-group-flush text-center">
-                                            <?php
+                <div class="card">
+                    <img src="<?php echo base_url('assets/img/buku/' . $row->b_sampul); ?>" class="card-img-top"
+                        alt="cover">
+                    <div class="card-body">
+                        <p class="card-title"><strong><?php echo $row->b_judul; ?></strong></p>
+                        <p class="card-text"><small><?php echo $cetak; ?>...</small></p>
+                    </div>
+                    <ul class="list-group list-group-flush text-center">
+                        <?php
                     $nilai = "$row->b_rating";
 
                         echo "<span> <small>Rating :</small> ";
@@ -73,8 +73,8 @@
                         </a>
                     </div>
                 </div>
-            
-            <?php }
+
+                <?php }
             ?>
             </div>
         </div>
