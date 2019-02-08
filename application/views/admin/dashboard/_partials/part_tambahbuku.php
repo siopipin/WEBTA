@@ -33,18 +33,7 @@
                     <div class="card-content">
                         <div class="tab-content">
                             <div class="tab-pane active" id="profile">
-                                <!-- isi untuk tambah buku -->
-                                <div class="col-lg-12"><br>
-                                    <ol class="breadcrumb">
-                                        <li>
-                                            <a href="<?php echo site_url('controller_page/databuku/') ?>">Buku</a>
-                                        <li class="active">Tambah Buku</li>
-                                        </li>
-                                    </ol>
-                                    <?php echo $this->session->flashdata('msg');
-                                    //include "daftar_klasifikasi.php";
-                                    ?>
-                                </div>
+
 
                                 <div class="col-md-12">
                                     <div class="card">
