@@ -428,6 +428,31 @@ class controller_buku extends CI_Controller
 
     }
 
+    public function perpanjang()
+    {
+        $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+        $idbuku = $this->uri->segment(3);
+        $query = $mysqli->query("SELECT * FROM tbl_transaksi WHERE t_idbuku =".$idbuku." AND t_idpengguna =".$_SESSION['ses_id']." AND t_status='Y'");
+        $data = $query->fetch_assoc(); 
+        $idtransaksi = $data['t_idtransaksi'];
+        $query = $mysqli->query("UPDATE tbl_transaksi set t_status = 'N' WHERE t_idtransaksi =".$idtransaksi);
+        
+        $idpengguna = $this->session->userdata('ses_id');
+        $hariini = date('Y-m-d H:i:s');
+        $tglkembali = date('Y-m-d H:i:s', strtotime('+7 day', strtotime($hariini)));
+        $data = array(
+            't_idpengguna' => $idpengguna,
+            't_idbuku' => $idbuku,
+            't_tanggalkembali' => $tglkembali,
+            't_status' => 'Y'
+        );
+        $this->model_buku->insertPeminjaman("tbl_transaksi",$data);
+        echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Buku Berhasil Diperpanjang !</div>');
+
+        redirect('controller_buku/bukuterpinjam/', 'refresh');
+
+    }
+
    
 }
 

@@ -66,6 +66,12 @@
                                             <?php echo $sisawaktu;?>
                                         </small>
                                     </div>
+
+                                    <a href="<?php echo base_url('controller_buku/perpanjang/'.$row->b_idbuku) ?>">
+                                    <div class="btn btn-default btn-block">
+                                        Perpanjang
+                                    </div>
+                                    </a>
                                 </div>
                             </div>        
                         </div>
