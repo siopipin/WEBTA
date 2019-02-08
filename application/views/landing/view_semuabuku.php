@@ -36,7 +36,7 @@
             <a name="semuabuku"></a>
             <div class="col-lg-12">
                 <div class="kartu-columns">
-                <?php
+                <?php 
                     foreach ($results as $row) {
                         $kalimat = "$row->b_deskripsi";
                         $jumlahkarakter=90;
