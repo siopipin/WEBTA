@@ -142,17 +142,17 @@
                                             function generateData() {
                                                 var klasifikasi = [];
                                                 klasifikasi[0] = "Publikasi Umum, Informasi Umum dan Komputer";
-                                                klasifikasi[1] = "Bibiliografi";
+                                                klasifikasi[1] = "Bibliografi";
                                                 klasifikasi[2] = "Perpustakaan dan Informasi";
                                                 klasifikasi[3] = "Ensiklopedia dan Buku yang memuat fakta-fakta";
                                                 klasifikasi[4] = "Tidak ada Klasifikasi (sebelumnya untuk Biografi)";
                                                 klasifikasi[5] = "Majalah dan Jurnal";
                                                 klasifikasi[6] = "Asosiasi, Organisasi dan Museum";
-                                                klasifikasi[7] = "Media massa, junalisme dan publikasi";
+                                                klasifikasi[7] = "Media massa, Jurnalisme dan Publikasi";
                                                 klasifikasi[8] = "Kutipan";
-                                                klasifikasi[9] = "Manuskrip dan buku langka";
+                                                klasifikasi[9] = "Manuskrip dan Buku Langka";
 
-                                                klasifikasi[10] = "Filsafat dan psikologi";
+                                                klasifikasi[10] = "Filsafat dan Psikologi";
                                                 klasifikasi[11] = "Metafisika";
                                                 klasifikasi[12] = "Epistimologi";
                                                 klasifikasi[13] = "Parapsikologi dan Okultisme";
@@ -160,41 +160,40 @@
                                                 klasifikasi[15] = "Psikologi";
                                                 klasifikasi[16] = "Filosofis Logis";
                                                 klasifikasi[17] = "Etik";
-                                                klasifikasi[18] =
-                                                    "Filosofi kuno, zaman pertengahan, dan filosofi ketimuran";
-                                                klasifikasi[19] = "Filosofi barat modern";
+                                                klasifikasi[18] = "Filosofi kuno, Zaman pertengahan, dan Filosofi ketimuran";
+                                                klasifikasi[19] = "Filosofi Barat Modern";
 
                                                 klasifikasi[20] = "Agama";
-                                                klasifikasi[21] = "Filsafat & teori agama";
+                                                klasifikasi[21] = "Filsafat & Teori Agama";
                                                 klasifikasi[22] = "Alkitab";
-                                                klasifikasi[23] = "Kristen & teologi Kristen";
-                                                klasifikasi[24] = "Christian praktek & ketaatan";
-                                                klasifikasi[25] = "praktek pastoral Kristen & perintah agama";
-                                                klasifikasi[26] = "Christian organisasi kerja, sosial & ibadah";
+                                                klasifikasi[23] = "Kristen & Teologi Kristen";
+                                                klasifikasi[24] = "Praktek Kristen & Ketaatan";
+                                                klasifikasi[25] = "Praktek Pastoral Kristen & Perintah Agama";
+                                                klasifikasi[26] = "Organisasi Kristen, Sosial & Ibadah";
                                                 klasifikasi[27] = "Sejarah Kekristenan";
-                                                klasifikasi[28] = "Kristen denominasi";
-                                                klasifikasi[29] = "lain agama";
+                                                klasifikasi[28] = "Denominasi Kristen";
+                                                klasifikasi[29] = "Agama lainnya";
 
                                                 klasifikasi[30] = "Ilmu Sosial, Sosiologi & Antropologi";
                                                 klasifikasi[31] = "Statistik";
                                                 klasifikasi[32] = "Ilmu politik";
                                                 klasifikasi[33] = "Ekonomi";
                                                 klasifikasi[34] = "Hukum";
-                                                klasifikasi[35] = "Administrasi publik & ilmu militer";
-                                                klasifikasi[36] = "sosial masalah & layanan sosial";
+                                                klasifikasi[35] = "Administrasi Publik & Ilmu Militer";
+                                                klasifikasi[36] = "Masalah Sosial & layanan sosial";
                                                 klasifikasi[37] = "Pendidikan";
-                                                klasifikasi[38] = "Commerce, komunikasi & transportasi";
-                                                klasifikasi[39] = "Bea Cukai, etiket & cerita rakyat";
+                                                klasifikasi[38] = "Komersial, Komunikasi & Transportasi";
+                                                klasifikasi[39] = "Bea Cukai, Etika & Cerita Rakyat";
 
                                                 klasifikasi[40] = "Bahasa";
                                                 klasifikasi[41] = "Linguistik";
-                                                klasifikasi[42] = "Bahasa Inggris & bahasa Inggris Kuno";
-                                                klasifikasi[43] = "Jerman & terkait bahasa";
-                                                klasifikasi[44] = "French & terkait bahasa";
-                                                klasifikasi[45] = "Italia, Rumania & terkait bahasa";
-                                                klasifikasi[46] = "Spanyol & Portugis bahasa";
-                                                klasifikasi[47] = "Latin & Italic bahasa";
-                                                klasifikasi[48] = "Yunani Klasik & modern bahasa";
+                                                klasifikasi[42] = "Bahasa Inggris & Bahasa Inggris Kuno";
+                                                klasifikasi[43] = "Bahasa Jerman & Bahasa terkait";
+                                                klasifikasi[44] = "Bahasa Perancis & Bahasa terkait";
+                                                klasifikasi[45] = "Bahasa Italia, Rumania & Bahasa terkait";
+                                                klasifikasi[46] = "Bahasa Spanyol, Portugis & Bahasa terkait";
+                                                klasifikasi[47] = "Bahasa Latin, Roma & Bahasa terkait";
+                                                klasifikasi[48] = "Bahasa Yunani Klasik & Modern & Bahasa terkait";
                                                 klasifikasi[49] = "Bahasa lainnya";
 
                                                 klasifikasi[50] = "Sains";
@@ -202,55 +201,55 @@
                                                 klasifikasi[52] = "Astronomi";
                                                 klasifikasi[53] = "Fisika";
                                                 klasifikasi[54] = "Kimia";
-                                                klasifikasi[55] = "Ilmu Bumi & Geologi";
-                                                klasifikasi[56] = "Fosil & kehidupan prasejarah";
-                                                klasifikasi[57] = "Hidup ilmu; biologi";
-                                                klasifikasi[58] = "Tanaman (Botani)";
-                                                klasifikasi[59] = "Hewan (Zoologi)";
+                                                klasifikasi[55] = "Geologi";
+                                                klasifikasi[56] = "Fosil & Kehidupan Prasejarah";
+                                                klasifikasi[57] = "Biologi";
+                                                klasifikasi[58] = "Botani";
+                                                klasifikasi[59] = "Animalia";
 
                                                 klasifikasi[60] = "Teknologi";
                                                 klasifikasi[61] = "Kedokteran & Kesehatan";
                                                 klasifikasi[62] = "Rekayasa";
                                                 klasifikasi[63] = "Pertanian";
-                                                klasifikasi[64] = "Rumah & manajemen keluarga";
-                                                klasifikasi[65] = "Manajemen & public relations";
-                                                klasifikasi[66] = "Teknik kimia";
+                                                klasifikasi[64] = "Rumah & Manajemen Keluarga";
+                                                klasifikasi[65] = "Manajemen & Hubungan Masyarakat";
+                                                klasifikasi[66] = "Teknik Kimia";
                                                 klasifikasi[67] = "Manufaktur";
-                                                klasifikasi[68] = "Industri untuk keperluan tertentu";
-                                                klasifikasi[69] = "Bangunan & konstruksi";
+                                                klasifikasi[68] = "Industri untuk Keperluan tertentu";
+                                                klasifikasi[69] = "Bangunan & Konstruksi";
 
                                                 klasifikasi[70] = "Seni";
-                                                klasifikasi[71] = "Landscaping & perencanaan wilayah";
+                                                klasifikasi[71] = "Lanskap & Perencanaan Wilayah";
                                                 klasifikasi[72] = "Arsitektur";
-                                                klasifikasi[73] = "Patung, keramik & logam";
-                                                klasifikasi[74] = "Menggambar & seni dekoratif";
+                                                klasifikasi[73] = "Patung, Keramik & Logam";
+                                                klasifikasi[74] = "Menggambar & Seni Dekoratif";
                                                 klasifikasi[75] = "Lukisan";
-                                                klasifikasi[76] = "Graphic seni";
-                                                klasifikasi[77] = "Fotografi & seni komputer";
+                                                klasifikasi[76] = "Seni Grafis";
+                                                klasifikasi[77] = "Fotografi & Seni Komputer";
                                                 klasifikasi[78] = "Musik";
-                                                klasifikasi[79] = "Olahraga, permainan & hiburan";
+                                                klasifikasi[79] = "Olahraga, Permainan & Hiburan";
 
-                                                klasifikasi[80] = "Sastra, retorika & kritik";
-                                                klasifikasi[81] = "sastra Amerika dalam bahasa Inggris";
-                                                klasifikasi[82] = "Bahasa Inggris literatur Inggris & Old";
-                                                klasifikasi[83] = "Jerman & terkait literatur";
-                                                klasifikasi[84] = "French & terkait literatur";
-                                                klasifikasi[85] = "Italia, Rumania & terkait literatur";
-                                                klasifikasi[86] = "Spanyol & Portugis literatur";
-                                                klasifikasi[87] = "Latin & Italic literatur";
-                                                klasifikasi[88] = "Yunani Klasik & modern literatur";
-                                                klasifikasi[89] = "lainnya literatur";
+                                                klasifikasi[80] = "Sastra, Retorika & Kritik";
+                                                klasifikasi[81] = "Sastra Amerika dalam Bahasa Inggris";
+                                                klasifikasi[82] = "Sastra Inggris dan Literatur Inggris Kuno";
+                                                klasifikasi[83] = "Sastra Jerman & Literatur terkait";
+                                                klasifikasi[84] = "Sastra Perancis & Literatur terkait";
+                                                klasifikasi[85] = "Sastra Italia, Rumania & Literatur terkait";
+                                                klasifikasi[86] = "Sastra Spanyol, Portugis & Literatur terkait";
+                                                klasifikasi[87] = "Sastra Latin, Roma & Literatur terkait";
+                                                klasifikasi[88] = "Sastra Yunani Klasik & Modern & Literatur terkait";
+                                                klasifikasi[89] = "Literatur dan Sastra lainnya";
 
                                                 klasifikasi[90] = "Sejarah";
-                                                klasifikasi[91] = "Geografi & travel";
-                                                klasifikasi[92] = "Biografi & silsilah";
-                                                klasifikasi[93] = "Sejarah dunia kuno";
+                                                klasifikasi[91] = "Geografi & Travel";
+                                                klasifikasi[92] = "Biografi & Silsilah";
+                                                klasifikasi[93] = "Sejarah Dunia Kuno";
                                                 klasifikasi[94] = "Sejarah Eropa";
                                                 klasifikasi[95] = "Sejarah Asia";
                                                 klasifikasi[96] = "Sejarah Afrika";
                                                 klasifikasi[97] = "Sejarah Amerika Utara";
                                                 klasifikasi[98] = "Sejarah Amerika Selatan";
-                                                klasifikasi[99] = "Sejarah daerah lain";
+                                                klasifikasi[99] = "Sejarah Daerah Lain";
 
 
 
