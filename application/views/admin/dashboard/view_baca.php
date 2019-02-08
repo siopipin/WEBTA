@@ -182,9 +182,9 @@
                                         </div>
                                         <div id="title-controls">
                                             
-                                            <a id="bookmark" class="icon-bookmark-empty">Bookmark</a>
-                                            <a id="setting" class="icon-cog">Settings</a>
-                                            <a id="fullscreen" class="icon-resize-full">Fullscreen</a>
+                                            <a id="bookmark" class="fa fa-bookmark">Bookmark</a>
+                                            <a id="setting" class="fa fa-wrench">Settings</a>
+                                            <a id="fullscreen" class="fa fa-arrows-alt">Fullscreen</a>
                                         </div>
                                     </div>
 
@@ -207,7 +207,6 @@
                                         <div class="closer icon-cancel-circled"></div>
                                     </div>
                                 </div>
-                                <div class="overlay"></div>
 
 
 
@@ -280,6 +279,47 @@
     </div>
 </div>
 
+<script type="text/javascript">
+$(document).ready(function () {
+    //Disable full page
+    $("body").on("contextmenu",function(e){
+        return false;
+    });
+    
+    //Disable part of page
+    $("#id").on("contextmenu",function(e){
+        return false;
+    });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    //Disable full page
+    $('body').bind('cut copy paste', function (e) {
+        e.preventDefault();
+    });
+    
+    //Disable part of page
+    $('#id').bind('cut copy paste', function (e) {
+        e.preventDefault();
+    });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    //Disable cut copy paste
+    $('body').bind('cut copy paste', function (e) {
+        e.preventDefault();
+    });
+   
+    //Disable mouse right click
+    $("body").on("contextmenu",function(e){
+        return false;
+    });
+});
+</script>
+
 <script src="<?php echo base_url()?>assets/js/sweetalert2.js"></script>
 <script>
 function validate(a) {
@@ -303,14 +343,16 @@ function validate(a) {
 </script>
 
 <script>
-            "use strict";
+    "use strict";
 
-            document.onreadystatechange = function () {
-              if (document.readyState == "complete") {
-                window.reader = ePubReader("https://s3.amazonaws.com/moby-dick/", {
-                   restore: true
-                 });
-              }
-            };
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+        window.reader = ePubReader("https://s3.amazonaws.com/moby-dick/", {
+            restore: true
+            });
+        }
+    };
+</script>
 
-    </script>
+
+

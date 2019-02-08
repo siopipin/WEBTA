@@ -11589,10 +11589,12 @@ footer .btn {
 /* epub */
 #main {
   /* height: 500px; */
+  
   position: absolute;
   width: 100%;
   height: 100%;
   right: 0;
+  margin-top: -15px;
   /* left: 40px; */
 /*   -webkit-transform: translate(40px, 0);
   -moz-transform: translate(40px, 0); */
@@ -11612,7 +11614,7 @@ footer .btn {
 }
 
 #titlebar {
-  height: 8%;
+  height: 10%;
   min-height: 20px;
   padding: 10px;
   /* margin: 0 50px 0 50px; */
