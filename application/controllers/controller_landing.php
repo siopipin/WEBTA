@@ -51,8 +51,16 @@ class controller_landing extends CI_Controller
         // Tampilkan semua buku pada homepage dengan pagination 
         $config = array();
         $config["base_url"] = base_url() . "controller_landing/bukuklasifikasi";
-        
         $klasifikasi = $this->uri->segment(3);
+        //Konversi nama buku remove 
+        $klasifikasi2="";
+        for($i=0;$i<strlen($klasifikasi);$i++){
+            if($klasifikasi[$i]!="%" || $klasifikasi[$i]!='%'){
+                $klasifikasi2 .= $klasifikasi[$i];
+            }
+            else {$i+=2;$klasifikasi2.=' ';}
+        }
+        $klasifikasi=$klasifikasi2;
         $config["total_rows"] = $this->model_landing->hitungBukuKlasifikasi($klasifikasi);
         $config["per_page"] = 8;
         $config["uri_segment"] = 3;
@@ -167,8 +175,8 @@ class controller_landing extends CI_Controller
         $config = array();
         $config["base_url"] = base_url() . "controller_landing/semuabuku";
         $config["total_rows"] = $this->model_landing->hitungBuku();
-        $config["per_page"] = 10;
-        $config["uri_segment"] = 3;
+        $config["per_page"] = 15;
+        $config["uri_segment"] = 3; 
 
 
          //ubah paginatio dengan bootsrap
