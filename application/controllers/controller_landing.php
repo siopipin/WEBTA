@@ -62,7 +62,7 @@ class controller_landing extends CI_Controller
         }
         $klasifikasi=$klasifikasi2;
         $config["total_rows"] = $this->model_landing->hitungBukuKlasifikasi($klasifikasi);
-        $config["per_page"] = 8;
+        $config["per_page"] = 10;
         $config["uri_segment"] = 3;
 
 
