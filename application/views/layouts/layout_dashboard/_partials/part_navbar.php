@@ -13,7 +13,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?php echo base_url('controller_auth') ?>"> Beranda </a>
+			<a class="navbar-brand" href="<?php echo base_url('controller_auth') ?>"> Homepage </a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -58,7 +58,7 @@
 				</li>
 				<li class="separator hidden-lg hidden-md"></li>
 			</ul>
-			<form class="navbar-form navbar-right" role="search">
+			<!-- <form class="navbar-form navbar-right" role="search">
 				<div class="form-group form-search is-empty">
 					<input type="text" class="form-control" placeholder="Search">
 					<span class="material-input"></span>
@@ -67,7 +67,7 @@
 					<i class="material-icons">search</i>
 					<div class="ripple-container"></div>
 				</button>
-			</form>
+			</form> -->
 		</div>
 	</div>
 </nav>

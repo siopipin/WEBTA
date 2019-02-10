@@ -45,7 +45,7 @@
                                 <p class="category">
                                     Informasi data buku
                                 </p>
-                                <?php echo $this->session->flashdata('msg'); ?>
+                                
                             </div>
                             <div class="card-content">
                                 <div class="col-md-12">
@@ -345,7 +345,7 @@ function validate(a) {
 
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
-            window.reader = ePubReader("http://localhost:8080/TAPerpus/decrypt/<?php echo $fileName;?>", {
+            window.reader = ePubReader("http://localhost/TAPerpus/decrypt/<?php echo $fileName;?>", {
         //window.reader = ePubReader("https://s3.amazonaws.com/moby-dick/", {
             //window.reader = ePubReader("http://localhost:8080/TAPerpus/decrypt/Test.epub", {
             restore: true

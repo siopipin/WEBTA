@@ -3,23 +3,18 @@
         <nav class="pull-left">
             <ul>
                 <li>
-                    <a href="#">
-                        Home
+                    <a href="<?php echo site_url('controller_auth/index') ?>">
+                        Beranda
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        Company
+                    <a href="<?php echo base_url('controller_landing/tentang') ?>">
+                        Tentang
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        Portfolio
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Blog
+                    <a href="<?php echo base_url('controller_landing/kontak') ?>">
+                        Kontak
                     </a>
                 </li>
             </ul>
@@ -29,7 +24,7 @@
             <script>
             document.write(new Date().getFullYear())
             </script>
-            <a href="http://www.creative-tim.com/">Creative Tim</a>, made with love for a better web
+            <a href="#">EPERPUS</a>, Aplikasi Perpustakaan Digital | SIO | ALBERT | HERU
         </p>
     </div>
 </footer>

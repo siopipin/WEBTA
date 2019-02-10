@@ -14,7 +14,7 @@
             </div>
 
             <div class="col-md-12">
-            <?php echo $this->session->flashdata('msg'); ?>
+           
             <h3>Buku Terpinjam</h3>
                     <br>
                     <br>

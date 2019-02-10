@@ -14,25 +14,23 @@
                         <div class="card-content">
                             <div class="info info-horizontal">
                                 <div class="icon icon-rose">
-                                    <i class="material-icons">timeline</i>
+                                    <i class="material-icons">book</i>
                                 </div>
                                 <div class="description">
-                                    <h4 class="info-title">Marketing</h4>
+                                    <h4 class="info-title">Baca Buku Digital</h4>
                                     <p class="description">
-                                        We've created the marketing campaign of the website. It was a very interesting
-                                        collaboration.
+                                        Dengan EReader Epub yang dapat langsung kamu gunakan untuk membaca buku secara langsung dipengkat mu!.
                                     </p>
                                 </div>
                             </div>
                             <div class="info info-horizontal">
                                 <div class="icon icon-primary">
-                                    <i class="material-icons">code</i>
+                                    <i class="material-icons">vpn_key</i>
                                 </div>
                                 <div class="description">
-                                    <h4 class="info-title">Fully Coded in HTML5</h4>
+                                    <h4 class="info-title">DRM system dengan AES</h4>
                                     <p class="description">
-                                        We've developed the website with HTML5 and CSS3. The client has access to the
-                                        code using GitHub.
+                                        Perpustakaan digital dengan Digital Rights Management sehingga buku dienkripsi terlebih dahulu.
                                     </p>
                                 </div>
                             </div>
@@ -41,9 +39,9 @@
                                     <i class="material-icons">group</i>
                                 </div>
                                 <div class="description">
-                                    <h4 class="info-title">Built Audience</h4>
+                                    <h4 class="info-title">MFCM</h4>
                                     <p class="description">
-                                        There is also a Fully Customizable CMS Admin Dashboard for this product.
+                                        Dengan algoritma rekomendasi MFCM anda akan mendapatkan rekomendasi buku yang sesuai untuk anda!
                                     </p>
                                 </div>
                             </div>

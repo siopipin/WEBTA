@@ -179,9 +179,9 @@
                 <?php }} ?>
                 <!--/.col-->    
             </div>
-            <div class="more-job-btn mt-5 text-center">
+            <!-- <div class="more-job-btn mt-5 text-center">
             <a href="<?php echo base_url('controller_landing/semuaRekomendasi') ?>" class="template-btn">Lihat Semua Rekomendasi</a>
-            </div>
+            </div> -->
 
             <!--/.row-->
         </div>

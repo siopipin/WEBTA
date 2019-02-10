@@ -27,8 +27,8 @@
                 <div class="section-top">
                     <br>
                     <br>
-                    <h2>Semua Kategori</h2>
-                    <p>Temukan semua Kategori buku digital </p>
+                    <h2>Semua Klasifikasi Buku</h2>
+                    <p>Temukan semua klasifikasi buku digital </p>
                 </div>
             </div>
         </div>

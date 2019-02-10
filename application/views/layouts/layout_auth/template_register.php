@@ -12,7 +12,7 @@
             <?php $this->load->view("admin/auth/view_register") ?>
 
             <!-- footer -->
-            <?php $this->load->view("layouts/layout_dashboard/_partials/part_footer") ?>
+            <?php $this->load->view("layouts/layout_auth/_partials/part_footer") ?>
         </div>
     </div>
 </body>
