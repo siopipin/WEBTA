@@ -171,6 +171,23 @@ if($this->uri->segment(2) == 'verifikasiPengguna'){
 else{
     $verifikasipengguna = '';
 }
+
+
+// Laporan
+if($this->uri->segment(2) == 'laporanMember'){
+    $laporanin = 'in';
+}
+else{
+    $laporanin = '';
+}
+
+if($this->uri->segment(2) == 'laporanMember'){
+    $penggunaaktif = 'active';
+    $dash = '';
+}
+else{
+    $penggunaaktif = '';
+}
 ?>
 
 
@@ -316,8 +333,35 @@ else{
                 </div>
             </li>
 
+            <li class="<?php echo $kelolaaktif; ?>">
+                <a data-toggle="collapse" href="#kelolalaporan" aria-expanded="true">
+                    <i class="material-icons">receipt</i>
+                    <p>Kelola Laporan
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse <?php echo $laporanin; ?>" id="kelolalaporan">
+                    <ul class="nav">
+                        <li class="<?php echo $penggunaaktif; ?>">
+                            <a href="<?php echo base_url() . 'controller_laporan/laporanMember' ?>">
+                                <i class="material-icons">record_voice_over</i>
+                                Laporan Member
+                            </a>
+                        </li>
+                        <li class="<?php echo $verifikasipengguna; ?>">
+                            <a href="<?php echo base_url() . 'controller_kelolapengguna/verifikasiPengguna' ?>">
+                                <i class="material-icons">library_add</i>
+                                Laporan Peminjaman
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 
 
+
+
+            <!-- Menu Member -->
 
             <?php if($this->session->userdata('akses') == '3') { ?>
                 <li class="<?php echo $bukupinjam; ?>">
