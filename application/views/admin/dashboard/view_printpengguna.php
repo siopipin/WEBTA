@@ -18,10 +18,11 @@
   <table border="1" cellpadding="8">
   <tr>
     <th>Tanggal</th>
-    <th>Kode Transaksi</th>
-    <th>Barang</th>
-    <th>Jumlah</th>
-    <th>Total Harga</th>
+    <th>Nama</th>
+    <th>Nama Pengguna</th>
+    <th>Email</th>
+    <th>Nomor HP</th>
+    <th>Tanggal Lahir</th>
   </tr>
     <?php
     if( ! empty($transaksi)){
@@ -31,9 +32,10 @@
         echo "<tr>";
         echo "<td>".$tgl."</td>";
         echo "<td>".$data->p_nama."</td>";
-        echo "<td>".$data->p_email."</td>";
         echo "<td>".$data->p_namapengguna."</td>";
+        echo "<td>".$data->p_email."</td>";
         echo "<td>".$data->p_nohp."</td>";
+        echo "<td>".$data->p_tanggallahir."</td>";
         echo "</tr>";
         $no++;
       }
