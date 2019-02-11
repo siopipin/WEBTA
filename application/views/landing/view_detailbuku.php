@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 align-self-center">
-                
+
                 <div class="banner-text">
                     <p class="py-3">
                         <?php
@@ -50,7 +50,7 @@
         <div class="row">
             <a name="detail"></a>
             <div class="col-lg-8">
-                
+
                 <div class="main-content">
                     <div class="single-content1">
                         <div class="single-job mb-4 d-lg-flex justify-content-between">
@@ -94,6 +94,9 @@
                             <span>Teks Bahasa</span>
                             <span class="text-right"><?php echo $edit['b_bahasa']; ?></span>
                         </a>
+
+                        <?php if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '3') : ?>
+
                         <?php  
                             $idBuku = $edit['b_idbuku'];
                             $mysqli = new mysqli("localhost", "root", "", "db_perpus");       
@@ -106,15 +109,20 @@
                             class="btn btn-primary btn-lg btn-block">
                             Pinjam
                         </a>
-                            <?php } else {
+                        <?php } else {
                                 ?>
                         <a href="<?php echo base_url('controller_buku/baca/'.$idBuku) ?>">
-                            
+
                             <button class="btn btn-success btn-block">
                                 Baca Buku
                             </button>
                         </a>
-                            <?php } ?>
+                        <?php } ?>
+
+                        <?php else : ?>
+                        <a href="<?php echo site_url('controller_auth/login/') ?>" class="btn btn-success btn-block">log in</a>
+                        <?php endif; ?>
+
                     </div>
                 </div>
             </div>

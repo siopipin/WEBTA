@@ -10,25 +10,45 @@ class controller_landing extends CI_Controller
         parent::__construct();
 
         // load model
+        $this->load->model('model_auth');
         $this->load->model('model_landing');
         $this->load->model('model_buku');
-        if ($this->session->userdata('masuk') != true) {
-            $url = base_url();
-            redirect($url);
-        }
+
     }
 
     public function index()
     {
-        if ($this->model_auth->logged_id()) {
-            $data['terbaru'] = $this->model_landing->bukuTerbaru();
-            $data['view'] = 'landing/view_homepage';
-            $this->load->view('landing/layout/template_homepage', $data);
-        } else {
 
-            redirect('controller_auth/login');
-           
+        // untuk direct ke halaman Homepage langsung
+        $data['terbaru'] = $this->model_landing->bukuTerbaru();
+        $data['rekayasa'] = $this->model_landing->cekKategorirekayasa()->row_array();
+        $data['ilmukomputer'] = $this->model_landing->cekKategoriilmukom()->row_array();
+        $data['internet'] = $this->model_landing->cekKategoriinternet()->row_array();
+        $data['office'] = $this->model_landing->cekKategorioffice()->row_array();
+
+        // untuk direct ke halaman HomePage
+        $data['terbaru'] = $this->model_landing->bukuTerbaru();
+        $data['optpenulis'] = $this->model_landing->getPengarang()->result();
+        $data['optklasifikasi'] = $this->model_landing->getKlasifikasi()->result();
+
+        //mfcm bawaan heru
+
+        if (!(isset($_SESSION['ses_id']))) {
+            $data['mfcm'] = $this->model_buku->getMfcm(0);
+        } else {
+            $idUser = $_SESSION['ses_id'];
+            $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+            $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = " . $idUser);
+            $jlh = mysqli_num_rows($query);
+            //echo "<script type='text/javascript'> alert('Jumlahnya : ".$jlh." | ".$idUser."')</script>";
+            if ($jlh == 0) {
+                $data['mfcm'] = $this->model_buku->getMfcm(0);
+            } else {
+                $data['mfcm'] = $this->model_buku->getMfcm($idUser);
+            }
         }
+        $data['view'] = 'landing/view_homepage.php';
+        $this->load->view('landing/layout/template_homepage', $data);
     }
 
     public function detailBuku()
@@ -40,62 +60,58 @@ class controller_landing extends CI_Controller
         $this->load->view('landing/layout/template_homepage.php', $data);
     }
 
-
     // Tampilkan buku berdasarkan klasifikasi
     public function bukuKlasifikasi()
     {
         //ini default hasil
         // $data['klasifikasi'] = $this->model_landing->cekKlasifikasi($klasifikasi)->row_array();
 
-
-        // Tampilkan semua buku pada homepage dengan pagination 
+        // Tampilkan semua buku pada homepage dengan pagination
         $config = array();
         $config["base_url"] = base_url() . "controller_landing/bukuklasifikasi";
         $klasifikasi = $this->uri->segment(3);
-        //Konversi nama buku remove 
-        $klasifikasi2="";
-        for($i=0;$i<strlen($klasifikasi);$i++){
-            if($klasifikasi[$i]!="%" || $klasifikasi[$i]!='%'){
+        //Konversi nama buku remove
+        $klasifikasi2 = "";
+        for ($i = 0; $i < strlen($klasifikasi); $i++) {
+            if ($klasifikasi[$i] != "%" || $klasifikasi[$i] != '%') {
                 $klasifikasi2 .= $klasifikasi[$i];
-            }
-            else {$i+=2;$klasifikasi2.=' ';}
+            } else { $i += 2;
+                $klasifikasi2 .= ' ';}
         }
-        $klasifikasi=$klasifikasi2;
+        $klasifikasi = $klasifikasi2;
         $config["total_rows"] = $this->model_landing->hitungBukuKlasifikasi($klasifikasi);
         $config["per_page"] = 10;
         $config["uri_segment"] = 3;
 
-
-         //ubah paginatio dengan bootsrap
-         $config['first_link']       = 'First';
-         $config['last_link']        = 'Last';
-         $config['next_link']        = 'Next';
-         $config['prev_link']        = 'Prev';
-         $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-         $config['full_tag_close']   = '</ul></nav></div>';
-         $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-         $config['num_tag_close']    = '</span></li>';
-         $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-         $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
-         $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-         $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['prev_tagl_close']  = '</span>Next</li>';
-         $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-         $config['first_tagl_close'] = '</span></li>';
-         $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['last_tagl_close']  = '</span></li>';
+        //ubah paginatio dengan bootsrap
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Prev';
+        $config['full_tag_open'] = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+        $config['full_tag_close'] = '</ul></nav></div>';
+        $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['num_tag_close'] = '</span></li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close'] = '<span class="sr-only">(current)</span></span></li>';
+        $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['next_tagl_close'] = '<span aria-hidden="true">&raquo;</span></span></li>';
+        $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['prev_tagl_close'] = '</span>Next</li>';
+        $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['first_tagl_close'] = '</span></li>';
+        $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['last_tagl_close'] = '</span></li>';
 
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data["results"] = $this->model_landing->
             tampilBukuKlasifikasi($config["per_page"], $page, $klasifikasi);
         $data["links"] = $this->pagination->create_links();
-        
+
         $data['view'] = ('landing/view_bukuklasifikasi.php');
         $this->load->view('landing/layout/template_homepage.php', $data);
     }
-
 
     // Cari buku dengan ajax di landing page
     public function cariBuku()
@@ -144,7 +160,7 @@ class controller_landing extends CI_Controller
 
                                 <div class="job-btn col-md-2 align-self-center">
                                     <img src="' . base_url('assets/img/buku/' . $row->b_sampul) . '" style="width: 100%;height: 150px;background-repeat: no-repeat;background-position: center;background-size: cover" alt="job">
-                                    <a href="'. site_url('controller_landing/detailBuku/'.$row->b_idbuku).'" class="third-btn job-btn1">Detail</a>
+                                    <a href="' . site_url('controller_landing/detailBuku/' . $row->b_idbuku) . '" class="third-btn job-btn1">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -153,13 +169,13 @@ class controller_landing extends CI_Controller
             }
         } else {
             $output .= '
-                
+
             <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="home-tab">
                 <div class="single-job mb-4 d-lg-flex justify-content-between">
                     <div class="text-center">
                         <h4> Buku Tidak Ditemukan, Silahkan periksa kata pencarian anda! </h4>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </div>
@@ -171,146 +187,138 @@ class controller_landing extends CI_Controller
 
     public function semuabuku()
     {
-        // Tampilkan semua buku pada homepage dengan pagination 
+        // Tampilkan semua buku pada homepage dengan pagination
         $config = array();
         $config["base_url"] = base_url() . "controller_landing/semuabuku";
         $config["total_rows"] = $this->model_landing->hitungBuku();
         $config["per_page"] = 15;
-        $config["uri_segment"] = 3; 
+        $config["uri_segment"] = 3;
 
-
-         //ubah paginatio dengan bootsrap
-         $config['first_link']       = 'First';
-         $config['last_link']        = 'Last';
-         $config['next_link']        = 'Next';
-         $config['prev_link']        = 'Prev';
-         $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-         $config['full_tag_close']   = '</ul></nav></div>';
-         $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-         $config['num_tag_close']    = '</span></li>';
-         $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-         $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
-         $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-         $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['prev_tagl_close']  = '</span>Next</li>';
-         $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-         $config['first_tagl_close'] = '</span></li>';
-         $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['last_tagl_close']  = '</span></li>';
+        //ubah paginatio dengan bootsrap
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Prev';
+        $config['full_tag_open'] = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+        $config['full_tag_close'] = '</ul></nav></div>';
+        $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['num_tag_close'] = '</span></li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close'] = '<span class="sr-only">(current)</span></span></li>';
+        $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['next_tagl_close'] = '<span aria-hidden="true">&raquo;</span></span></li>';
+        $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['prev_tagl_close'] = '</span>Next</li>';
+        $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['first_tagl_close'] = '</span></li>';
+        $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['last_tagl_close'] = '</span></li>';
 
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data["results"] = $this->model_landing->
             tampilBuku($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
-        
+
         $data['view'] = 'landing/view_semuabuku';
         $this->load->view('landing/layout/template_homepage', $data);
-        
+
     }
 
     public function semuaRekomendasi()
     {
 
-        // Tampilkan semua buku pada homepage dengan pagination 
+        // Tampilkan semua buku pada homepage dengan pagination
         $config = array();
         $config["base_url"] = base_url() . "controller_landing/semuabuku";
-        $config["total_rows"] = 12;//$this->model_landing->hitungBuku();
+        $config["total_rows"] = 12; //$this->model_landing->hitungBuku();
         $config["per_page"] = 8;
         $config["uri_segment"] = 3;
 
-
         //ubah paginatio dengan bootsrap
-        $config['first_link']       = 'First';
-        $config['last_link']        = 'Last';
-        $config['next_link']        = 'Next';
-        $config['prev_link']        = 'Prev';
-        $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-        $config['full_tag_close']   = '</ul></nav></div>';
-        $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-        $config['num_tag_close']    = '</span></li>';
-        $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-        $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
-        $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-        $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-        $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-        $config['prev_tagl_close']  = '</span>Next</li>';
-        $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Prev';
+        $config['full_tag_open'] = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+        $config['full_tag_close'] = '</ul></nav></div>';
+        $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['num_tag_close'] = '</span></li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close'] = '<span class="sr-only">(current)</span></span></li>';
+        $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['next_tagl_close'] = '<span aria-hidden="true">&raquo;</span></span></li>';
+        $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['prev_tagl_close'] = '</span>Next</li>';
+        $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';
         $config['first_tagl_close'] = '</span></li>';
-        $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-        $config['last_tagl_close']  = '</span></li>';
+        $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['last_tagl_close'] = '</span></li>';
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-         //mfcm bawaan heru
+        //mfcm bawaan heru
 
+        $idUser = $_SESSION['ses_id'];
 
-         $idUser = $_SESSION['ses_id'];
-
-         if(strlen($idUser) <1){
+        if (strlen($idUser) < 1) {
             $data['mfcm'] = $this->model_buku->getMfcm(0);
-         }
-         else{
-            $mysqli = new mysqli("localhost", "root", "", "db_perpus");       
-            $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = ".$idUser);
+        } else {
+            $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+            $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = " . $idUser);
             $jlh = mysqli_num_rows($query);
             //echo "<script type='text/javascript'> alert('Jumlahnya : ".$jlh." | ".$idUser."')</script>";
-            if($jlh==0){
+            if ($jlh == 0) {
                 $data['mfcm'] = $this->model_buku->getMfcm(0);
-            }
-            else {
+            } else {
                 $data['mfcm'] = $this->model_buku->getMfcm($idUser);
             }
         }
-         
 
         $data["links"] = $this->pagination->create_links();
         $data['view'] = 'landing/view_semuaRekomendasi';
         $this->load->view('landing/layout/template_homepage', $data);
     }
 
-
     public function semuakategori()
     {
-       
-        // Tampilkan semua buku pada homepage dengan pagination 
+
+        // Tampilkan semua buku pada homepage dengan pagination
         $config = array();
         $config["base_url"] = base_url() . "controller_landing/semuakategori";
         $config["total_rows"] = $this->model_landing->hitungKategori();
         $config["per_page"] = 12;
         $config["uri_segment"] = 3;
 
-
-         //ubah paginatio dengan bootsrap
-         $config['first_link']       = 'First';
-         $config['last_link']        = 'Last';
-         $config['next_link']        = 'Next';
-         $config['prev_link']        = 'Prev';
-         $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-         $config['full_tag_close']   = '</ul></nav></div>';
-         $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-         $config['num_tag_close']    = '</span></li>';
-         $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-         $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
-         $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-         $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['prev_tagl_close']  = '</span>Next</li>';
-         $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-         $config['first_tagl_close'] = '</span></li>';
-         $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-         $config['last_tagl_close']  = '</span></li>';
+        //ubah paginatio dengan bootsrap
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Prev';
+        $config['full_tag_open'] = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+        $config['full_tag_close'] = '</ul></nav></div>';
+        $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['num_tag_close'] = '</span></li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close'] = '<span class="sr-only">(current)</span></span></li>';
+        $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['next_tagl_close'] = '<span aria-hidden="true">&raquo;</span></span></li>';
+        $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['prev_tagl_close'] = '</span>Next</li>';
+        $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['first_tagl_close'] = '</span></li>';
+        $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';
+        $config['last_tagl_close'] = '</span></li>';
 
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data["results"] = $this->model_landing->
             tampilKlasifikasi($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
-        
+
         $data['view'] = 'landing/view_semuakategori';
         $this->load->view('landing/layout/template_homepage', $data);
-        
+
     }
 
     public function tentang()

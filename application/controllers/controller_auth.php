@@ -15,47 +15,19 @@ class Controller_auth extends CI_Controller
         $this->load->model('model_auth');
         $this->load->model('model_landing');
         $this->load->model('model_buku');
-        
+
     }
 
     public function index()
-    {
-        if ($this->model_auth->logged_id()) {
-
-            $data['rekayasa'] = $this->model_landing->cekKategorirekayasa()->row_array();
-            $data['ilmukomputer'] = $this->model_landing->cekKategoriilmukom()->row_array();
-            $data['internet'] = $this->model_landing->cekKategoriinternet()->row_array();
-            $data['office'] = $this->model_landing->cekKategorioffice()->row_array();
-
-            // untuk direct ke halaman HomePage
-            $data['terbaru'] = $this->model_landing->bukuTerbaru();
-            $data['optpenulis'] = $this->model_landing->getPengarang()->result();
-            $data['optklasifikasi'] = $this->model_landing->getKlasifikasi()->result();
-
-            //mfcm bawaan heru
-            $idUser = $_SESSION['ses_id'];
-            $mysqli = new mysqli("localhost", "root", "", "db_perpus");       
-            $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = ".$idUser);
-            $jlh = mysqli_num_rows($query);
-            //echo "<script type='text/javascript'> alert('Jumlahnya : ".$jlh." | ".$idUser."')</script>";
-            if($jlh==0){
-                $data['mfcm'] = $this->model_buku->getMfcm(0);
-            }
-            else {
-                $data['mfcm'] = $this->model_buku->getMfcm($idUser);
-            }
-            $data['view'] = 'landing/view_homepage';
-            $this->load->view('landing/layout/template_homepage', $data);
-        } else {
-            redirect('controller_auth/login');
-        }
+    { 
+        redirect('controller_auth/login');
     }
 
     public function login()
     {
 
         if ($this->model_auth->logged_id()) {
-            redirect('Controller_auth');
+            redirect('Controller_landing/index');
         } else {
 
             $this->form_validation->set_rules('nama_pengguna', 'Nama Pengguna', 'trim|required|min_length[3]|max_length[20]');
@@ -110,10 +82,10 @@ class Controller_auth extends CI_Controller
                         $this->session->set_userdata($pengguna_data);
                         redirect('controller_auth');
                     } else { // jika username dan password tidak ditemukan atau salah
-                        
+
                         echo $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center" role="alert">Username Atau Password Salah!!</div>');
                         redirect('controller_auth/login/', 'refresh');
-                        
+
                     }
                 }
             } else {
@@ -159,12 +131,11 @@ class Controller_auth extends CI_Controller
                     // successfully sent mail to user email
                     echo $this->session->set_flashdata('msg', '<div class="alert alert-success text-center" role="alert">Silahkan konfirmasi pendaftaran anda di email untuk melengkapi pendaftaran!!</div>');
 
-                    
                     redirect('controller_auth/login/', 'refresh');
                 } else {
                     echo $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center" role="alert">Silahkan Coba Lagi!!</div>');
 
-                redirect('controller_auth/login/', 'refresh');
+                    redirect('controller_auth/login/', 'refresh');
                 }
                 redirect('controller_auth/login/', 'refresh');
 
@@ -201,7 +172,7 @@ class Controller_auth extends CI_Controller
     {
         if ($this->model_auth->verifyemail($key)) {
             echo $this->session->set_flashdata('msg', '<div class="alert alert-success text-center" role="alert">Alamat email mu telah berhasil di konfirmasi, terima kasih!!</div>');
-            
+
             redirect('controller_auth/login/', 'refresh');
         } else {
             echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Verifikasi email salah, silahkan ulangi kembali!!</div>');
