@@ -14,16 +14,8 @@ class Controller_dashboard extends CI_Controller
 
     public function index()
     {
-
-        if($this->model_auth->logged_id())
-        {
-            $data['view'] = 'admin/dashboard/view_dashboard';
-            $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
-        }
-        else
-        {
-            redirect('controller_auth/login');
-        }        
+        $data['view'] = 'admin/dashboard/view_dashboard';
+        $this->load->view('layouts/layout_dashboard/template_dashboard', $data);      
     }
 
  
