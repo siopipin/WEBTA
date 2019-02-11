@@ -244,17 +244,25 @@ class controller_landing extends CI_Controller
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
          //mfcm bawaan heru
+
+
          $idUser = $_SESSION['ses_id'];
-         $mysqli = new mysqli("localhost", "root", "", "db_perpus");       
-         $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = ".$idUser);
-         $jlh = mysqli_num_rows($query);
-         //echo "<script type='text/javascript'> alert('Jumlahnya : ".$jlh." | ".$idUser."')</script>";
-         if($jlh==0){
-             $data['mfcm'] = $this->model_buku->getMfcm(0);
+
+         if(strlen($idUser) <1){
+            $data['mfcm'] = $this->model_buku->getMfcm(0);
          }
-         else {
-             $data['mfcm'] = $this->model_buku->getMfcm($idUser);
-         }
+         else{
+            $mysqli = new mysqli("localhost", "root", "", "db_perpus");       
+            $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = ".$idUser);
+            $jlh = mysqli_num_rows($query);
+            //echo "<script type='text/javascript'> alert('Jumlahnya : ".$jlh." | ".$idUser."')</script>";
+            if($jlh==0){
+                $data['mfcm'] = $this->model_buku->getMfcm(0);
+            }
+            else {
+                $data['mfcm'] = $this->model_buku->getMfcm($idUser);
+            }
+        }
          
 
         $data["links"] = $this->pagination->create_links();
