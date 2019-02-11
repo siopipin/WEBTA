@@ -177,6 +177,12 @@ else{
 if($this->uri->segment(2) == 'laporanMember'){
     $laporanin = 'in';
 }
+elseif($this->uri->segment(2) == 'laporanPinjam'){
+    $laporanin = 'in';
+}
+elseif($this->uri->segment(2) == 'laporanBuku'){
+    $laporanin = 'in';
+}
 else{
     $laporanin = '';
 }
@@ -187,6 +193,22 @@ if($this->uri->segment(2) == 'laporanMember'){
 }
 else{
     $penggunaaktif = '';
+}
+
+if($this->uri->segment(2) == 'laporanPinjam'){
+    $laporanpinjamaktif = 'active';
+    $dash = '';
+}
+else{
+    $laporanpinjamaktif = '';
+}
+
+if($this->uri->segment(2) == 'laporanBuku'){
+    $laporanbukuaktif = 'active';
+    $dash = '';
+}
+else{
+    $laporanbukuaktif = '';
 }
 ?>
 
@@ -348,10 +370,17 @@ else{
                                 Laporan Member
                             </a>
                         </li>
-                        <li class="<?php echo $verifikasipengguna; ?>">
-                            <a href="<?php echo base_url() . 'controller_kelolapengguna/verifikasiPengguna' ?>">
+                        <li class="<?php echo $laporanpinjamaktif; ?>">
+                            <a href="<?php echo base_url() . 'controller_laporan/laporanPinjam' ?>">
                                 <i class="material-icons">library_add</i>
                                 Laporan Peminjaman
+                            </a>
+                        </li>
+
+                        <li class="<?php echo $laporanbukuaktif; ?>">
+                            <a href="<?php echo base_url() . 'controller_laporan/laporanBuku' ?>">
+                                <i class="material-icons">book</i>
+                                Laporan Buku
                             </a>
                         </li>
                     </ul>

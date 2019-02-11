@@ -5,7 +5,7 @@
                 <ol class="breadcrumb">
                     <li>
                         <a href="<?php echo site_url('controller_dashboard/index/') ?>">Dashboard</a>
-                    <li class="active">Laporan Member</li>
+                    <li class="active">Laporan Pinjam</li>
                     </li>
                 </ol>
                 <?php  echo $this->session->flashdata('msg'); 
@@ -21,7 +21,7 @@
                                 <i class="material-icons">filter_list</i>
                             </div>
                             <div class="card-content">
-                                <h4 class="card-title">Filter | Laporan Pengguna</h4>
+                                <h4 class="card-title">Filter | Laporan Pinjam</h4>
                                 <legend>Filter Berdasarkan</legend>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -69,7 +69,7 @@
                                                     data-size="12">
                                                     <option value="">Pilih</option>
                                                     <?php
-                                                      foreach ($optiontahun as $row) { ?>
+                                                      foreach ($optiontahunpinjam as $row) { ?>
                                                     <option value="<?php echo $row->tahun ?>"><?php echo $row->tahun ?>
                                                     </option>
                                                     <?php }
@@ -82,7 +82,7 @@
                                                 <div class="checkbox pull-left">
                                                     <label>
                                                         <a
-                                                            href="<?php echo base_url('controller_laporan/laporanMember'); ?>">Reset
+                                                            href="<?php echo base_url('controller_laporan/laporanPinjam'); ?>">Reset
                                                             Filter</a>
                                                     </label>
                                                 </div>
@@ -101,17 +101,17 @@
                             <div class="card-content">
                                 <div class="material-datatables">
                                     <b><?php echo $ket; ?></b><br /><br />
-                                    <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br /><br />
+                                    
                                     <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                         cellspacing="0" width="100%" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Tanggal</th>
-                                                <th>Foto</th>
+                                         
                                                 <th>Nama</th>
                                                 <th>Email</th>
-                                                <th>Status</th>
+                                               
                                                 <th class="disabled-sorting text-right">Aksi</th>
                                             </tr>
                                         </thead>
@@ -119,11 +119,11 @@
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Tanggal</th>
-                                                <th>Foto</th>
+                                       
                                                 <th>Nama</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th>Email</th>
-                                                <th>Status</th>
+                                              
                                                 <th class="disabled-sorting text-right">Aksi</th>
                                             </tr>
                                         </tfoot>
@@ -131,38 +131,21 @@
                                             <?php 
                                 $no = 1;
                                 foreach($transaksi as $row) {
-                                    $status = $row->p_verifikasi;
-                                    $tgl = date('d-m-Y', strtotime($row->p_createat));
-                                    if($status == 0){
-                                        $status = "Belum Terverifikasi";
-                                    }
-                                    else
-                                    {
-                                        $status = "Terverifikasi";
-                                    }
+                                    $tgl = date('d-m-Y', strtotime($row->t_tanggalpinjam));
+                                    $tglkembali = date('d-m-Y', strtotime($row->t_tanggalkembali));
+                                    
 
                                 ?>
                                             <tr>
                                                 <td><?php echo $no;?></td>
                                                 <!-- jika ada buku di dalam database maka tampilkan -->
                                                 <td><?php echo $tgl;?></td>
-                                                <td>
-                                                    <div class="img-container">
-                                                        <?php if($row->p_fotoprofil != "") { ?>
-                                                        <img src="<?php echo base_url('assets/img/profil/'.$row->p_fotoprofil);?>"
-                                                            style="width:50px;height:50px;">
-                                                        <?php }else{ ?>
-                                                        <img src="<?php echo base_url('assets/img/profil/default.png');?>"
-                                                            style="width:50px;height:50px;">
-                                                        <?php } ?>
-                                                    </div>
-                                                </td>
+                                                <td><?php echo $tglkembali;?></td>
+                                                
                                                 <td><?php echo $row->p_nama;?></td>
-                                                <td><?php echo $row->p_email;?></td>
-                                                <td><?php echo $status;?></td>
-                                                <td class="text-right">
-                                                    <a href="<?php echo site_url('controller_profile/profile/'.$row->p_id) ?>"
-                                                        class="btn btn-md btn-default">Lihat Detail</a>
+                                                <td><?php echo $row->b_judul;?></td>
+                                                
+                                                   
 
                                                 </td>
                                             </tr>
@@ -214,17 +197,10 @@
                                         </a>
                                     </div>
                                 </div>
-
-
-
-
                             </div>
                         </div>
                     </div>
-
-                    
                 </div>
-                
             </div>
         </div>
     </div>
