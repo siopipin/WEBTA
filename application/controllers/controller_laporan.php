@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -17,7 +17,7 @@ class controller_laporan extends CI_Controller
 
     public function index()
     {
-        redirect('controller_laporanpengguna/laporan/', 'refresh');
+        redirect('controller_laporan/laporan/', 'refresh');
     }
 
     public function laporanMember()
@@ -278,6 +278,57 @@ class controller_laporan extends CI_Controller
       
     }
 
+    // Laporan edit data
+    public function laporanRating()
+    { 
+        $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+        if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
+            $filter = $_GET['filter']; // Ambil data filder yang dipilih user
+            
+        } else { // Jika user tidak mengklik tombol tampilkan
+            $ket = 'Semua Data Rating';
+            $url_cetak = 'controller_laporan/cetak';
+            //$transaksi = $this->model_laporan->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
+            $queryR = $mysqli->query("SELECT * FROM tbl_rating");
+            $rating = array();
+            while ($data = $queryR->fetch_assoc()) {
+                $id = $data['r_id'];
+                $iduser = $data['r_iduser'];
+                $idbuku = $data['r_idbuku'];
+                $nilai = $data['r_rating'];
+                $tgl = $data['r_tanggalrating'];
+                $ratingtmp = array('r_id'=>$id,'r_iduser'=>$iduser, 'r_idbuku'=>$idbuku, 'r_rating'=>$nilai, 'r_tanggalrating'=>$tgl);
+                array_push($rating,$ratingtmp);
+            }
+        }
+        $semuauser = array();
+        
+        $query = $mysqli->query("SELECT * FROM tbl_pengguna ORDER BY p_id ASC");
+
+        while ($data = $query->fetch_assoc()) {
+            $idMember = $data['p_id'];
+            $namaMember = $data['p_nama'];
+            $usertmp = array('id'=>$idMember, 'nama'=>$namaMember);
+            array_push($semuauser,$usertmp);
+        }
+        
+        $data['user'] = $semuauser;
+        $data['ket'] = $ket;
+        $data['url_cetak'] = base_url($url_cetak);
+        $data['rating'] = $rating;
+        $data['view'] = ('admin/dashboard/laporan/view_laporanrating.php');
+        $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
+    }
+
+    function simpan(){
+        
+        $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+        $sid = $this->input->POST('vidrating');
+        $snilai = $this->input->POST('vnilai');
+        echo "<script type='text/javascript'>alert('asu".$sid."|".$snilai."');</script>";
+        $query = $mysqli->query("UPDATE tbl_rating SET r_rating=".$snilai." WHERE r_id =".$sid);
+        redirect('controller_laporan/laporanRating/', 'refresh');
+    }
 
 }
 

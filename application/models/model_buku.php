@@ -251,7 +251,6 @@ class model_buku extends CI_Model
             return $MFCM;
         } else { // Jika user pernah melakukan rating
             // =============================== H P R S =================================
-
             $idUserAktif = $valueMFCM;
             $indeksAktif = array_search($idUserAktif, $ListMember);
             $_K = array();

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <?php echo $this->session->flashdata('msg'); ?>
-            </div>
+            </div> 
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="orange">

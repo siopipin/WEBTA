@@ -185,6 +185,9 @@ elseif($this->uri->segment(2) == 'laporanPinjam'){
 elseif($this->uri->segment(2) == 'laporanBuku'){
     $laporanin = 'in';
 }
+elseif($this->uri->segment(2) == 'laporanRating'){
+    $laporanin = 'in';
+}
 else{
     $laporanin = '';
 }
@@ -211,6 +214,14 @@ if($this->uri->segment(2) == 'laporanBuku'){
 }
 else{
     $laporanbukuaktif = '';
+}
+
+if($this->uri->segment(2) == 'laporanRating'){
+    $laporanratingaktif = 'active';
+    $dash = '';
+}
+else{
+    $laporanratingaktif = '';
 }
 
 if($this->uri->segment(2) == 'infovisitor'){
@@ -392,6 +403,13 @@ else{
                             <a href="<?php echo base_url() . 'controller_laporan/laporanBuku' ?>">
                                 <i class="material-icons">book</i>
                                 Laporan Buku
+                            </a>
+                        </li>
+
+                        <li class="<?php echo $laporanratingaktif; ?>">
+                            <a href="<?php echo base_url() . 'controller_laporan/laporanRating' ?>">
+                                <i class="material-icons">record_voice_over</i>
+                                Laporan Rating
                             </a>
                         </li>
                     </ul>

@@ -378,7 +378,7 @@ class controller_buku extends CI_Controller
             $idbuku = $this->uri->segment(3);
                 $idmember = $this->session->userdata('ses_id');
                 $ulasan = $this->input->post('vulasan');
-                $rating = $this->input->post('vrating');
+                $rating = $this->input->post('vrating'); 
                 $data = array(
                     'r_idbuku' => $idbuku,
                     'r_iduser' => $idmember,
