@@ -186,7 +186,7 @@
                                         </div>
                                     </div>
 
-                                    <div id="divider"></div>
+                                    
                                     <div id="prev" class="arrow">‹</div>
                                     <div id="viewer"></div>
                                     <div id="next" class="arrow">›</div>

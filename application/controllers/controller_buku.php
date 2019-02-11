@@ -418,7 +418,7 @@ class controller_buku extends CI_Controller
         $mysqli->query("UPDATE `tbl_buku` SET b_jumlah = b_jumlah+1 WHERE b_idbuku =".$idbuku);
         
         //$statue=$mysqli->query("UPDATE `tbl_transaksi` SET t_status = 'N' WHERE t_idtransaksi = ".$idtransaksi);
-        echo "<script type='text/javascript'>alert('".$idtransaksi."')</script>";
+        // echo "<script type='text/javascript'>alert('".$idtransaksi."')</script>";
         $this->model_buku->updateTransaksi($idtransaksi, $data);
         
         
