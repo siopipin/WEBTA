@@ -32,8 +32,7 @@
                                             <td><b>Online</b></td>
                                             <td><?php echo $online; ?></td>
                                         </tr>
-                                        
-                                        
+
                                     </table>
                                 </div>
                             </div>

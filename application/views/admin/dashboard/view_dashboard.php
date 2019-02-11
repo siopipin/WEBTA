@@ -9,16 +9,16 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="orange">
-                        <i class="material-icons">weekend</i>
+                        <i class="material-icons">book</i>
                     </div>
                     <div class="card-content">
-                        <p class="category">Bookings</p>
-                        <h3 class="card-title">184</h3>
+                        <p class="category">Buku Digital</p>
+                        <h3 class="card-title"><?php echo $jumlahbuku['jumlah'] ?></h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a href="#pablo">Get More Space...</a>
+                            <i class="material-icons text-success">local_offer</i>
+                            <a href="<?php echo base_url('controller_page/databuku') ?>">Lihat Semua Buku</a>
                         </div>
                     </div>
                 </div>
@@ -26,15 +26,17 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="rose">
-                        <i class="material-icons">equalizer</i>
+                        <i class="material-icons">people</i>
                     </div>
                     <div class="card-content">
-                        <p class="category">Website Visits</p>
-                        <h3 class="card-title">75.521</h3>
+                        <p class="category">Member</p>
+                        <h3 class="card-title"><?php echo $jumlahmember['jumlah'] ?></h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Google Analytics
+                            <i class="material-icons text-success">local_offer</i>
+                            <a href="<?php echo base_url('controller_kelolapengguna/daftarPengguna') ?>">Lihat Semua
+                                Member</a>
                         </div>
                     </div>
                 </div>
@@ -42,15 +44,16 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="green">
-                        <i class="material-icons">store</i>
+                        <i class="material-icons">sync</i>
                     </div>
                     <div class="card-content">
-                        <p class="category">Revenue</p>
-                        <h3 class="card-title">$34,245</h3>
+                        <p class="category">Peminjaman</p>
+                        <h3 class="card-title"><?php echo $jumlahtransaksi['jumlah'] ?></h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                            <i class="material-icons text-success">local_offer</i>
+                            <a href="<?php echo base_url('controller_laporan/laporanPinjam') ?>">Lihat Semua</a>
                         </div>
                     </div>
                 </div>
@@ -58,19 +61,111 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="blue">
-                        <i class="fa fa-twitter"></i>
+                        <i class="material-icons">event_note</i>
                     </div>
                     <div class="card-content">
-                        <p class="category">Followers</p>
-                        <h3 class="card-title">+245</h3>
+                        <p class="category">Peminjam Aktif</p>
+                        <h3 class="card-title"><?php echo $jumlahtransaksiaktif['jumlah'] ?></h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">update</i> Just Updated
+                            <i class="material-icons">update</i> Sedang dipinjam
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-sm-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <i class="material-icons">book</i> <span class="card-title"><b>Buku Terpopuler dipinjam</b></span>
+                    </div>
+                    <div class="card-content">
+
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                            width="100%" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+
+                                    <th>Judul</th>
+                                    <th>Pengarang</th>
+                                    <th>Terpinjam</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Judul</th>
+                                    <th>Pengarang</th>
+                                    <th>Terpinjam</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <?php 
+                $no = 1;
+                $hitungbaris = 0;
+                foreach($transaksi as $row) {
+                    $tgl = date('d-m-Y', strtotime($row->b_tanggalsimpan));
+                    $hitungbaris++;
+                    if($hitungbaris > 5)
+                    {
+                        break;
+                    }
+                ?>
+                                <tr>
+                                    <td><?php echo $no;?></td>
+                                    <!-- jika ada buku di dalam database maka tampilkan -->
+                                    <td><?php echo $row->b_judul;?></td>
+                                    <td><?php echo $row->b_pengarang;?></td>
+                                    <td><?php echo $row->jumlah;?></td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <?php $no++; } ?>
+                            </tbody>
+
+
+
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons text-success">local_offer</i>
+                            <a href="<?php echo base_url('controller_page/databuku') ?>">Lihat Semua Buku</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-md-6 col-sm-6">
+                <div class="card">
+                <div class="card-header" data-background-color="orange">
+                        <i class="material-icons">book</i> <span class="card-title"><b>Buku Baru ditambah</b></span>
+                    </div>
+
+                    </div>
+                    <div class="card-content">
+                        <div id="graph"></div>
+                    </div>
+                    <script src="<?php echo base_url().'assets/js/jquery-3.1.1.min.js'?>"></script>
+                    <script src="<?php echo base_url().'assets/js/raphael-min.js'?>"></script>
+                    <script src="<?php echo base_url().'assets/js/morris.min.js'?>"></script>
+                    <script>
+                    Morris.Bar({
+                        element: 'graph',
+                        data: <?php echo $chart;?>,
+                        xkey: 'b_judul',
+                        ykeys: ['jumlah'],
+                        labels: ['Jumlah Pinjam']
+                    });
+                    </script>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -82,9 +177,9 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-        <div class="col-lg-12 col-md-12">
+            <div class="col-lg-12 col-md-12">
                 <?php echo $this->session->flashdata('msg'); ?>
-        </div>
+            </div>
         </div>
         <h1>KONTENT MEMBER</h1>
     </div>

@@ -24,6 +24,8 @@ class controller_infovisitor extends CI_Controller
 
     public function infoVisitor()
     {
+        
+       
 
         $data['nama'] = $this->session->userdata('ses_nama');
         $data['ip'] = $this->input->ip_address();
