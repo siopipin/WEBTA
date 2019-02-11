@@ -107,12 +107,12 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tanggal</th>
+                                                <th>Tanggal Pinjam</th>
                                          
+                                                <th>Tanggal Kembali</th>
                                                 <th>Nama</th>
-                                                <th>Email</th>
                                                
-                                                <th class="disabled-sorting text-right">Aksi</th>
+                                                <th class="disabled-sorting text-right">Buku</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
