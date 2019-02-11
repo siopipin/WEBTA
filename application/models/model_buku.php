@@ -4,6 +4,38 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class model_buku extends CI_Model
 {
+    public function hitungbuku()
+    {
+        $q = $this->db->query("select count(b_idbuku) as jumlah from tbl_buku");
+        return $q;
+    }
+    public function hitungmember()
+    {
+        $q = $this->db->query("select count(p_id) as jumlah from tbl_pengguna");
+        return $q;
+    }
+    public function hitungtransaksi()
+    {
+        $q = $this->db->query("select count(t_idtransaksi) as jumlah from tbl_transaksi");
+        return $q;
+    }
+
+    public function hitungtransaksiaktif()
+    {
+        $q = $this->db->query("SELECT COUNT(t_idtransaksi) as jumlah FROM `tbl_transaksi` WHERE t_status = 'Y'");
+        return $q;
+    }
+
+    function get_data(){
+        $q = $this->db->query("SELECT tbl_buku.b_judul, tbl_buku.b_tanggalsimpan, tbl_buku.b_pengarang, COUNT(tbl_buku.b_idbuku) AS jumlah FROM `tbl_transaksi`
+        LEFT JOIN tbl_buku
+        ON tbl_transaksi.t_idbuku = tbl_buku.b_idbuku
+        GROUP BY tbl_buku.b_idbuku
+        ORDER BY jumlah DESC");
+        return $q;
+    }
+    
+
 
     public function cekBuku($idbuku)
     {
@@ -21,6 +53,16 @@ class model_buku extends CI_Model
     {
         $this->db->order_by('tbl_buku.b_idbuku desc');
         return $this->db->get('tbl_buku');
+    }
+
+    public function bukupopuler()
+    {
+        $q = $this->db->query("SELECT tbl_buku.b_judul, tbl_buku.b_tanggalsimpan, tbl_buku.b_pengarang, COUNT(tbl_buku.b_idbuku) AS jumlah FROM `tbl_transaksi`
+        LEFT JOIN tbl_buku
+        ON tbl_transaksi.t_idbuku = tbl_buku.b_idbuku
+        GROUP BY tbl_buku.b_idbuku
+        ORDER BY jumlah DESC");
+        return $q;
     }
 
     public function getGambar($idbuku)

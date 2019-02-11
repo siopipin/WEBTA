@@ -28,4 +28,6 @@
     <script src="<?php echo base_url(); ?>assets/js/epub/libs/screenfull.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/epub/epub.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/epub/reader.js"></script>
+
+    <link rel="stylesheet" href="<?php echo base_url().'assets/css/morris.css'?>">
 </head>
