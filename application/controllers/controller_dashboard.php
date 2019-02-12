@@ -29,19 +29,23 @@ class Controller_dashboard extends CI_Controller
         $data['chart'] = json_encode($this->model_buku->get_data()->result());
 
         //mfcm bawaan heru
-
         if (!(isset($_SESSION['ses_id']))) {
             $data['mfcm'] = $this->model_buku->getMfcm(0);
         } else {
-            $idUser = $_SESSION['ses_id'];
-            $mysqli = new mysqli("localhost", "root", "", "db_perpus");
-            $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = " . $idUser);
-            $jlh = mysqli_num_rows($query);
-            //echo "<script type='text/javascript'> alert('Jumlahnya : ".$jlh." | ".$idUser."')</script>";
-            if ($jlh == 0) {
-                $data['mfcm'] = $this->model_buku->getMfcm(0);
-            } else {
-                $data['mfcm'] = $this->model_buku->getMfcm($idUser);
+            if($_SESSION['akses']== 1){
+                $data['dataTest'] = $this->model_buku->getMfcm(-1);
+            }
+            else{
+                $idUser = $_SESSION['ses_id'];
+                $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+                $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = " . $idUser);
+                $jlh = mysqli_num_rows($query);
+                //echo "<script type='text/javascript'> alert('Jumlahnya : ".$jlh." | ".$idUser."')</script>";
+                if ($jlh == 0) {
+                    $data['mfcm'] = $this->model_buku->getMfcm(0);
+                } else {
+                    $data['mfcm'] = $this->model_buku->getMfcm($idUser);
+                }
             }
         }
 
