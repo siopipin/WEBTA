@@ -13,6 +13,9 @@
                     //include "daftar_klasifikasi.php";
                 ?>
             </div>
+
+            
+                
             <div class="col-sm-8 col-md-8 col-md-offset-2">
                 <div class="card">
                     <div class="card-header">

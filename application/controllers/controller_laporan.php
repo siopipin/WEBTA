@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -8,6 +8,7 @@ class controller_laporan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_laporan');
+        $this->load->model('model_buku');
         //validasi jika user belum login
         if ($this->session->userdata('masuk') != true) {
             $url = base_url();
@@ -56,6 +57,8 @@ class controller_laporan extends CI_Controller
         $data['url_cetak'] = base_url($url_cetak);
         $data['transaksi'] = $transaksi;
 
+        
+
         $data['optiontahun'] = $this->model_laporan->optionTahun()->result();
         $data['view'] = ('admin/dashboard/laporan/view_laporanpengguna.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
@@ -66,7 +69,7 @@ class controller_laporan extends CI_Controller
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
-                
+
                 $tgl = $_GET['tahun'];
 
                 $ket = 'Data Pengguna Tanggal' . date('d-m-y', strtotime($tgl));
@@ -101,11 +104,8 @@ class controller_laporan extends CI_Controller
         $pdf = new HTML2PDF('P', 'A4', 'en');
         $pdf->WriteHTML($html);
         $pdf->Output('Data Pengguna.pdf', 'D');
-      
+
     }
-
-
-
 
     //laporan Pinjam
     public function laporanPinjam()
@@ -154,7 +154,7 @@ class controller_laporan extends CI_Controller
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
-                
+
                 $tgl = $_GET['tahun'];
 
                 $ket = 'Data Pengguna Tanggal' . date('d-m-y', strtotime($tgl));
@@ -189,9 +189,8 @@ class controller_laporan extends CI_Controller
         $pdf = new HTML2PDF('P', 'A4', 'en');
         $pdf->WriteHTML($html);
         $pdf->Output('Data Peminjaman.pdf', 'D');
-      
-    }
 
+    }
 
     //laporan Pinjam
     public function laporanBuku()
@@ -240,7 +239,7 @@ class controller_laporan extends CI_Controller
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
-                
+
                 $tgl = $_GET['tahun'];
 
                 $ket = 'Data Pengguna Tanggal' . date('d-m-y', strtotime($tgl));
@@ -275,59 +274,119 @@ class controller_laporan extends CI_Controller
         $pdf = new HTML2PDF('P', 'A4', 'en');
         $pdf->WriteHTML($html);
         $pdf->Output('Data Buku.pdf', 'D');
-      
+
     }
 
     // Laporan edit data
     public function laporanRating()
-    { 
-        $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+    {
+
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
-            
+            if ($filter == '1') { // Jika filter nya 1 (per tanggal)
+                $member = $_GET['member'];
+
+                $ket = 'Data Rating oleh pengguna' . $member;
+                $url_cetak = 'controller_laporan/cetakrating?filter=1&member=' . $member;
+                $transaksi = $this->model_laporan->view_by_name($member); // Panggil fungsi view_by_date yang ada di TransaksiModel
+            } else { // Jika filter nya 2 (per bulan)
+                $buku = $_GET['buku'];
+                $ket = 'Data Rating oleh Judul Buku ' . $buku;
+                $url_cetak = 'controller_laporan/cetakrating?filter=2&buku=' . $buku;
+                $transaksi = $this->model_laporan->view_by_judul($buku); // Panggil fungsi view_by_month yang ada di TransaksiModel
+            }
         } else { // Jika user tidak mengklik tombol tampilkan
             $ket = 'Semua Data Rating';
-            $url_cetak = 'controller_laporan/cetak';
-            //$transaksi = $this->model_laporan->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
-            $queryR = $mysqli->query("SELECT * FROM tbl_rating");
-            $rating = array();
-            while ($data = $queryR->fetch_assoc()) {
-                $id = $data['r_id'];
-                $iduser = $data['r_iduser'];
-                $idbuku = $data['r_idbuku'];
-                $nilai = $data['r_rating'];
-                $tgl = $data['r_tanggalrating'];
-                $ratingtmp = array('r_id'=>$id,'r_iduser'=>$iduser, 'r_idbuku'=>$idbuku, 'r_rating'=>$nilai, 'r_tanggalrating'=>$tgl);
-                array_push($rating,$ratingtmp);
-            }
+            $url_cetak = 'controller_laporan/cetakrating';
+            $transaksi = $this->model_laporan->view_allrating(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
-        $semuauser = array();
-        
-        $query = $mysqli->query("SELECT * FROM tbl_pengguna ORDER BY p_id ASC");
 
-        while ($data = $query->fetch_assoc()) {
-            $idMember = $data['p_id'];
-            $namaMember = $data['p_nama'];
-            $usertmp = array('id'=>$idMember, 'nama'=>$namaMember);
-            array_push($semuauser,$usertmp);
-        }
-        
-        $data['user'] = $semuauser;
         $data['ket'] = $ket;
         $data['url_cetak'] = base_url($url_cetak);
-        $data['rating'] = $rating;
+        $data['transaksi'] = $transaksi;
+
+        $data['optionnama'] = $this->model_laporan->optionNama()->result();
+        $data['optionjudul'] = $this->model_laporan->optionJudul()->result();
+
+
+        //Rekomendasi
+       
+
+        //mfcm bawaan heru
+
+        if (!(isset($_SESSION['ses_id']))) {
+            $data['mfcm'] = $this->model_buku->getMfcm(0);
+        } else {
+            $idUser = $_SESSION['ses_id'];
+            $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+            $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = " . $idUser);
+            $jlh = mysqli_num_rows($query);
+            //echo "<script type='text/javascript'> alert('Jumlahnya : ".$jlh." | ".$idUser."')</script>";
+            if ($jlh == 0) {
+                $data['mfcm'] = $this->model_buku->getMfcm(0);
+            } else {
+                $data['mfcm'] = $this->model_buku->getMfcm($idUser);
+            }
+        }
+
         $data['view'] = ('admin/dashboard/laporan/view_laporanrating.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
 
-    function simpan(){
-        
-        $mysqli = new mysqli("localhost", "root", "", "db_perpus");
-        $sid = $this->input->POST('vidrating');
-        $snilai = $this->input->POST('vnilai');
-        echo "<script type='text/javascript'>alert('asu".$sid."|".$snilai."');</script>";
-        $query = $mysqli->query("UPDATE tbl_rating SET r_rating=".$snilai." WHERE r_id =".$sid);
-        redirect('controller_laporan/laporanRating/', 'refresh');
+    public function cetakrating()
+    {
+        if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
+            $filter = $_GET['filter']; // Ambil data filder yang dipilih user
+            if ($filter == '1') { // Jika filter nya 1 (per tanggal)
+
+                $member = $_GET['member'];
+
+                $ket = 'Data Rating oleh pengguna' . $member;
+                $transaksi = $this->model_laporan->view_by_name($member); // Panggil fungsi view_by_date yang ada di TransaksiModel
+            } else { // Jika filter nya 2 (per bulan)
+                $buku = $_GET['buku'];
+                $ket = 'Data Rating oleh Judul Buku ' . $buku;
+                $transaksi = $this->model_laporan->view_by_judul($buku); // Panggil fungsi view_by_month yang ada di TransaksiModel
+            }
+        } else { // Jika user tidak mengklik tombol tampilkan
+            $ket = 'Semua Data Rating';
+            $transaksi = $this->model_laporan->view_allrating(); // Panggil fungsi view_all yang ada di TransaksiModel
+        }
+
+        $data['ket'] = $ket;
+        $data['transaksi'] = $transaksi;
+
+        ob_start();
+        $this->load->view('admin/dashboard/laporan/view_printrating', $data);
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        require_once './assets/html2pdf/html2pdf.class.php';
+        $pdf = new HTML2PDF('P', 'A4', 'en');
+        $pdf->WriteHTML($html);
+        $pdf->Output('Data Rating.pdf', 'D');
+
+    }
+
+    public function updaterating()
+    {
+
+        $idrating = $this->uri->segment(3);
+
+        if (!is_null($this->input->post('vrating'))) {
+            // code for button 1
+            $rating = $this->input->post('vrating');
+            $data = array(
+                'r_rating' => $rating,
+            );
+            $this->model_laporan->updaterating($idrating, $data);
+
+            echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Rating Berhasil diupdate!!</div>');
+            redirect('controller_laporan/laporanRating/' . $idrating, 'refresh');
+        }
+        echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Rating Gagal disimpan!!</div>');
+        redirect('controller_laporan/laporanRating/' . $idrating, 'refresh');
+
     }
 
 }

@@ -12,6 +12,7 @@
                 <?php  echo $this->session->flashdata('msg'); 
                     //include "daftar_klasifikasi.php";
                 ?>
+
             </div>
             <div class="col-lg-12 col-md-12">
                 <div class="card">
@@ -149,7 +150,8 @@
                                                 klasifikasi[15] = "Psikologi";
                                                 klasifikasi[16] = "Filosofis Logis";
                                                 klasifikasi[17] = "Etik";
-                                                klasifikasi[18] = "Filosofi kuno, Zaman pertengahan, dan Filosofi ketimuran";
+                                                klasifikasi[18] =
+                                                    "Filosofi kuno, Zaman pertengahan, dan Filosofi ketimuran";
                                                 klasifikasi[19] = "Filosofi Barat Modern";
 
                                                 klasifikasi[20] = "Agama";

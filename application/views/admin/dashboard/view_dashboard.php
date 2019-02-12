@@ -144,7 +144,7 @@
             <div class="col-lg-7 col-md-6 col-sm-6">
                 <div class="card">
                 <div class="card-header" data-background-color="orange">
-                        <i class="material-icons">book</i> <span class="card-title"><b>Buku Baru ditambah</b></span>
+                        <i class="material-icons">book</i> <span class="card-title"><b>Buku Terpopuler</b></span>
                     </div>
 
                     </div>
@@ -600,3 +600,4 @@
     </div>
 </div>
 <?php endif; ?>
+

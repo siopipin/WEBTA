@@ -39,7 +39,6 @@ class model_laporan extends CI_Model
         return $this->db->get('tbl_pengguna')->result(); // Tampilkan semua data transaksi
     }
 
-
     // Peminjaman
 
     public function optionTahunpinjam()
@@ -57,7 +56,6 @@ class model_laporan extends CI_Model
         on tbl_transaksi.t_idbuku = tbl_buku.b_idbuku
         where date(tbl_transaksi.t_tanggalpinjam) = '$date'");
         return $q->result();
-
 
         // $this->db->where('DATE(t_tanggalpinjam)', $date); // Tambahkan where tanggal nya
 
@@ -94,41 +92,101 @@ class model_laporan extends CI_Model
         return $q->result();
     }
 
+    // Laporan Buku
+    public function optionTahunbuku()
+    {
+        $q = $this->db->query("SELECT YEAR(b_tanggalsimpan) as tahun FROM tbl_buku GROUP BY YEAR(b_tanggalsimpan) ORDER BY YEAR(b_tanggalsimpan) ASC");
+        return $q;
+    }
 
-        // Laporan Buku
-        public function optionTahunbuku()
-        {
-            $q = $this->db->query("SELECT YEAR(b_tanggalsimpan) as tahun FROM tbl_buku GROUP BY YEAR(b_tanggalsimpan) ORDER BY YEAR(b_tanggalsimpan) ASC");
-            return $q;
-        }
-    
-        public function view_by_datebuku($date)
-        {
-            $this->db->where('DATE(b_tanggalsimpan)', $date); // Tambahkan where tanggal nya
-    
-            return $this->db->get('tbl_buku')->result(); // Tampilkan data transaksi sesuai tanggal yang diinput oleh user
-        }
-    
-        public function view_by_monthbuku($month, $year)
-        {
-            $this->db->where('MONTH(b_tanggalsimpan)', $month); // Tambahkan where bulan
-            $this->db->where('YEAR(b_tanggalsimpan)', $year); // Tambahkan where tahun
-    
-            return $this->db->get('tbl_buku')->result(); // Tampilkan data transaksi sesuai bulan dan tahun yang diinput oleh user pada filter
-        }
-    
-        public function view_by_yearbuku($year)
-        {
-            $this->db->where('YEAR(b_tanggalsimpan)', $year); // Tambahkan where tahun
-    
-            return $this->db->get('tbl_buku')->result(); // Tampilkan data transaksi sesuai tahun yang diinput oleh user pada filter
-        }
-    
-        public function view_allbuku()
-        {
-            return $this->db->get('tbl_buku')->result(); // Tampilkan semua data transaksi
-        }
-    
+    public function view_by_datebuku($date)
+    {
+        $this->db->where('DATE(b_tanggalsimpan)', $date); // Tambahkan where tanggal nya
+
+        return $this->db->get('tbl_buku')->result(); // Tampilkan data transaksi sesuai tanggal yang diinput oleh user
+    }
+
+    public function view_by_monthbuku($month, $year)
+    {
+        $this->db->where('MONTH(b_tanggalsimpan)', $month); // Tambahkan where bulan
+        $this->db->where('YEAR(b_tanggalsimpan)', $year); // Tambahkan where tahun
+
+        return $this->db->get('tbl_buku')->result(); // Tampilkan data transaksi sesuai bulan dan tahun yang diinput oleh user pada filter
+    }
+
+    public function view_by_yearbuku($year)
+    {
+        $this->db->where('YEAR(b_tanggalsimpan)', $year); // Tambahkan where tahun
+
+        return $this->db->get('tbl_buku')->result(); // Tampilkan data transaksi sesuai tahun yang diinput oleh user pada filter
+    }
+
+    public function view_allbuku()
+    {
+        return $this->db->get('tbl_buku')->result(); // Tampilkan semua data transaksi
+    }
+
+    // Laporan Member
+    public function optionNama()
+    {
+        $q = $this->db->query("SELECT tbl_pengguna.p_namapengguna, tbl_buku.b_judul, tbl_rating.r_tanggalrating, tbl_rating.r_rating from tbl_rating
+        LEFT JOIN tbl_buku
+        ON tbl_buku.b_idbuku = tbl_rating.r_idbuku
+        LEFT JOIN tbl_pengguna
+        ON tbl_pengguna.p_id = tbl_rating.r_iduser
+        GROUP BY tbl_pengguna.p_namapengguna");
+        return $q;
+    }
+    public function optionJudul()
+    {
+        $q = $this->db->query("SELECT tbl_pengguna.p_namapengguna, tbl_buku.b_judul, tbl_rating.r_tanggalrating, tbl_rating.r_rating from tbl_rating
+        LEFT JOIN tbl_buku
+        ON tbl_buku.b_idbuku = tbl_rating.r_idbuku
+        LEFT JOIN tbl_pengguna
+        ON tbl_pengguna.p_id = tbl_rating.r_iduser
+        GROUP BY tbl_buku.b_judul");
+        return $q;
+    }
+
+    public function view_by_name($member)
+    {
+        $q = $this->db->query("SELECT * from tbl_rating
+        LEFT JOIN tbl_buku
+        ON tbl_buku.b_idbuku = tbl_rating.r_idbuku
+        LEFT JOIN tbl_pengguna
+        ON tbl_pengguna.p_id = tbl_rating.r_iduser
+        WHERE tbl_pengguna.p_namapengguna = '$member'");
+        return $q->result();
+    }
+    public function view_by_judul($judul)
+    {
+        $q = $this->db->query("SELECT * from tbl_rating
+        LEFT JOIN tbl_buku
+        ON tbl_buku.b_idbuku = tbl_rating.r_idbuku
+        LEFT JOIN tbl_pengguna
+        ON tbl_pengguna.p_id = tbl_rating.r_iduser
+        WHERE tbl_buku.b_judul = '$judul'");
+        return $q->result();
+    }
+
+    public function view_allrating()
+    {
+        $q = $this->db->query("SELECT * from tbl_rating
+        LEFT JOIN tbl_buku
+        ON tbl_buku.b_idbuku = tbl_rating.r_idbuku
+        LEFT JOIN tbl_pengguna
+        ON tbl_pengguna.p_id = tbl_rating.r_iduser");
+        return $q->result();
+    }
+
+    public function updaterating($idrating, $data)
+    {
+
+        $this->db->where('r_id', $idrating);
+        $this->db->update('tbl_rating', $data);
+
+    }
+
 }
 
 /* End of file model_laporan.php */
