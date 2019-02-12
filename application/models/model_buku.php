@@ -640,6 +640,18 @@ class model_buku extends CI_Model
         // $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
 
+
+    public function ulasan()
+    {
+        $q = $this->db->query("SELECT * FROM tbl_rating
+        LEFT JOIN tbl_pengguna
+        ON tbl_pengguna.p_id = tbl_rating.r_iduser
+        LEFT JOIN tbl_buku
+        ON tbl_buku.b_idbuku = tbl_rating.r_idbuku
+        WHERE tbl_rating.r_ulasan IS NOT NULL ORDER BY tbl_rating.r_tanggalrating DESC");
+        return $q;
+    }
+
 }
 
 /* End of file model_buku.php */

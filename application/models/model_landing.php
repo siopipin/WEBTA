@@ -151,6 +151,25 @@ class model_landing extends CI_Model
         return $this->db->get('tbl_buku');
     }
     
+    public function insertPesan($tabel, $data)
+    {
+        $insert = $this->db->insert($tabel, $data);
+        return $insert;
+    }
+
+    public function pesan()
+    {
+        $q = $this->db->query("SELECT * FROM tbl_pesan
+        ORDER BY pe_tanggal DESC");
+        return $q;
+    }
+
+    public function hitungpesan()
+    {
+        $q = $this->db->query("SELECT COUNT(pe_id) AS jumlah FROM tbl_pesan");
+        return $q;
+        
+    }
 }
 
 /* End of file model_landing.php */

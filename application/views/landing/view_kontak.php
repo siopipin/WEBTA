@@ -1,7 +1,14 @@
 <!-- Banner Area Starts -->
+
 <section class="banner-area">
     <div class="container">
         <div class="row">
+            <div class="col-lg-12">
+            <?php echo $this->session->flashdata('msg');?>
+            </div>
+        </div>
+        <div class="row">
+        
             <div class="col-lg-6">
                 <div class="banner-bg"></div>
             </div>
@@ -18,10 +25,10 @@
 </section>
 <!-- Map Area Starts -->
 
+<br>
+<br>
+<br>
 
-<br>
-<br>
-<br>
 <section class="contact-form section-padding3">
     <div class="container">
         <div class="row">
@@ -56,18 +63,18 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                <form action="#">
+                <form class="form" action="<?php echo base_url(); ?>controller_landing/pesan" method="post">
                     <div class="left">
-                        <input type="text" placeholder="Enter your name" onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = 'Enter your name'" required>
-                        <input type="email" placeholder="Enter email address" onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = 'Enter email address'" required>
-                        <input type="text" placeholder="Enter subject" onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = 'Enter subject'" required>
+                        <input name="vnama" type="text" placeholder="Masukkan Nama" onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Masukkan Nama'" required>
+                        <input name="vemail" type="email" placeholder="Masukan Email" onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Masukan Email'" required>
+                        <input name="vjudul" type="text" placeholder="Judul Pesan" onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Judul Pesan'" required>
                     </div>
                     <div class="right">
-                        <textarea name="message" cols="20" rows="7" placeholder="Enter Message"
-                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                        <textarea name="vpesan" cols="20" rows="7" placeholder="Masukkan Pesan Anda"
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Pesan Anda'"
                             required></textarea>
                     </div>
                     <button type="submit" class="template-btn">Kirim Pesan</button>

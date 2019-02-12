@@ -333,6 +333,39 @@ class controller_landing extends CI_Controller
         $this->load->view('landing/layout/template_homepage.php', $data);
     }
 
+    public function pesan()
+    {
+        $this->form_validation->set_rules('vnama', 'Nama', 'required');
+        $this->form_validation->set_rules('vemail', 'Nama', 'required');
+        $this->form_validation->set_rules('vjudul', 'Nama', 'required');
+        $this->form_validation->set_rules('vpesan', 'Nama', 'required');
+        
+        
+        if ($this->form_validation->run() == FALSE) {
+            echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Terjadi kesalahan input, silahkan cek masukkan anda !</div>');
+        } else {
+            $nama = $this->input->post('vnama');
+            $email = $this->input->post('vemail');
+            $judul = $this->input->post('vjudul');
+            $pesan = $this->input->post('vpesan');
+
+            $data = array(
+                'pe_nama' => $nama,
+                'pe_email' => $email,
+                'pe_judul' => $judul,
+                'pe_isi' => $pesan
+            );
+
+            $this->model_landing->insertPesan("tbl_pesan", $data);
+
+            echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Pesan Anda Berhasil dikirim, terima kasih !</div>');
+            $data['view'] = ('landing/view_kontak.php');
+            $this->load->view('landing/layout/template_homepage.php', $data);
+        }
+        
+    }
+
+
 }
 
 /* End of file  controller_landing.php */

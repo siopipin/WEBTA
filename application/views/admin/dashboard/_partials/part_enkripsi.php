@@ -14,8 +14,8 @@
                 ?>
             </div>
 
-            
-                
+
+
             <div class="col-sm-8 col-md-8 col-md-offset-2">
                 <div class="card">
                     <div class="card-header">
@@ -83,11 +83,14 @@
                                                 <div class="form-footer text-right">
                                                     <button type="submit" name="enkripfile"
                                                         class="btn btn-primary center-block" name="enkrip"
-                                                        value="Enkrip File">Submit</button>
+                                                        value="Enkrip File" >Submit
+                                                        
+                                                        </button>
                                                 </div>
                                             </fieldset>
                                         </form>
                                     </div>
+
                                     <?php if (!empty($alert)) {?>
                                     <div class='alert alert-danger alert-error'>
                                         <a href='#' class='close' data-dismiss='alert'>&times;</a>
@@ -113,3 +116,4 @@
         </div>
     </div>
 </div>
+

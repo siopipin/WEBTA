@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <?php echo $this->session->flashdata('msg'); ?>
-            </div> 
+            </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header" data-background-color="orange">
@@ -80,7 +80,8 @@
             <div class="col-lg-5 col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
-                        <i class="material-icons">book</i> <span class="card-title"><b>Buku Terpopuler dipinjam</b></span>
+                        <i class="material-icons">book</i> <span class="card-title"><b>Buku Terpopuler
+                                dipinjam</b></span>
                     </div>
                     <div class="card-content">
 
@@ -143,37 +144,54 @@
 
             <div class="col-lg-7 col-md-6 col-sm-6">
                 <div class="card">
-                <div class="card-header" data-background-color="orange">
+                    <div class="card-header" data-background-color="orange">
                         <i class="material-icons">book</i> <span class="card-title"><b>Buku Terpopuler</b></span>
                     </div>
 
-                    </div>
-                    <div class="card-content">
-                        <div id="graph"></div>
-                    </div>
-                    <script src="<?php echo base_url().'assets/js/jquery-3.1.1.min.js'?>"></script>
-                    <script src="<?php echo base_url().'assets/js/raphael-min.js'?>"></script>
-                    <script src="<?php echo base_url().'assets/js/morris.min.js'?>"></script>
-                    <script>
-                    Morris.Bar({
-                        element: 'graph',
-                        data: <?php echo $chart;?>,
-                        xkey: 'b_judul',
-                        ykeys: ['jumlah'],
-                        labels: ['Jumlah Pinjam']
-                    });
-                    </script>
                 </div>
+                <div class="card-content">
+                    <div id="graph"></div>
+                </div>
+                <script src="<?php echo base_url().'assets/js/jquery-3.1.1.min.js'?>"></script>
+                <script src="<?php echo base_url().'assets/js/raphael-min.js'?>"></script>
+                <script src="<?php echo base_url().'assets/js/morris.min.js'?>"></script>
+                <script>
+                Morris.Bar({
+                    element: 'graph',
+                    data: <?php echo $chart;?>,
+                    xkey: 'b_judul',
+                    ykeys: ['jumlah'],
+                    labels: ['Jumlah Pinjam']
+                });
+                </script>
             </div>
-
         </div>
+
     </div>
+</div>
 </div>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- KONTEN DEMO -->
-<?php elseif ($this->session->userdata('akses') == '0') : ?>
+<?php elseif ($this->session->userdata('akses') == '3') : ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -181,11 +199,124 @@
                 <?php echo $this->session->flashdata('msg'); ?>
             </div>
         </div>
-        <h1>KONTENT MEMBER</h1>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-text" data-background-color="orange">
+                        <h4 class="card-title">Buku Rekomendasi</h4>
+                        <p class="category">4 Rekomendasi Buku Digital Terbaik Untuk mu!</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <?php 
+                                $lim=0;
+                                    foreach($mfcm as $row) {
+                                        $lim++;
+                                        if($lim<=4){
+                            ?>
+                            <div class="col-sm-4 col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?php echo base_url('assets/img/buku/'.$row['b_sampul']);?>"
+                                        alt="package-place">
+                                    <div class="caption">
+                                        <h5><small><b><?php echo $row['b_judul'];?></b></small></h5>
+                                        <p>
+                                            <?php
+                                        $rate = $row['b_rating'];
+                                        $nilai = substr($rate,0,3);
+                                        
+                                        echo "Rating : ";
+                                        for ($i=0; $i < 5; $i++){
+                                            if($i<$nilai)
+                                            echo "<i class='fa fa-star' aria-hidden='true'></i>
+                                            ";
+                                            else echo "<i class='fa fa-star-o' aria-hidden='true'></i>";
+                                         } ?>
+
+
+                                        </p>
+                                        <p><a href="<?php echo site_url('controller_landing/detailBuku/'.$row['b_idbuku']) ?>"
+                                                class="btn btn-primary btn-block" role="button">Detil Buku</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php }} ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-text" data-background-color="orange">
+                        <h4 class="card-title">Buku Baru di Ulas</h4>
+                        <p class="category">4 ulasan buku terbaru Untuk mu!</p>
+                    </div>
+
+                    
+                    <div class="card-content">
+                        <?php
+                            foreach ($ulasan as $row) {
+                        ?>
+                        <div class="col-lg-3 col-md-3">
+                            <div class="card card-testimonial">
+                                <div class="icon">
+                                    <i class="material-icons">format_quote</i>
+                                </div>
+                                <div class="card-content">
+                                    <h5 class="card-description">
+                                        <p><?php echo $row->r_ulasan;?></p>
+                                    </h5>
+                                </div>
+                                <div class="footer">
+                                    <h4 class="card-title"><strong><?php echo $row->b_judul;?></strong> </h4>
+                                    <h6 class="category">@<?php echo $row->p_nama;?></h6>
+                                    <div class="card-avatar">
+                                        <a href="<?php echo site_url('controller_landing/detailBuku/'.$row->b_idbuku) ?>">
+                                            <?php if($row->b_sampul != "") { ?>
+                                                <img src="<?php echo base_url('assets/img/buku/'.$row->b_sampul);?>"
+                                                    >
+                                                <?php }else{ ?>
+                                                <img src="<?php echo base_url('assets/img/buku/book-default.jpg');?>"
+                                                    >
+                                            <?php } ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<!-- KONTEN MEMBER -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- KONTEN Demo -->
 
 <?php else : ?>
 
@@ -600,4 +731,3 @@
     </div>
 </div>
 <?php endif; ?>
-

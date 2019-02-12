@@ -1,4 +1,6 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery-progress-upload.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/file_upload.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
@@ -114,5 +116,7 @@
         demo.initMaterialWizard();
     });
 </script>
+
+
 
 

@@ -30,4 +30,14 @@
     <script src="<?php echo base_url(); ?>assets/js/epub/reader.js"></script>
 
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/morris.css'?>">
+
+
+    <!-- Loading CSS -->
+    <link href="<?php echo base_url(); ?>assets/css/loading.css" rel="stylesheet" />
+    <!--  Material Dashboard CSS    -->
+    <link href="<?php echo base_url(); ?>assets/css/loading-btn.css" rel="stylesheet" />
+
+    <!-- Progress Bar -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/form-upload.css');?>">
+
 </head>

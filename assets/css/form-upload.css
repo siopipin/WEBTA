@@ -1,0 +1,39 @@
+
+#progress-bar-status-show 
+{
+	background-color:#3374FF;
+	height:20px;
+	color: #FFFFFF;
+	width:0%;-webkit-transition: width .6s;
+	-moz-transition: width .6s;
+	transition: width .6s;
+}
+.submit-button{
+	padding:5px;
+	background-color:green; 
+}
+#progressbr-container {
+	border:#FF6133 1.5px solid;
+	padding: 5px 0px;
+	margin:30px 0px;
+	border-radius:4px;
+	text-align:center;
+}
+#toshow{
+	width:100%;text-align:center;
+}
+.uploadmain-div
+{
+	
+    border: 2px solid green;
+    padding: 40px;
+}
+.anchor_class
+{
+	font-size: 25px;
+}
+#imageDiv
+{
+	border:1px solid #eee;
+	padding:5px;
+}
