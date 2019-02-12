@@ -102,6 +102,32 @@ class Controller_dashboard extends CI_Controller
 
     }
 
+    public function updaterating()
+    {
+
+        $idrating = $this->uri->segment(3);
+
+        if (!is_null($this->input->post('vrating'))) {
+            // code for button 1
+            $rating = $this->input->post('vrating');
+            $data = array(
+                'r_rating' => $rating,
+            );
+            $this->model_laporan->updaterating($idrating, $data);
+
+            echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Rating Berhasil diupdate!!</div>');
+            $data['pesan'] = $this->model_landing->pesan()->result();
+            $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+            redirect('controller_dashboard', 'refresh');
+        }
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
+        echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Rating Gagal disimpan!!</div>');
+        redirect('controller_dashboard', 'refresh');
+
+    }
+
  
 
     

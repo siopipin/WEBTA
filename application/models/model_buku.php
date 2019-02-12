@@ -390,7 +390,7 @@ class model_buku extends CI_Model
             for ($i = 0; $i < sizeof($ListBuku); $i++) {
                 $indeksMFCM = array_search($BukuHPRS[$i], $BukuMFCM);
                 if (abs($i - $indeksMFCM) < $range) { //Masukkan buku teratas MFCM dan HPRS dengan jarak urutan < jumlah cluster atau "range"
-                    array_push($$ListBuku4, $BukuHPRS[$i]);
+                    array_push($ListBuku4, $BukuHPRS[$i]);
                     $msgMFCM = $msgMFCM . "| hyb : " . $BukuHPRS[$i];
                 }
             }
@@ -419,12 +419,15 @@ class model_buku extends CI_Model
                 $totalJarak =0;
                 for ($i = 0; $i < sizeof($_BukuPrediksi); $i++) {
                     $queryBuku = $mysqli->query("SELECT * FROM tbl_buku WHERE b_idbuku=".$_BukuPrediksi[$i]['id']);
+                    $queryRating = $mysqli->query("SELECT * FROM tbl_rating WHERE r_idbuku=".$_BukuPrediksi[$i]['id']." AND r_iduser=15");
                     $dataBuku = $queryBuku->fetch_assoc();
+                    $dataRating = $queryRating->fetch_assoc();
                     $tmpTest = array();
                     $tmpTest['nama'] = $dataBuku['b_judul'];
                     $tmpTest['prediksi'] = $_BukuPrediksi[$i]['PU'];
                     $tmpTest['rating'] = $U1['matriks'][$i];
                     $tmpTest['jarak'] = abs($tmpTest['prediksi'] - $tmpTest['rating']);
+                    $tmpTest['idrating'] = $dataRating['r_id'];
                     $totalJarak += $tmpTest['jarak'];
                     array_push ($Produk, $tmpTest);
                 }

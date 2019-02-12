@@ -165,65 +165,68 @@
                 </script>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-lg-5 col-md-6 col-sm-6">
-            <div class="card">
-                                                    <div class="card-content">
-                                                        <div class="material-datatables"><br /><br />
-                                                            
-                                                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
-                                                                cellspacing="0" width="100%" style="width:100%">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No</th>
-                                                                        <th>Judul Buku</th>
-                                                                        <th>Rating</th>
-                                                                        <th>Prediksi</th>
-                                                                        <th>Jarak</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tfoot>
-                                                                    <tr>
-                                                                        <th>No</th>
-                                                                        <th>Judul Buku</th>
-                                                                        <th>Rating</th>
-                                                                        <th>Prediksi</th>
-                                                                        <th>Jarak</th>
-                                                                    </tr>
-                                                                </tfoot>
-                                                                <tbody>
-                                                                    <?php 
-                                                        $no = 1;
-                                                        $mysqli = new mysqli("localhost", "root", "", "db_perpus");
-                                                        foreach($dataTest['produk'] as $row) {
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <i class="material-icons">book</i> <span class="card-title"><b>Pengujian MAE Pada User HERU | ID: 15</b></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="material-datatables"><br /><br />
 
-                                                        ?>
-                                                                    <tr>
-                                                                        <td><?php echo $no;?></td>
-                                                                        <td><?php echo $row['nama'];?></td>
-                                                                        <td><?php echo $row['rating'];?></td>
-                                                                        <td><?php echo substr($row['prediksi'], 0,4);?></td>
-                                                                        <td><?php echo substr($row['jarak'],0,4);?></td>
-                                                                        
-                                                                    </tr>
-                                                                    <?php $no++; } ?>
-                                                                    <tr>
-                                                                        <td><?php echo "";?></td>
-                                                                        <td><b><?php echo "Total";?></b></td>
-                                                                        <td><?php echo "";?></td>
-                                                                        <td><?php echo "";?></td>
-                                                                        <td><b><?php echo $dataTest['total'];?></b></td>
-                                                                        
-                                                                    </tr>
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Judul Buku</th>
+                                        <th>Rating</th>
+                                        <th>Prediksi</th>
+                                        <th>Jarak</th>
+                                    </tr>
+                                </thead>
+                               
+                                <tbody>
+                                    <?php 
+                                        $no = 1;
+                                        $mysqli = new mysqli("localhost", "root", "", "db_perpus");
+                                        foreach($dataTest['produk'] as $row) {
+                                        ?>
+                                    <tr>
+                                        <td><?php echo $no;?></td>
+                                        <td><?php echo $row['nama'];?></td>
+                                        <td>
+                                            <form
+                                                action="<?php echo site_url('controller_dashboard/updaterating/'.$row['idrating']) ?>"
+                                                method="POST">
+                                                <input type="text" class="form-control text-center"
+                                                    name="vrating" value="<?php echo $row['rating'];?>">
+                                            </form>
+                                            
+                                        </td>
+                                        <td><?php echo substr($row['prediksi'], 0,4);?></td>
+                                        <td><?php echo substr($row['jarak'],0,4);?></td>
 
-                                                                </tbody>
+                                    </tr>
+                                    <?php $no++; } ?>
+                                    <tr>
+                                        <td><?php echo "";?></td>
+                                        <td><b><?php echo "Total";?></b></td>
+                                        <td><?php echo "";?></td>
+                                        <td><?php echo "";?></td>
+                                        <td><b><?php echo substr($dataTest['total'],0,4);?></b></td>
 
-                                                                <script src="<?php echo base_url('assets/js/jquery-ui.min.js'); ?>"></script>
-                                                                
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    </tr>
+
+                                </tbody>
+
+                                <script src="<?php echo base_url('assets/js/jquery-ui.min.js'); ?>"></script>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -317,7 +320,7 @@
                         <p class="category">4 ulasan buku terbaru Untuk mu!</p>
                     </div>
 
-                    
+
                     <div class="card-content">
                         <?php
                             foreach ($ulasan as $row) {
@@ -336,13 +339,12 @@
                                     <h4 class="card-title"><strong><?php echo $row->b_judul;?></strong> </h4>
                                     <h6 class="category">@<?php echo $row->p_nama;?></h6>
                                     <div class="card-avatar">
-                                        <a href="<?php echo site_url('controller_landing/detailBuku/'.$row->b_idbuku) ?>">
+                                        <a
+                                            href="<?php echo site_url('controller_landing/detailBuku/'.$row->b_idbuku) ?>">
                                             <?php if($row->b_sampul != "") { ?>
-                                                <img src="<?php echo base_url('assets/img/buku/'.$row->b_sampul);?>"
-                                                    >
-                                                <?php }else{ ?>
-                                                <img src="<?php echo base_url('assets/img/buku/book-default.jpg');?>"
-                                                    >
+                                            <img src="<?php echo base_url('assets/img/buku/'.$row->b_sampul);?>">
+                                            <?php }else{ ?>
+                                            <img src="<?php echo base_url('assets/img/buku/book-default.jpg');?>">
                                             <?php } ?>
                                         </a>
                                     </div>
@@ -790,34 +792,34 @@
             <div class="col-md-4">
                 <!-- <div class="col-lg-8 col-md-8 col-xs-8"> -->
                 <div class="card">
-                                                    <div class="card-content">
-                                                        <div class="material-datatables">
-                                                            <b><?php echo $ket; ?></b><br /><br />
-                                                            
-                                                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
-                                                                cellspacing="0" width="100%" style="width:100%">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Id.</th>
-                                                                        <th>Tanggal</th>
-                                                                        <th>Nama User</th>
-                                                                        <th>Judul Buku</th>
-                                                                        <th>Rating</th>
-                                                                        <th class="disabled-sorting text-right">Aksi</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tfoot>
-                                                                    <tr>
-                                                                        <th>Id.</th>
-                                                                        <th>Tanggal</th>
-                                                                        <th>Nama User</th>
-                                                                        <th>Judul Buku</th>
-                                                                        <th>Nilai Rating</th>
-                                                                        <th class="disabled-sorting text-right">Aksi</th>
-                                                                    </tr>
-                                                                </tfoot>
-                                                                <tbody>
-                                                                    <?php 
+                    <div class="card-content">
+                        <div class="material-datatables">
+                            <b><?php echo $ket; ?></b><br /><br />
+
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id.</th>
+                                        <th>Tanggal</th>
+                                        <th>Nama User</th>
+                                        <th>Judul Buku</th>
+                                        <th>Rating</th>
+                                        <th class="disabled-sorting text-right">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Id.</th>
+                                        <th>Tanggal</th>
+                                        <th>Nama User</th>
+                                        <th>Judul Buku</th>
+                                        <th>Nilai Rating</th>
+                                        <th class="disabled-sorting text-right">Aksi</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php 
                                                         $no = 1;
                                                         $mysqli = new mysqli("localhost", "root", "", "db_perpus");
                                                         foreach($rating as $row) {
@@ -834,41 +836,43 @@
                                                             $tgl = date('d-m-Y', strtotime($row['r_tanggalrating']));
 
                                                         ?>
-                                                                    <tr>
-                                                                        <td><?php echo $no;?></td>
-                                                                        
-                                                                        <!-- jika ada buku di dalam database maka tampilkan -->
-                                                                        <td><?php echo $tgl;?></td>
-                                                                        <td><?php echo $namauser;?></td>
-                                                                        <td><?php echo $namabuku;?></td>
-                                                                        <td><input type='text' name='vnilai' value=<?php echo $nilai;?> class='form-control text-center'></td>
-                                                                    
-                                                                        <td class="text-right">
-                                                                            <button type='submit' onclick="" class="btn btn-md btn-success">Simpan</button>
-                                                                        </td>
-                                                                        <td><input name='vidrating' value =<?php echo $idrating;?> type='hidden'></td>
-                                                                    </tr>
-                                                                    <?php $no++; } ?>
-                                                                </tbody>
+                                    <tr>
+                                        <td><?php echo $no;?></td>
 
-                                                                <script src="<?php echo base_url('assets/js/jquery-ui.min.js'); ?>"></script>
-                                                                
-                                                            </table>
-                                                            <div class="form-footer text-right">
-                                                                <div class="checkbox pull-left">
-                                                                    <label>
-                                                                        Cetak Dalam format PDF
-                                                                    </label>
-                                                                </div>
-                                                                <a href="<?php echo $url_cetak; ?>" class="btn btn-rose btn-fill">
-                                                                    Cetak PDF
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <!-- jika ada buku di dalam database maka tampilkan -->
+                                        <td><?php echo $tgl;?></td>
+                                        <td><?php echo $namauser;?></td>
+                                        <td><?php echo $namabuku;?></td>
+                                        <td><input type='text' name='vnilai' value=<?php echo $nilai;?>
+                                                class='form-control text-center'></td>
+
+                                        <td class="text-right">
+                                            <button type='submit' onclick=""
+                                                class="btn btn-md btn-success">Simpan</button>
+                                        </td>
+                                        <td><input name='vidrating' value=<?php echo $idrating;?> type='hidden'></td>
+                                    </tr>
+                                    <?php $no++; } ?>
+                                </tbody>
+
+                                <script src="<?php echo base_url('assets/js/jquery-ui.min.js'); ?>"></script>
+
+                            </table>
+                            <div class="form-footer text-right">
+                                <div class="checkbox pull-left">
+                                    <label>
+                                        Cetak Dalam format PDF
+                                    </label>
+                                </div>
+                                <a href="<?php echo $url_cetak; ?>" class="btn btn-rose btn-fill">
+                                    Cetak PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        </div>
     </div>
 </div>
 <?php endif; ?>
