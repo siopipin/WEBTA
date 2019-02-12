@@ -9,6 +9,7 @@ class controller_kelolapengguna extends CI_Controller {
         parent::__construct();
         $this->load->model('model_kelolapengguna');
         $this->load->model('model_profile');
+        $this->load->model('model_landing');
         //validasi jika user belum login
         if ($this->session->userdata('masuk') != true) {
             $url = base_url();
@@ -26,6 +27,9 @@ class controller_kelolapengguna extends CI_Controller {
         // $data['totalpinjam'] = $this->model_kelolapengguna->totalTransaksi()->row_array();
         $data['pengguna'] = $this->model_kelolapengguna->getAll();
         // $data['riwayat'] = $this->model_buku->riwayat($idmember)->result();
+
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
         $data['view'] = ('admin/dashboard/view_daftarpengguna.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
@@ -36,6 +40,7 @@ class controller_kelolapengguna extends CI_Controller {
         $id = $this->uri->segment(3);
         $this->model_kelolapengguna->deletePengguna($id);
         $url = site_url('controller_kelolapengguna/daftarPengguna');
+        
         echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Pengguna Berhasil dihapus!!</div>');
 
         redirect($url);
@@ -47,6 +52,10 @@ class controller_kelolapengguna extends CI_Controller {
         // $data['totalpinjam'] = $this->model_kelolapengguna->totalTransaksi()->row_array();
         $data['pengguna'] = $this->model_kelolapengguna->getAll();
         // $data['riwayat'] = $this->model_buku->riwayat($idmember)->result();
+
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         $data['view'] = ('admin/dashboard/view_verifikasipengguna.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
@@ -57,6 +66,9 @@ class controller_kelolapengguna extends CI_Controller {
         $this->model_kelolapengguna->updatePengguna($id);
         echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Pengguna Berhasil diverifikasi!!</div>');
         $data['pengguna'] = $this->model_kelolapengguna->getAll();
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         $data['view'] = ('admin/dashboard/view_verifikasipengguna.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
@@ -65,6 +77,9 @@ class controller_kelolapengguna extends CI_Controller {
     {
         $idpengguna = $this->uri->segment(3);
         $data['profile'] = $this->model_profile->cekProfile($idpengguna)->row_array();
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         $data['view'] = ('admin/dashboard/view_identifikasi.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }

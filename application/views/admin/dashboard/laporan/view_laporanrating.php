@@ -41,7 +41,7 @@
 
 
                                     </p>
-                                <p><a href="<?php echo site_url('controller_landing/detailBuku/'.$row['b_idbuku']) ?>" class="btn btn-primary btn-block" role="button">Button</a></p>
+                                <p><a href="<?php echo site_url('controller_landing/detailBuku/'.$row['b_idbuku']) ?>" class="btn btn-primary btn-block" role="button">Rincian Buku</a></p>
                             </div>
                         </div>
                     </div>

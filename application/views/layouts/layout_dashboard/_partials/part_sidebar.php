@@ -232,8 +232,8 @@ else{
     $ip = '';
 }
 
-if($this->uri->segment(2) == 'infovisitor'){
-    $ip = 'active';
+if($this->uri->segment(2) == 'pesanPengunjung'){
+    $pesan = 'active';
     $dash = '';
 }
 else{
@@ -430,10 +430,10 @@ else{
                     <p>IP Asset Manejemen</p>
                 </a>
             </li>
-            <li class="<?php echo $ip; ?>">
-                <a href="<?php echo base_url() . 'controller_infovisitor/infoVisitor' ?>">
-                    <i class="material-icons">flip</i>
-                    <p>IP Asset Manejemen</p>
+            <li class="<?php echo $pesan; ?>">
+                <a href="<?php echo base_url() . 'controller_dashboard/pesanPengunjung' ?>">
+                    <i class="material-icons">message</i>
+                    <p>Pesan Pengunjung</p>
                 </a>
             </li>
 

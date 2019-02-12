@@ -9,6 +9,7 @@ class controller_buku extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_buku');
+        $this->load->model('model_landing');
         $this->load->helper("URL", "DATE", "URI", "FORM");
 
         //Enkripsi Buku
@@ -24,6 +25,9 @@ class controller_buku extends CI_Controller
 
     public function index()
     {
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         $data['view'] = ('admin/dashboard/_partials/part_databuku.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
@@ -88,6 +92,9 @@ class controller_buku extends CI_Controller
                     $this->model_buku->insertBuku("tbl_buku", $data);
 
                     $url = site_url('controller_page/tambahbuku');
+                    $data['pesan'] = $this->model_landing->pesan()->result();
+                    $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+            
                     echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Data Berhasil ditambah!!</div>');
 
                     redirect($url);
@@ -161,6 +168,9 @@ class controller_buku extends CI_Controller
                     $this->model_buku->updateBuku($idbuku, $data);
 
                     $url = site_url('controller_page/databuku');
+                    $data['pesan'] = $this->model_landing->pesan()->result();
+                    $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+            
                     echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Data Berhasil diupdate!!</div>');
 
                     redirect($url);
@@ -203,6 +213,9 @@ class controller_buku extends CI_Controller
                 $this->model_buku->updateBuku($idbuku, $data);
 
                 $url = site_url('controller_page/databuku');
+                $data['pesan'] = $this->model_landing->pesan()->result();
+                $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+        
                 echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Data Berhasil diupdate!!</div>');
 
                 redirect($url);
@@ -219,6 +232,9 @@ class controller_buku extends CI_Controller
         $id = $this->uri->segment(3);
         $this->model_buku->deleteBuku($id);
         $url = site_url('controller_page/databuku');
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Data Berhasil dihapus!!</div>');
 
         redirect($url);
@@ -294,6 +310,9 @@ class controller_buku extends CI_Controller
                 $data['alert'] = "Enkripsi File Gagal";
             }
         }
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         $data['view'] = ('admin/dashboard/_partials/part_tambahbuku.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
@@ -329,6 +348,9 @@ class controller_buku extends CI_Controller
         }
         else{
         $this->model_buku->insertPeminjaman("tbl_transaksi",$data);
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Buku Berhasil Terpinjam !</div>');
         }
         redirect('controller_landing/detailBuku/'.$idbuku, 'refresh');
@@ -340,7 +362,9 @@ class controller_buku extends CI_Controller
     public function bukuTerpinjam()
     {
         $idmember = $this->session->userdata('ses_id');
-        
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         $data['buku'] = $this->model_buku->bukuTerpinjam($idmember)->result();
         $data['view'] = ('admin/dashboard/view_bukuterpinjam.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
@@ -354,6 +378,9 @@ class controller_buku extends CI_Controller
         $data['ulasan'] = $this->model_buku->cekUlasanmember($idbuku, $idmember)->row_array();
         $data['buku'] = $this->model_buku->bukuTerpinjam($idmember)->row_array();
         $data['dokumen'] = $this->model_buku->bukuDokumen($idbuku)->row_array();
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         $data['view'] = ('admin/dashboard/view_baca.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
         //$this->model_buku->filedek3();
@@ -396,7 +423,10 @@ class controller_buku extends CI_Controller
                 $mysqli = new mysqli("localhost", "root", "", "db_perpus");       
                 $query = $mysqli->query("SELECT * FROM tbl_rating WHERE r_iduser = ".$idmember." AND r_idbuku =".$idbuku);
                 $isRated = mysqli_num_rows($query);                
-                $this->model_buku->insertRating("INSERT",$data);                   
+                $this->model_buku->insertRating("INSERT",$data);     
+                $data['pesan'] = $this->model_landing->pesan()->result();
+                $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+                      
                 echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Terimakasih, Buku Berhasil Diulas !</div>');
                 redirect('controller_buku/baca/'.$idbuku, 'refresh');
             }
@@ -421,7 +451,9 @@ class controller_buku extends CI_Controller
         // echo "<script type='text/javascript'>alert('".$idtransaksi."')</script>";
         $this->model_buku->updateTransaksi($idtransaksi, $data);
         
-        
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Buku Berhasil dikembalikan!!</div>');
 
         redirect('controller_buku/bukuterpinjam/', 'refresh');
@@ -447,6 +479,9 @@ class controller_buku extends CI_Controller
             't_status' => 'Y'
         );
         $this->model_buku->insertPeminjaman("tbl_transaksi",$data);
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
         echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Buku Berhasil Diperpanjang !</div>');
 
         redirect('controller_buku/bukuterpinjam/', 'refresh');

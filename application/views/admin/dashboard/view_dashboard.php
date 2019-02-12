@@ -80,8 +80,7 @@
             <div class="col-lg-5 col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
-                        <i class="material-icons">book</i> <span class="card-title"><b>Buku Terpopuler
-                                dipinjam</b></span>
+                        <i class="material-icons">book</i> <span class="card-title"><b>Buku Terpopuler dipinjam</b></span>
                     </div>
                     <div class="card-content">
 
@@ -291,8 +290,6 @@
                         </div>
                         <?php } ?>
                     </div>
-                    
-
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ class controller_enkripsi extends CI_Controller
         $this->load->library('encrypt');
         $this->load->library('aes');
         $this->load->model('model_buku');
+        $this->load->model('model_landing');
         $this->aesinitvector = openssl_random_pseudo_bytes(16);
 
         if ($this->session->userdata('masuk') != true) {
@@ -103,6 +104,9 @@ class controller_enkripsi extends CI_Controller
                 $data['alert'] = "Enkripsi File Gagal";
             }
         }
+
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
 
         $data['view'] = ('admin/dashboard/_partials/part_enkripsi.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);

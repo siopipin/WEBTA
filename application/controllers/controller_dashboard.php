@@ -54,6 +54,11 @@ class Controller_dashboard extends CI_Controller
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);      
     }
 
+    public function pesanPengunjung()
+    {
+
+    }
+
  
 
     

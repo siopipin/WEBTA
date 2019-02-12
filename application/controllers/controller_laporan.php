@@ -9,6 +9,7 @@ class controller_laporan extends CI_Controller
         parent::__construct();
         $this->load->model('model_laporan');
         $this->load->model('model_buku');
+        $this->load->model('model_landing');
         //validasi jika user belum login
         if ($this->session->userdata('masuk') != true) {
             $url = base_url();
@@ -52,6 +53,8 @@ class controller_laporan extends CI_Controller
             $url_cetak = 'controller_laporan/cetak';
             $transaksi = $this->model_laporan->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
 
         $data['ket'] = $ket;
         $data['url_cetak'] = base_url($url_cetak);
@@ -60,6 +63,8 @@ class controller_laporan extends CI_Controller
         
 
         $data['optiontahun'] = $this->model_laporan->optionTahun()->result();
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
         $data['view'] = ('admin/dashboard/laporan/view_laporanpengguna.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
@@ -143,6 +148,8 @@ class controller_laporan extends CI_Controller
         $data['ket'] = $ket;
         $data['url_cetak'] = base_url($url_cetak);
         $data['transaksi'] = $transaksi;
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
 
         $data['optiontahunpinjam'] = $this->model_laporan->optionTahunPinjam()->result();
         $data['view'] = ('admin/dashboard/laporan/view_laporanpinjam.php');
@@ -228,7 +235,8 @@ class controller_laporan extends CI_Controller
         $data['ket'] = $ket;
         $data['url_cetak'] = base_url($url_cetak);
         $data['transaksi'] = $transaksi;
-
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
         $data['optiontahunbuku'] = $this->model_laporan->optionTahunBuku()->result();
         $data['view'] = ('admin/dashboard/laporan/view_laporanbuku.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
@@ -328,7 +336,8 @@ class controller_laporan extends CI_Controller
                 $data['mfcm'] = $this->model_buku->getMfcm($idUser);
             }
         }
-
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
         $data['view'] = ('admin/dashboard/laporan/view_laporanrating.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
@@ -382,8 +391,12 @@ class controller_laporan extends CI_Controller
             $this->model_laporan->updaterating($idrating, $data);
 
             echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Rating Berhasil diupdate!!</div>');
+            $data['pesan'] = $this->model_landing->pesan()->result();
+            $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
             redirect('controller_laporan/laporanRating/' . $idrating, 'refresh');
         }
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
         echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Rating Gagal disimpan!!</div>');
         redirect('controller_laporan/laporanRating/' . $idrating, 'refresh');
 
