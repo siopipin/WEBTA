@@ -232,6 +232,14 @@ else{
     $ip = '';
 }
 
+if($this->uri->segment(2) == 'infovisitor'){
+    $ip = 'active';
+    $dash = '';
+}
+else{
+    $ip = '';
+}
+
 ?>
 
 
@@ -416,6 +424,12 @@ else{
                 </div>
             </li>
 
+            <li class="<?php echo $ip; ?>">
+                <a href="<?php echo base_url() . 'controller_infovisitor/infoVisitor' ?>">
+                    <i class="material-icons">flip</i>
+                    <p>IP Asset Manejemen</p>
+                </a>
+            </li>
             <li class="<?php echo $ip; ?>">
                 <a href="<?php echo base_url() . 'controller_infovisitor/infoVisitor' ?>">
                     <i class="material-icons">flip</i>
