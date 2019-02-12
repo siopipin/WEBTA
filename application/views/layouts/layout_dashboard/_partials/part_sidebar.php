@@ -237,7 +237,7 @@ if($this->uri->segment(2) == 'pesanPengunjung'){
     $dash = '';
 }
 else{
-    $ip = '';
+    $pesan = '';
 }
 
 ?>
