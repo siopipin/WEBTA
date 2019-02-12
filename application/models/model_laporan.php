@@ -77,9 +77,14 @@ class model_laporan extends CI_Model
 
     public function view_by_yearpinjam($year)
     {
-        $this->db->where('YEAR(t_tanggalpinjam)', $year); // Tambahkan where tahun
 
-        return $this->db->get('tbl_transaksi')->result(); // Tampilkan data transaksi sesuai tahun yang diinput oleh user pada filter
+        $q = $this->db->query("SELECT * FROM tbl_transaksi
+        LEFT JOIN tbl_pengguna
+        ON tbl_transaksi.t_idpengguna = tbl_pengguna.p_id
+        LEFT JOIN tbl_buku
+        on tbl_transaksi.t_idbuku = tbl_buku.b_idbuku
+        where YEAR(t_tanggalpinjam) = $year");
+        return $q->result();
     }
 
     public function view_allpinjam()
@@ -184,6 +189,33 @@ class model_laporan extends CI_Model
 
         $this->db->where('r_id', $idrating);
         $this->db->update('tbl_rating', $data);
+
+    }
+
+    public function semuaPesan()
+    {
+        $q = $this->db->query("SELECT * FROM tbl_pesan WHERE pe_status= 0 ORDER BY pe_tanggal DESC");
+        return $q;
+    }
+
+    public function updatepesan($id, $data)
+    {
+
+        $this->db->where('pe_id', $id);
+        $this->db->update('tbl_pesan', $data);
+
+    }
+
+    public function semuaPesanlama()
+    {
+        $q = $this->db->query("SELECT * FROM tbl_pesan WHERE pe_status= 1 ORDER BY pe_tanggal DESC");
+        return $q;
+    }
+
+    public function deletePesan($id)
+    {
+        $this->db->where('pe_id', $id);
+        $this->db->delete('tbl_pesan');
 
     }
 

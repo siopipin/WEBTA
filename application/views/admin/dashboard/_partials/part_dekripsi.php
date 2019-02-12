@@ -13,29 +13,27 @@
                     //include "daftar_klasifikasi.php";
                 ?>
             </div>
-            <div class="col-sm-8 col-md-8 col-md-offset-2">
+            
+        </div>
+
+        <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-4">
+                        <div class="card">
+                            <div class="card-header card-header-icon" data-background-color="rose">
+                                <i class="material-icons">filter_list</i>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">Filter | Laporan Pengguna</h4>
+                                
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Dekripsi FIle -
-                            <small class="category">AES - 128</small>
-                        </h4>
-                    </div>
+                    
                     <div class="card-content">
                         <div class="row">
-                            <div class="col-md-4">
-                                <ul class="nav nav-pills nav-pills-rose nav-stacked">
-                                    <li class="active">
-                                        <a href="#tab1" data-toggle="tab">Pilih Buku</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="col-md-8">
+                            
+                            <div class="col-md-12">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab1">
-                                        Pilih data buku yang akan dienkripsi! Daftar
-                                        buku yang akan tampil adalah buku yang belum
-                                        memiliki file dokumen buku digital.
+                                        
 
                                         <form role="form" action="" enctype="multipart/form-data" method="post"
                                             name="form" id="form">
@@ -106,7 +104,61 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-8">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="material-datatables">
+                                    <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                        cellspacing="0" width="100%" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Tanggal Rating</th>
+                                                <th>Foto</th>
+                                                <th>Nama</th>
+                                             
+
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Tanggal Rating</th>
+                                                <th>Foto</th>
+                                                <th>Nama</th>
+                                               
+
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <?php 
+                                $no = 1;
+                                foreach($dokumen as $row) {
+                                    
+                                    $tgl = date('d-m-Y', strtotime($row->d_tanggal));
+                                    
+                                ?>
+                                            <tr>
+                                                <td><?php echo $no;?></td>
+                                                <!-- jika ada buku di dalam database maka tampilkan -->
+                                                <td><?php echo $tgl;?></td>
+                                                <td>
+                                                    <?php echo $row->d_namaenkrip;?>
+                                                </td>
+                                                <td><?php echo $row->d_key;?></td>
+                                            </tr>
+                                            <?php $no++; } ?>
+                                        </tbody>
+                                    </table>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </div>
     </div>
 </div>

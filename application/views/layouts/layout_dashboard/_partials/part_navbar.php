@@ -39,15 +39,14 @@
 								foreach ($pesan as $row) {
 							?>		
 								<li>
-									<a href="#"><?php echo $row->pe_judul ?> </a>
+									<a href="<?php echo base_url('controller_dashboard/pesanPengunjung') ?>"><?php echo $row->pe_judul ?> </a>
 								</li>
 							<?php } ?>
-							
 						</ul>
 					</li>
 				<?php elseif ( $this->session->userdata('akses') == '3') : ?>
 				<li>
-					<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+					<a href="<?php echo base_url('controller_profile/editprofile') ?>">
 						<i class="material-icons">person</i>
 						<p class="hidden-lg hidden-md">Profile</p>
 					</a>

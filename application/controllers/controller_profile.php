@@ -7,6 +7,7 @@ class controller_profile extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('model_profile');
+        $this->load->model('model_landing');
         if ($this->session->userdata('masuk') != true) {
             $url = base_url();
             redirect($url);
@@ -24,6 +25,9 @@ class controller_profile extends CI_Controller {
         $idpengguna = $this->session->userdata('ses_id');
         
         $data['profile'] = $this->model_profile->cekProfile($idpengguna)->row_array();
+
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
         $data['view'] = ('admin/dashboard/view_editprofile.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }

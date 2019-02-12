@@ -14,6 +14,7 @@ class controller_dekripsi extends CI_Controller
         $this->aesinitvector = openssl_random_pseudo_bytes(16);
 
         $this->load->model('model_buku');
+        $this->load->model('model_landing');
         if ($this->session->userdata('masuk') != true) {
             $url = base_url();
             redirect($url);
@@ -114,6 +115,12 @@ class controller_dekripsi extends CI_Controller
             }
             //}
         }
+
+        $data['dokumen'] = $this->model_buku->dokumen()->result();
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
+
         $data['view'] = ('admin/dashboard/_partials/part_dekripsi.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }

@@ -14,20 +14,27 @@
             </div>
 
             <div class="col-lg-12">
-                <div class="row">
-                    <?php 
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="purple">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title">Daftar Rekomendasi</h4>
+                        <div class="row">
+                            <?php 
                     $lim=0;
                         foreach($mfcm as $row) {
                             $lim++;
                             if($lim<=4){
                     ?>
-                    <div class="col-sm-4 col-md-3">
-                        <div class="thumbnail">
-                            <img src="<?php echo base_url('assets/img/buku/'.$row['b_sampul']);?>" alt="package-place">
-                            <div class="caption">
-                                <h5><small><b><?php echo $row['b_judul'];?></b></small></h5>
-                                <p>
-                                        <?php
+                            <div class="col-sm-4 col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?php echo base_url('assets/img/buku/'.$row['b_sampul']);?>"
+                                        alt="package-place">
+                                    <div class="caption">
+                                        <h5><small><b><?php echo $row['b_judul'];?></b></small></h5>
+                                        <p>
+                                            <?php
                                         $rate = $row['b_rating'];
                                         $nilai = substr($rate,0,3);
                                         
@@ -40,13 +47,16 @@
                                     } ?>
 
 
-                                    </p>
-                                <p><a href="<?php echo site_url('controller_landing/detailBuku/'.$row['b_idbuku']) ?>" class="btn btn-primary btn-block" role="button">Button</a></p>
+                                        </p>
+                                        <p><a href="<?php echo site_url('controller_landing/detailBuku/'.$row['b_idbuku']) ?>"
+                                                class="btn btn-primary btn-block" role="button">Rincian Buku</a></p>
+                                    </div>
+                                </div>
                             </div>
+                            <?php }} ?>
+
                         </div>
                     </div>
-                    <?php }} ?>
-                    
                 </div>
             </div>
 
@@ -60,7 +70,7 @@
                                 <i class="material-icons">filter_list</i>
                             </div>
                             <div class="card-content">
-                                <h4 class="card-title">Filter | Laporan Pengguna</h4>
+                                <h4 class="card-title">Filter | Laporan Rating</h4>
                                 <legend>Filter Berdasarkan</legend>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">

@@ -159,14 +159,13 @@ class model_landing extends CI_Model
 
     public function pesan()
     {
-        $q = $this->db->query("SELECT * FROM tbl_pesan
-        ORDER BY pe_tanggal DESC");
+        $q = $this->db->query("SELECT * FROM tbl_pesan WHERE pe_status= 0 ORDER BY pe_tanggal DESC");
         return $q;
     }
 
     public function hitungpesan()
     {
-        $q = $this->db->query("SELECT COUNT(pe_id) AS jumlah FROM tbl_pesan");
+        $q = $this->db->query("SELECT COUNT(pe_id) AS jumlah FROM tbl_pesan WHERE pe_status = 0");
         return $q;
         
     }
