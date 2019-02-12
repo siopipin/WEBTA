@@ -56,6 +56,45 @@ class Controller_dashboard extends CI_Controller
 
     public function pesanPengunjung()
     {
+        $data['pesan'] = $this->model_laporan->semuaPesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
+        $pesan = $this->model_laporan->semuaPesan()->result();
+        $data['pesanlama'] = $this->model_laporan->semuaPesanlama()->result();
+        $data['view'] = 'admin/dashboard/view_pesan';
+        $this->load->view('layouts/layout_dashboard/template_dashboard', $data); 
+    }
+
+    public function updatepesan()
+    {
+
+        $id = $this->uri->segment(3);
+        $status = 1;
+        $data = array(
+            'pe_status' => $status,
+        );
+        $this->model_laporan->updatepesan($id, $data);
+
+        echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Pesan Berhasil terbaca!!</div>');
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+        $data['pesanlama'] = $this->model_laporan->semuaPesanlama()->result();
+        $data['view'] = 'admin/dashboard/view_pesan';
+        $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
+    }
+
+    public function hapus()
+    {
+        $id = $this->uri->segment(3);
+        $this->model_laporan->deletePesan($id);
+       
+
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+        $data['pesanlama'] = $this->model_laporan->semuaPesanlama()->result();
+        echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Pesan Berhasil dihapus!!</div>');
+        $data['view'] = 'admin/dashboard/view_pesan';
+        $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
 
     }
 

@@ -121,7 +121,7 @@ class controller_laporan extends CI_Controller
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
                 $tgl = $_GET['tanggal'];
 
-                $ket = 'Data Pengguna Tanggal ' . date('d-m-y', strtotime($tgl));
+                $ket = 'Data Terpinjam Tanggal ' . date('d-m-y', strtotime($tgl));
                 $url_cetak = 'controller_laporan/cetakPinjam?filter=1&tahun=' . $tgl;
                 $transaksi = $this->model_laporan->view_by_datepinjam($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
             } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
@@ -129,18 +129,18 @@ class controller_laporan extends CI_Controller
                 $tahun = $_GET['tahun'];
                 $nama_bulan = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
 
-                $ket = 'Data Pengguna Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
+                $ket = 'Data Terpinjam Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
                 $url_cetak = 'controller_laporan/cetakPinjam?filter=2&bulan=' . $bulan . '&tahun=' . $tahun;
                 $transaksi = $this->model_laporan->view_by_monthpinjam($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
             } else { // Jika filter nya 3 (per tahun)
                 $tahun = $_GET['tahun'];
 
-                $ket = 'Data Pengguna Tahun ' . $tahun;
+                $ket = 'Data Terpinjam Tahun ' . $tahun;
                 $url_cetak = 'controller_laporan/cetakPinjam?filter=3&tahun=' . $tahun;
                 $transaksi = $this->model_laporan->view_by_yearpinjam($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
             }
         } else { // Jika user tidak mengklik tombol tampilkan
-            $ket = 'Semua Data Pengguna';
+            $ket = 'Semua Data Buku Terpinjam';
             $url_cetak = 'controller_laporan/cetakPinjam';
             $transaksi = $this->model_laporan->view_allpinjam(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
@@ -164,23 +164,23 @@ class controller_laporan extends CI_Controller
 
                 $tgl = $_GET['tahun'];
 
-                $ket = 'Data Pengguna Tanggal' . date('d-m-y', strtotime($tgl));
+                $ket = 'Data Terpinjam Tanggal' . date('d-m-y', strtotime($tgl));
                 $transaksi = $this->model_laporan->view_by_datepinjam($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
             } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
                 $bulan = $_GET['bulan'];
                 $tahun = $_GET['tahun'];
                 $nama_bulan = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
 
-                $ket = 'Data Pengguna Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
+                $ket = 'Data Terpinjam Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
                 $transaksi = $this->model_laporan->view_by_monthpinjam($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
             } else { // Jika filter nya 3 (per tahun)
                 $tahun = $_GET['tahun'];
 
-                $ket = 'Data Pengguna Tahun ' . $tahun;
+                $ket = 'Data Terpinjam Tahun ' . $tahun;
                 $transaksi = $this->model_laporan->view_by_yearpinjam($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
             }
         } else { // Jika user tidak mengklik tombol tampilkan
-            $ket = 'Semua Data Transaksi';
+            $ket = 'Semua Data Buku Terpinjam';
             $transaksi = $this->model_laporan->view_allpinjam(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
 
@@ -208,7 +208,7 @@ class controller_laporan extends CI_Controller
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
                 $tgl = $_GET['tanggal'];
 
-                $ket = 'Data Pengguna Tanggal ' . date('d-m-y', strtotime($tgl));
+                $ket = 'Data Buku Tanggal ' . date('d-m-y', strtotime($tgl));
                 $url_cetak = 'controller_laporan/cetakBuku?filter=1&tahun=' . $tgl;
                 $transaksi = $this->model_laporan->view_by_datebuku($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
             } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
@@ -216,18 +216,18 @@ class controller_laporan extends CI_Controller
                 $tahun = $_GET['tahun'];
                 $nama_bulan = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
 
-                $ket = 'Data Pengguna Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
+                $ket = 'Data Buku Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
                 $url_cetak = 'controller_laporan/cetakBuku?filter=2&bulan=' . $bulan . '&tahun=' . $tahun;
                 $transaksi = $this->model_laporan->view_by_monthbuku($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
             } else { // Jika filter nya 3 (per tahun)
                 $tahun = $_GET['tahun'];
 
-                $ket = 'Data Pengguna Tahun ' . $tahun;
+                $ket = 'Data Buku Tahun ' . $tahun;
                 $url_cetak = 'controller_laporan/cetakBuku?filter=3&tahun=' . $tahun;
                 $transaksi = $this->model_laporan->view_by_yearbuku($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
             }
         } else { // Jika user tidak mengklik tombol tampilkan
-            $ket = 'Semua Data Pengguna';
+            $ket = 'Semua Data Buku';
             $url_cetak = 'controller_laporan/cetakBuku';
             $transaksi = $this->model_laporan->view_allbuku(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
@@ -250,23 +250,23 @@ class controller_laporan extends CI_Controller
 
                 $tgl = $_GET['tahun'];
 
-                $ket = 'Data Pengguna Tanggal' . date('d-m-y', strtotime($tgl));
+                $ket = 'Data Buku Tanggal' . date('d-m-y', strtotime($tgl));
                 $transaksi = $this->model_laporan->view_by_datebuku($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
             } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
                 $bulan = $_GET['bulan'];
                 $tahun = $_GET['tahun'];
                 $nama_bulan = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
 
-                $ket = 'Data Pengguna Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
+                $ket = 'Data Buku Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
                 $transaksi = $this->model_laporan->view_by_monthbuku($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
             } else { // Jika filter nya 3 (per tahun)
                 $tahun = $_GET['tahun'];
 
-                $ket = 'Data Pengguna Tahun ' . $tahun;
+                $ket = 'Data Buku Tahun ' . $tahun;
                 $transaksi = $this->model_laporan->view_by_yearbuku($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
             }
         } else { // Jika user tidak mengklik tombol tampilkan
-            $ket = 'Semua Data Transaksi';
+            $ket = 'Semua Data Buku';
             $transaksi = $this->model_laporan->view_allbuku(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
 

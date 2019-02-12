@@ -21,7 +21,7 @@
                                 <i class="material-icons">filter_list</i>
                             </div>
                             <div class="card-content">
-                                <h4 class="card-title">Filter | Laporan Pengguna</h4>
+                                <h4 class="card-title">Filter | Laporan Buku</h4>
                                 <legend>Filter Berdasarkan</legend>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">

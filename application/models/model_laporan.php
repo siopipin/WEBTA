@@ -192,6 +192,33 @@ class model_laporan extends CI_Model
 
     }
 
+    public function semuaPesan()
+    {
+        $q = $this->db->query("SELECT * FROM tbl_pesan WHERE pe_status= 0 ORDER BY pe_tanggal DESC");
+        return $q;
+    }
+
+    public function updatepesan($id, $data)
+    {
+
+        $this->db->where('pe_id', $id);
+        $this->db->update('tbl_pesan', $data);
+
+    }
+
+    public function semuaPesanlama()
+    {
+        $q = $this->db->query("SELECT * FROM tbl_pesan WHERE pe_status= 1 ORDER BY pe_tanggal DESC");
+        return $q;
+    }
+
+    public function deletePesan($id)
+    {
+        $this->db->where('pe_id', $id);
+        $this->db->delete('tbl_pesan');
+
+    }
+
 }
 
 /* End of file model_laporan.php */

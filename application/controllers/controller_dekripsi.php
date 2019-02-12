@@ -115,8 +115,11 @@ class controller_dekripsi extends CI_Controller
             }
             //}
         }
+
+        $data['dokumen'] = $this->model_buku->dokumen()->result();
         $data['pesan'] = $this->model_landing->pesan()->result();
         $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+
 
         $data['view'] = ('admin/dashboard/_partials/part_dekripsi.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);

@@ -15,13 +15,9 @@
                 </div>
                 <div class="col-xl-5 offset-xl-1 col-lg-6">
                     <div class="single-widget-home mb-5 mb-lg-0">
-                        <h3 class="mb-4">Kirim Masukkan</h3>
-                        <p class="mb-4">Kirim Masukkan Anda untuk kami</p>
-                        <form action="#">
-                            <input type="email" placeholder="Your email here" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Your email here'" required>
-                            <button type="submit" class="template-btn">Masukkan</button>
-                        </form>
+                        <h3 class="mb-4">Tentang</h3>
+                        <p class="mb-4">EPERPUS adalah aplikasi perpustakaan digital menggunakan DRM dan Rekomendasi MFCM</p>
+                        
                     </div>
                 </div>
                 <div class="col-xl-3 offset-xl-1 col-lg-3">

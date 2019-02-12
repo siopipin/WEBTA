@@ -652,6 +652,12 @@ class model_buku extends CI_Model
         return $q;
     }
 
+    public function dokumen()
+    {
+        $q = $this->db->query("SELECT * FROM tbl_dokumen");
+        return $q;
+    }
+
 }
 
 /* End of file model_buku.php */
