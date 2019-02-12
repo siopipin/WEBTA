@@ -11,6 +11,7 @@ class Controller_dashboard extends CI_Controller
         // load model model_auth
         $this->load->model('model_buku');
         $this->load->model('model_laporan');
+        $this->load->model('model_kelolapengguna');
         $this->load->model('model_landing');
         if ($this->session->userdata('masuk') != true) {
             $url = base_url();
@@ -49,11 +50,16 @@ class Controller_dashboard extends CI_Controller
             }
         }
 
+        $idUser = $_SESSION['ses_id'];
+
         $data['ulasan'] = $this->model_buku->ulasan()->result();
 
         $data['pesan'] = $this->model_landing->pesan()->result();
         $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
 
+        $data['tolak'] = $this->model_kelolapengguna->pesantolak($idUser)->row_array();
+        echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Verifikasi Identitas Anda ditolak, silahkan cek atau upload ulang identitas Anda</div>');
+        echo $this->session->set_flashdata('msg2', '<div class="alert alert-info" role="alert">Silahkan upload Identitas Anda untuk dapat meminjam buku</div>');
         $data['view'] = 'admin/dashboard/view_dashboard';
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);      
     }
@@ -126,6 +132,25 @@ class Controller_dashboard extends CI_Controller
         echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Rating Gagal disimpan!!</div>');
         redirect('controller_dashboard', 'refresh');
 
+    }
+
+    public function updateverifikasi()
+    {
+
+        $id = $this->uri->segment(3);
+        $status = 3;
+        $data = array(
+            'p_verifikasi' => $status,
+        );
+        $this->model_laporan->updateverifikasi($id, $data);
+
+        echo $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Pesan Peringatan Terkirim!!</div>');
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
+        $data['pesanlama'] = $this->model_laporan->semuaPesanlama()->result();
+        $data['pengguna'] = $this->model_kelolapengguna->getAll();
+        $data['view'] = 'admin/dashboard/view_verifikasipengguna';
+        $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }
 
  

@@ -433,7 +433,7 @@ else{
             <li class="<?php echo $pesan; ?>">
                 <a href="<?php echo base_url() . 'controller_dashboard/pesanPengunjung' ?>">
                     <i class="material-icons">message</i>
-                    <p>Pesan Pengunjung</p>
+                    <p>Pesan Masuk</p>
                 </a>
             </li>
 

@@ -219,6 +219,12 @@ class model_laporan extends CI_Model
 
     }
 
+    public function updateverifikasi($id, $data)
+    {
+        $this->db->where('p_id', $id);
+        $this->db->update('tbl_pengguna', $data);
+    }
+
 }
 
 /* End of file model_laporan.php */

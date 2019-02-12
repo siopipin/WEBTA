@@ -425,7 +425,7 @@ class model_buku extends CI_Model
                     $tmpTest = array();
                     $tmpTest['nama'] = $dataBuku['b_judul'];
                     $tmpTest['prediksi'] = $_BukuPrediksi[$i]['PU'];
-                    $tmpTest['rating'] = $U1['matriks'][$i];
+                    $tmpTest['rating'] = $dataRating['r_rating'];
                     $tmpTest['jarak'] = abs($tmpTest['prediksi'] - $tmpTest['rating']);
                     $tmpTest['idrating'] = $dataRating['r_id'];
                     $totalJarak += $tmpTest['jarak'];

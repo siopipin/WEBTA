@@ -90,15 +90,27 @@
                                                     <a href="<?php echo site_url('controller_kelolapengguna/ktp/'.$row->p_id) ?>"
                                                     class="btn btn-sm btn-rose btn-icon">Lihat KTP</a>
                                                     <a href="<?php echo site_url('controller_kelolapengguna/editPengguna/'.$row->p_id) ?>"
-                                                    class="btn btn-sm btn-warning btn-icon">Approve</a>
+                                                    class="btn btn-sm btn-warning btn-icon">Setujui</a>
+
+                                                    <form
+                                                        action="<?php echo site_url('controller_dashboard/updateverifikasi/'.$row->p_id) ?>"
+                                                        method="POST">
+                                                        <button type="input" class="btn btn-sm btn-danger btn-icon">Kirim Peringatan Perbaharui Identitas</button>
+                                                    </form>
+
                                                 <?php }
-                                                else 
+                                                elseif($status == 3) 
                                                 { ?>
                                                     
                                                     <a href="<?php echo site_url('controller_profile/profile/'.$row->p_id) ?>"
-                                                    class="btn btn-md btn-default">Lihat Detail</a>
+                                                    class="btn btn-md btn-default">Ditolak</a>
                                                 <?php } 
-                                            ?>
+                                                else { 
+                                                ?>
+                                                    <a href="<?php echo site_url('controller_profile/profile/'.$row->p_id) ?>"
+                                                    class="btn btn-md btn-success">Rincian</a>
+                                                <?php } ?>
+
                                             
                                         </td>
                                     </tr>

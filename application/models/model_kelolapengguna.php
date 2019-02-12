@@ -26,7 +26,12 @@ class model_kelolapengguna extends CI_Model {
     {
         $this->db->where('p_id', $idpengguna);
         $this->db->delete('tbl_pengguna');
+    }
 
+    public function pesantolak($id)
+    {
+        $q = $this->db->query("SELECT * FROM tbl_pengguna WHERE p_id = $id");
+        return $q;
     }
 
 }

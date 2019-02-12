@@ -201,7 +201,7 @@
                                                 action="<?php echo site_url('controller_dashboard/updaterating/'.$row['idrating']) ?>"
                                                 method="POST">
                                                 <input type="text" class="form-control text-center"
-                                                    name="vrating" value="<?php echo $row['rating'];?>">
+                                                    name="vrating" value="<?php echo $row['rating'];?>" >
                                             </form>
                                             
                                         </td>
@@ -253,13 +253,23 @@
 
 
 
-<!-- KONTEN DEMO -->
+<!-- KONTEN User -->
 <?php elseif ($this->session->userdata('akses') == '3') : ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <?php echo $this->session->flashdata('msg'); ?>
+            <?php
+                $status = $tolak['p_verifikasi'];
+                if($status == 3){ ?>
+                    <?php echo $this->session->flashdata('msg'); ?>
+                <?php } 
+                elseif ($status == 0) { ?>
+                    <?php echo $this->session->flashdata('msg2'); ?>
+            <?php }
+            else { ?>
+                    <?php echo $this->session->flashdata('msg'); ?>
+            <?php } ?>
             </div>
         </div>
 
