@@ -5,7 +5,7 @@
             <div class="col-lg-6 col-md-6 col-xl-6">
                 <div class="banner-bg"></div>
             </div>
-            <div class="col-lg-6 col-md-6 col-xl-6 align-self-center">
+            <div class="col-lg-6 col-md-3 col-xl-6 align-self-center">
                 <div class="banner-text">
                     <h1>Perpustakaan Digital <span>EPERPUS</span> dengan DRM dan MFCMHPRS</h1>
                     <p class="py-3">Temukan dan baca buku digital yang direkomendasi untuk Mu! dengan pengalaman membaca
@@ -23,7 +23,7 @@
     <div class="search-bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-xl-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <form action="#" class="d-md-flex justify-content-between">
                         <a class="template-btn">Cari</a>
                         <select id="search_option">
@@ -67,7 +67,7 @@
 <section class="feature-area section-padding2">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-xl-4">
+            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1">
                 <div class="single-feature mb-4 mb-lg-0">
                     <h4>DRM System</h4>
                     <p class="py-3">Dengan DRM (Digital Right Manager) buku digital dapat mengatasi pelanggaran terhadap
@@ -76,7 +76,7 @@
                         tentang DRM<span class="flaticon-next"></span></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-xl-4">
+            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1">
                 <div class="single-feature mb-4 mb-lg-0">
                     <h4>MFCMHPRS</h4>
                     <p class="py-3">Merupakan Algoritma untuk rekomendasi buku. Dengan fitur ini anda akan mendapat
@@ -85,7 +85,7 @@
                         tentang MFCMHPRS<span class="flaticon-next"></span></a>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1">
                 <div class="single-feature">
                     <h4>AES</h4>
                     <p class="py-3">Dengan AES - 128 buku digital akan dienkripsi dan didekripsi terlebih dahulu sebelum
@@ -122,7 +122,7 @@
                         $lim++;
                         if($lim<=8){
                 ?>
-                <div class="col-md-3 col-sm-3">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="single-package-item">
                         <img src="<?php echo base_url('assets/img/buku/'.$row['b_sampul']);?>" alt="package-place">
                         <div class="single-package-item-txt">

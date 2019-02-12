@@ -12,7 +12,7 @@
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="<?php echo site_url('controller_auth/index') ?>">
+					<a href="<?php echo site_url('controller_dashboard/index') ?>">
 						<i class="material-icons">dashboard</i> Beranda
 					</a>
 				</li>

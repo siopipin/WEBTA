@@ -158,7 +158,7 @@ class controller_landing extends CI_Controller
                                     </ul>
                                 </div>
 
-                                <div class="job-btn col-md-2 align-self-center">
+                                <div class="job-btn col-md-2 col-xs-2 col-sm-2 align-self-center">
                                     <img src="' . base_url('assets/img/buku/' . $row->b_sampul) . '" style="width: 100%;height: 150px;background-repeat: no-repeat;background-position: center;background-size: cover" alt="job">
                                     <a href="' . site_url('controller_landing/detailBuku/' . $row->b_idbuku) . '" class="third-btn job-btn1">Detail</a>
                                 </div>

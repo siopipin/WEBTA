@@ -14,7 +14,7 @@
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li class="active"><a href="<?php echo site_url('controller_auth/index') ?>">Beranda</a></li>
+                            <li class="active"><a href="<?php echo site_url('controller_dashboard/index') ?>">Beranda</a></li>
                             <li><a href="<?php echo base_url('controller_landing/tentang') ?>">Tentang</a></li>
                             <li><a href="<?php echo base_url('controller_landing/semuakategori') ?>">Klasifikasi</a></li>
                             <li><a href="<?php echo base_url('controller_landing/kontak') ?>">Kontak</a></li>
@@ -22,7 +22,7 @@
                             <li class="menu-btn">
                                 
                                 <?php if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '3') : ?>
-                                    <a class="template-btn">Selamat datang <?php echo $this->session->userdata('ses_nama'); ?></a>
+                                    <a class="template-btn"><?php echo $this->session->userdata('ses_nama'); ?></a>
                                     <a href="<?php echo base_url('controller_dashboard/index') ?>" class="template-btn-beranda">Board</a>
                                     <a href="<?php echo base_url('controller_auth/logout') ?>" class="template-btn-danger">Keluar</a>
                                 <?php else : ?>
