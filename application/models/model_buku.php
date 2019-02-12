@@ -260,6 +260,7 @@ class model_buku extends CI_Model
         $msg4 = "score : ";
         $msg5 = "count : ";
 
+        //urutkan Hasil perhitungan prediksi
         for ($i = 0; $i < sizeof($ListBuku2) - 1; $i++) {
             for ($j = $i + 1; $j < sizeof($ListBuku2); $j++) {
                 $skorI = (int) $ListBuku2[$i]['score'];
@@ -291,9 +292,15 @@ class model_buku extends CI_Model
 
         if ($valueMFCM == 0) { // Jika User belum pernah melakukan rating
             return $MFCM;
-        } else { // Jika user pernah melakukan rating
+        } 
+        else {  // Jika user pernah melakukan rating
             // =============================== H P R S =================================
-            $idUserAktif = $valueMFCM;
+            if($valueMFCM == -1){
+                $idUserAktif = 15;
+            }
+            else{
+                $idUserAktif = $valueMFCM;
+            }
             $indeksAktif = array_search($idUserAktif, $ListMember);
             $_K = array();
             $_sim = array();
@@ -347,7 +354,7 @@ class model_buku extends CI_Model
                 }
             }
             $msgPU = "";
-            // Hitung nilai Predikasi
+            // Hitung nilai Prediksi
             $_PU = array();
             $ListBuku3 = array();
 
@@ -357,7 +364,7 @@ class model_buku extends CI_Model
                 $ListBuku3[$i]['PU'] = $_PU[$i];
                 $ListBuku3[$i]['id'] = $ListBuku[$i];
             }
-
+            $_BukuPrediksi = $ListBuku3;
             for ($i = 0; $i < sizeof($ListBuku) - 1; $i++) {
                 for ($j = $i + 1; $j < sizeof($ListBuku); $j++) {
                     $PUI = $ListBuku3[$i]['PU'];
@@ -369,6 +376,7 @@ class model_buku extends CI_Model
                     }
                 }
             }
+            
             $BukuHPRS = array();
             for ($i = 0; $i < sizeof($ListBuku); $i++) {
                 $id = $ListBuku3[$i]['id'];
@@ -382,11 +390,11 @@ class model_buku extends CI_Model
             for ($i = 0; $i < sizeof($ListBuku); $i++) {
                 $indeksMFCM = array_search($BukuHPRS[$i], $BukuMFCM);
                 if (abs($i - $indeksMFCM) < $range) { //Masukkan buku teratas MFCM dan HPRS dengan jarak urutan < jumlah cluster atau "range"
-                    array_push($ListBuku4, $BukuHPRS[$i]);
+                    array_push($$ListBuku4, $BukuHPRS[$i]);
                     $msgMFCM = $msgMFCM . "| hyb : " . $BukuHPRS[$i];
                 }
             }
-            //Masukkan sisah buku dengan jarak urutan berbeda jauh kedalam Listbuku4
+            //Masukkan sisah buku dengan jarak urutan berbeda jauh kedalam BukuMFCM
             for ($i = 0; $i < sizeof($ListBuku); $i++) {
                 $tmp = array_search($BukuMFCM[$i], $ListBuku4);
                 if ($tmp === false) {
@@ -398,12 +406,33 @@ class model_buku extends CI_Model
 
             $MFCMHPRS = array();
             for ($i = 0; $i < sizeof($ListBuku); $i++) {
-                $id = $ListBuku4[$i];
+                //$id = $ListBuku4[$i];
+                $id = $ListBuku3[$i]['id'];
                 $quer3 = $mysqli->query("SELECT * FROM `tbl_buku` WHERE b_idbuku = " . $id);
                 $buku = $quer3->fetch_assoc();
                 array_push($MFCMHPRS, $buku);
             }
-            return $MFCMHPRS;
+            if($valueMFCM >0 ){
+                return $MFCMHPRS;}
+            else{
+                $Produk = array();
+                $totalJarak =0;
+                for ($i = 0; $i < sizeof($_BukuPrediksi); $i++) {
+                    $queryBuku = $mysqli->query("SELECT * FROM tbl_buku WHERE b_idbuku=".$_BukuPrediksi[$i]['id']);
+                    $dataBuku = $queryBuku->fetch_assoc();
+                    $tmpTest = array();
+                    $tmpTest['nama'] = $dataBuku['b_judul'];
+                    $tmpTest['prediksi'] = $_BukuPrediksi[$i]['PU'];
+                    $tmpTest['rating'] = $U1['matriks'][$i];
+                    $tmpTest['jarak'] = abs($tmpTest['prediksi'] - $tmpTest['rating']);
+                    $totalJarak += $tmpTest['jarak'];
+                    array_push ($Produk, $tmpTest);
+                }
+                $DataTest = array();
+                $DataTest['produk'] = $Produk;
+                $DataTest['total'] = $totalJarak;
+                return $DataTest;
+            }
         }
         //return $this->db->get('tbl_buku');
     }
