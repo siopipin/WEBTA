@@ -23,7 +23,7 @@
                                 <i class="material-icons">filter_list</i>
                             </div>
                             <div class="card-content">
-                                <h4 class="card-title">Filter | Laporan Pengguna</h4>
+                                <h4 class="card-title">Dekripsi File</h4>
                                 
                 <div class="card">
                     
@@ -117,21 +117,17 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tanggal Rating</th>
-                                                <th>Foto</th>
-                                                <th>Nama</th>
-                                             
-
+                                                <th>Tanggal Enkrip</th>
+                                                <th>Nama File</th>
+                                                <th>Key</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tanggal Rating</th>
-                                                <th>Foto</th>
-                                                <th>Nama</th>
-                                               
-
+                                                <th>Tanggal Enkrip</th>
+                                                <th>Nama File</th>
+                                                <th>Key</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
