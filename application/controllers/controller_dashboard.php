@@ -58,7 +58,7 @@ class Controller_dashboard extends CI_Controller
         $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
 
         $data['tolak'] = $this->model_kelolapengguna->pesantolak($idUser)->row_array();
-        echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Verifikasi Identitas Anda ditolak, silahkan cek atau upload ulang identitas Anda</div>');
+        echo $this->session->set_flashdata('msg0', '<div class="alert alert-danger" role="alert">Verifikasi Identitas Anda ditolak, silahkan cek atau upload ulang identitas Anda</div>');
         echo $this->session->set_flashdata('msg2', '<div class="alert alert-info" role="alert">Silahkan upload Identitas Anda untuk dapat meminjam buku</div>');
         $data['view'] = 'admin/dashboard/view_dashboard';
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);      

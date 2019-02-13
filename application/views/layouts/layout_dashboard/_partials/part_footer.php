@@ -4,22 +4,17 @@
             <ul>
                 <li>
                     <a href="#">
-                        Home
+                        Tentang
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        Company
+                        Klasifikasi
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        Portfolio
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Blog
+                        Kontak
                     </a>
                 </li>
             </ul>
@@ -29,7 +24,7 @@
             <script>
             document.write(new Date().getFullYear())
             </script>
-            <a href="http://www.creative-tim.com/">Creative Tim</a>, made with love for a better web
+            <a href="#">EPERPUS</a> | SIO | ALBERT | HERU
         </p>
     </div>
 </footer>

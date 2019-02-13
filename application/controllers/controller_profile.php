@@ -37,6 +37,8 @@ class controller_profile extends CI_Controller {
         $idpengguna = $this->uri->segment(3);
         
         $data['profile'] = $this->model_profile->cekProfile($idpengguna)->row_array();
+        $data['pesan'] = $this->model_landing->pesan()->result();
+        $data['hitungpesan'] = $this->model_landing->hitungpesan()->row_array();
         $data['view'] = ('admin/dashboard/view_editprofile.php');
         $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
     }

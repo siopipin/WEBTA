@@ -245,7 +245,7 @@
                                             </div>
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Beri Rating</label>
-                                                <input class="rating" type="hidden" value="5">
+                                                
                                                 <select class="form-control" name="vrating"
                                                     value="<?php echo $ulasan['r_ulasan']; ?>" required>
                                                     <!--<option default value=>Beri rating</option>-->

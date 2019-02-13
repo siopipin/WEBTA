@@ -363,7 +363,7 @@ else{
             <li class="<?php echo $kelolaaktif; ?>">
                 <a data-toggle="collapse" href="#kelolapengguna" aria-expanded="true">
                     <i class="material-icons">perm_identity</i>
-                    <p>Kelola Pengguna
+                    <p>Kelola Member
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -372,7 +372,7 @@ else{
                         <li class="<?php echo $kelolaaktif; ?>">
                             <a href="<?php echo base_url() . 'controller_kelolapengguna/daftarPengguna' ?>">
                                 <i class="material-icons">list</i>
-                                Daftar Pengguna
+                                Daftar Member
                             </a>
                         </li>
                         <li class="<?php echo $verifikasipengguna; ?>">

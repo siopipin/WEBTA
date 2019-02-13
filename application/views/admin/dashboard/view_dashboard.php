@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <?php echo $this->session->flashdata('msg'); ?>
+                
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
@@ -262,7 +262,7 @@
             <?php
                 $status = $tolak['p_verifikasi'];
                 if($status == 3){ ?>
-                    <?php echo $this->session->flashdata('msg'); ?>
+                    <?php echo $this->session->flashdata('msg0'); ?>
                 <?php } 
                 elseif ($status == 0) { ?>
                     <?php echo $this->session->flashdata('msg2'); ?>
