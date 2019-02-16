@@ -27,10 +27,10 @@
 				<?php if ($this->session->userdata('akses') == '1') : ?>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="material-icons">notifications</i>
+							<i class="material-icons">pemberitahuan</i>
 							<span class="notification"><?php echo $hitungpesan['jumlah'] ?></span>
 							<p class="hidden-lg hidden-md">
-								Notifications
+								Pemberitahuan
 								<b class="caret"></b>
 							</p>
 						</a>
@@ -48,7 +48,7 @@
 				<li>
 					<a href="<?php echo base_url('controller_profile/editprofile') ?>">
 						<i class="material-icons">person</i>
-						<p class="hidden-lg hidden-md">Profile</p>
+						<p class="hidden-lg hidden-md">Profil</p>
 					</a>
 				</li>
 				<li class="separator hidden-lg hidden-md"></li>

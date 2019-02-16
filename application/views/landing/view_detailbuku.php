@@ -37,7 +37,7 @@
                             echo $cetak; 
                         ?>
                     </p>
-                    <a href="#detail" class="secondary-btn">Lebih Detail<span class="flaticon-next"></span></a>
+                    <a href="#detail" class="secondary-btn">Lebih Rincian<span class="flaticon-next"></span></a>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
             <div class="col-lg-4">
                 <div class="sidebar">
                     <div class="single-item mb-4">
-                        <h4 class="mb-4">Detail Lanjutan</h4>
+                        <h4 class="mb-4">Rincian Lanjutan</h4>
                         <a class="sidebar-btn d-flex justify-content-between mb-3">
                             <span>Tahun Terbit</span>
                             <span class="text-right"><?php echo $edit['b_tahunterbit']; ?></span>

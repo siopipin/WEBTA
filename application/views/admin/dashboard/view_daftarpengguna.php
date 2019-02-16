@@ -83,7 +83,7 @@
                                         <td><?php echo $status;?></td>
                                         <td class="text-right">
                                         <a href="<?php echo site_url('controller_profile/profile/'.$row->p_id) ?>"
-                                                    class="btn btn-md btn-default">Lihat Detail</a>
+                                                    class="btn btn-md btn-default">Lihat Rincian</a>
 
                                         </td>
                                     </tr>

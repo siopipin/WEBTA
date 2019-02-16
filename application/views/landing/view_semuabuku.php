@@ -63,7 +63,7 @@
                         </ul>
                         <div class="card-footer">
                             <a href="<?php echo site_url('controller_landing/detailBuku/'.$row->b_idbuku) ?>"
-                                class="btn btn-primary btn-lg btn-block btn-sm">Detail Buku
+                                class="btn btn-primary btn-lg btn-block btn-sm">Rincian Buku
                             </a>
                         </div>
                     </div>

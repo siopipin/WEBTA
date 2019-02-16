@@ -8,7 +8,7 @@
             <div class="col-lg-6 align-self-center">
                 <div class="banner-text">
                     <h1>Perpustakaan Digital <span>EPERPUS</span> dengan DRM dan MFCMHPRS</h1>
-                    <p class="py-3">Temukan dan baca buku digital yang direkomendasi untuk Mu! dengan pengalaman membaca
+                    <p class="py-3">Temukan dan baca buku digital yang direkomendasi untuk mu! dengan pengalaman membaca
                         diperangkat atau browser anda.</p>
                     <a href="#semuabuku" class="secondary-btn">Telusuri sekarang<span class="flaticon-next"></span></a>
                 </div>
@@ -27,8 +27,8 @@
                 <div class="section-top">
                     <br>
                     <br>
-                    <h2>Semua Buku dalam Kategori</h2>
-                    <p>Temukan semua buku digital dalam kategori</p>
+                    <h2>Semua Buku dalam Klasifikasi</h2>
+                    <p>Temukan semua buku digital dalam klasifikasi</p>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                     </ul>
                     <div class="card-footer">
                         <a href="<?php echo site_url('controller_landing/detailBuku/' . $row->b_idbuku) ?>"
-                            class="btn btn-primary btn-lg btn-block btn-sm">Detail Buku
+                            class="btn btn-primary btn-lg btn-block btn-sm">Rincian Buku
                         </a>
                     </div>
                 </div>

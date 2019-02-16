@@ -170,7 +170,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
-                        <i class="material-icons">book</i> <span class="card-title"><b>Pengujian MAE Pada User HERU | ID: 15</b></span>
+                        <i class="material-icons">book</i> <span class="card-title"><b>Pengujian Rekomendasi Pada User HERU | ID: 15</b></span>
                     </div>
                     <div class="card-content">
                         <div class="material-datatables"><br /><br />
@@ -233,25 +233,6 @@
     </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- KONTEN User -->
 <?php elseif ($this->session->userdata('akses') == '3') : ?>
@@ -369,22 +350,6 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- KONTEN Demo -->
 

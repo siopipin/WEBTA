@@ -5,7 +5,7 @@
                 <form method="post" action="<?php echo base_url().'controller_auth/login' ?>">
                     <div class="card card-login card-hidden">
                         <div class="card-header text-center" data-background-color="rose">
-                            <h4 class="card-title">Login</h4>
+                            <h4 class="card-title">Masuk</h4>
                             <div class="social-line">
                                 <a href="#btn" class="btn btn-just-icon btn-simple">
                                     <i class="fa fa-facebook-square"></i>
@@ -24,7 +24,7 @@
                                  ?>
                             <br>
                             <div class="text-center">
-                                Or Be Classical
+                                Masuk dengan cara biasa
                             </div>
                         </p>
                         <div class="card-content">
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Let's go</button>
+                            <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Masuk</button>
                         </div>
                     </div>
                 </form>

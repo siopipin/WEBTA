@@ -77,7 +77,7 @@
                                                 </select>
                                             </div>
                                             <div class="category form-category">
-                                                <small>*</small> Required fields</div>
+                                                <small>*</small> Harus Diisi</div>
                                             <div class="form-footer text-right">
                                                 <div class="checkbox pull-left">
                                                     <label>

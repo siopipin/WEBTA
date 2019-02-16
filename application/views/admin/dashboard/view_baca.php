@@ -112,7 +112,7 @@
                                                     <p><b>Klasifikasi :</b>
                                                         <?php echo $cek['b_klasifikasi'] ?></p>
                                                     <hr>
-                                                    <p><b>Text Bahasa :</b>
+                                                    <p><b>Teks Bahasa :</b>
                                                         <?php echo $cek['b_bahasa'] ?></p>
                                                     <hr>
                                                     <p><b>Pengarang :</b>
@@ -134,22 +134,13 @@
                     </div>
                     <div class="tab-pane" id="tasks-1">
                         <div class="card">
-                            
                             <?php  $fileName = $dokumen['d_namadekrip']; ?>
-                            <!-- <?php //echo "<script type='text.javascript'>alert('".base_url('decrypt/'.$fileName)."');</script>";?> -->
                             <div class="card-content" style="height: 950px;">
-
-
                                 <div id="sidebar">
                                     <div id="panels">
-                                        <!-- <input id="searchBox" placeholder="search" type="search"> -->
-
-                                        <!-- <a id="show-Search" class="show_view icon-search" data-view="Search">Search</a> -->
                                         <a id="show-Toc" class="show_view icon-list-1 active" data-view="Toc">TOC</a>
                                         <a id="show-Bookmarks" class="show_view icon-bookmark"
                                             data-view="Bookmarks">Bookmarks</a>
-                                        <!-- <a id="show-Notes" class="show_view icon-edit" data-view="Notes">Notes</a> -->
-
                                     </div>
                                     <div id="tocView" class="view">
                                     </div>
@@ -167,7 +158,6 @@
                                         <ol id="notes"></ol>
                                     </div>
                                 </div>
-
                                 <div id="main">
                                     <div id="titlebar">
                                         <div id="opener">
@@ -185,8 +175,6 @@
                                             <a id="fullscreen" class="fa fa-arrows-alt">Fullscreen</a>
                                         </div>
                                     </div>
-
-                                    
                                     <div id="prev" class="arrow">‹</div>
                                     <div id="viewer"></div>
                                     <div id="next" class="arrow">›</div>
@@ -205,16 +193,6 @@
                                         <div class="closer icon-cancel-circled"></div>
                                     </div>
                                 </div>
-
-
-
-
-                                <!-- <object data="<?php
-                                //echo base_url('decrypt/'.$fileName); 
-                                ?>" 
-                                type="application/pdf" width="100%" height="700px">
-                                    <p>Alternative text - include a link <a href="myfile.pdf">to the PDF!</a></p>
-                                </object> -->
                             </div>
                         </div>
                     </div>
@@ -345,14 +323,14 @@ function validate(a) {
 
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
-            window.reader = ePubReader("http://localhost/TAPerpus/decrypt/<?php echo $fileName;?>", {
+            window.reader = ePubReader("<?php echo base_url(); ?>/decrypt/<?php echo $fileName;?>", {
         //window.reader = ePubReader("https://s3.amazonaws.com/moby-dick/", {
             //window.reader = ePubReader("http://localhost:8080/TAPerpus/decrypt/Test.epub", {
             restore: true
             });
         }
     };
-</script>
+</script> 
 
 
 

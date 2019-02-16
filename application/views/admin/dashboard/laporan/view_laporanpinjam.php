@@ -77,7 +77,7 @@
                                                 </select>
                                             </div>
                                             <div class="category form-category">
-                                                <small>*</small> Required fields</div>
+                                                <small>*</small> Harus Diisi </div>
                                             <div class="form-footer text-right">
                                                 <div class="checkbox pull-left">
                                                     <label>
@@ -107,8 +107,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tanggal Pinjam</th>
-                                         
+                                                <th>Tanggal Pinjam</th>                                         
                                                 <th>Tanggal Kembali</th>
                                                 <th>Nama</th>
                                                
@@ -118,12 +117,9 @@
                                         <tfoot>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tanggal</th>
-                                       
-                                                <th>Nama</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>Email</th>
-                                              
+                                                <th>Tanggal Pinjam</th>                                         
+                                                <th>Tanggal Kembali</th>
+                                                <th>Nama</th>                                              
                                                 <th class="disabled-sorting text-right">Aksi</th>
                                             </tr>
                                         </tfoot>
@@ -140,13 +136,9 @@
                                                 <td><?php echo $no;?></td>
                                                 <!-- jika ada buku di dalam database maka tampilkan -->
                                                 <td><?php echo $tgl;?></td>
-                                                <td><?php echo $tglkembali;?></td>
-                                                
+                                                <td><?php echo $tglkembali;?></td>                                                
                                                 <td><?php echo $row->p_nama;?></td>
-                                                <td><?php echo $row->b_judul;?></td>
-                                                
-                                                   
-
+                                                <td><?php echo $row->b_judul;?></td>                                                                                                 
                                                 </td>
                                             </tr>
                                             <?php $no++; } ?>

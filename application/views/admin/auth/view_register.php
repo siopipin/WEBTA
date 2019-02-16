@@ -8,7 +8,7 @@
                 <div class="col-sm-12">
                     <?php echo $this->session->flashdata('msg'); ?>
                 </div>
-                <h2 class="card-title text-center">Register</h2>
+                <h2 class="card-title text-center">Daftar Baru</h2>
                 <div class="row">
                     <div class="col-md-5 col-md-offset-1">
                         <div class="card-content">
@@ -58,7 +58,7 @@
                             <button class="btn btn-just-icon btn-round btn-facebook">
                                 <i class="fa fa-facebook"> </i>
                             </button>
-                            <h4> or be classical </h4>
+                            <h4> denan cara biasa </h4>
                         </div>
                         <form class="form" action="<?php echo base_url(); ?>controller_auth/registration" method="post">
                             <div class="card-content">
@@ -101,8 +101,8 @@
                                 <!-- If you want to add a checkbox to this form, uncomment this code -->
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="optionsCheckboxes" checked required> I agree to the
-                                        <a href="#">terms and conditions</a>.
+                                        <input type="checkbox" name="optionsCheckboxes" checked required> Saya Menyetujui
+                                        <a href="#">Syarat dan Ketentuan yang berlaku</a>.
                                     </label>
                                 </div>
                             </div>

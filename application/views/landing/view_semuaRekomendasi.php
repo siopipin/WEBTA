@@ -81,7 +81,7 @@
                             <div class="col-md-12">
                                 <div class="about-btn">
                                     <button class="about-view packages-btn">
-                                        Detail Buku
+                                        Rincian Buku
                                     </button>
                                 </div>
                             </div>

@@ -21,7 +21,7 @@
                                 <i class="material-icons">filter_list</i>
                             </div>
                             <div class="card-content">
-                                <h4 class="card-title">Info Visitor</h4>
+                                <h4 class="card-title">Info Pengunjung</h4>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <tr>

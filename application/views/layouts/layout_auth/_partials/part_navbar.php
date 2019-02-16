@@ -19,7 +19,7 @@
 
 				<li>
 					<a href="<?php echo site_url('controller_auth/registration/') ?>">
-						<i class="material-icons">person_add</i> Register
+						<i class="material-icons">person_add</i> Daftar Baru
 					</a>
 				</li>
 

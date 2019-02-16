@@ -621,13 +621,13 @@ else{
             <li>
                 <a href="charts.html">
                     <i class="material-icons">timeline</i>
-                    <p>Charts</p>
+                    <p>Diagram</p>
                 </a>
             </li>
             <li>
                 <a href="calendar.html">
                     <i class="material-icons">date_range</i>
-                    <p>Calendar</p>
+                    <p>Kalendar</p>
                 </a>
             </li>
             <li>

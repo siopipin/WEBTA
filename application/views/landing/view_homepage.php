@@ -165,7 +165,7 @@
                             <div class="col-md-12">
                                 <div class="about-btn">
                                     <button class="about-view packages-btn">
-                                        Detail Buku
+                                        Rincian Buku
                                     </button>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
             <div class="col-lg-12 col-md-12 col-xl-12">
                 <div class="section-top text-center">
                     <h2>Klasifikasi Buku</h2>
-                    <p>Temukan Klasifikasi / Kategori Buku Pilihan mu!</p>
+                    <p>Temukan Klasifikasi Buku Pilihan mu!</p>
                 </div>
             </div>
         </div>
@@ -239,7 +239,7 @@
             <div class="col-lg-12 col-md-12 col-xl-12">
                 <div class="more-job-btn mt-5 text-center">
                     <a href="<?php echo base_url('controller_landing/semuakategori') ?>" class="template-btn">Lihat
-                        Semua Kategori</a>
+                        Semua Klasifikasi</a>
                 </div>
             </div>
         </div>
@@ -253,8 +253,8 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-xl-12">
                 <div class="section-top text-center">
-                    <h2>Buku Baru ditambah</h2>
-                    <p>Temukan buku digital yang baru diupdate </p>
+                    <h2>Buku yang Baru ditambah</h2>
+                    <p>Temukan buku digital yang baru ditambahkan </p>
                 </div>
             </div>
         </div>
@@ -303,7 +303,7 @@
                         </ul>
                         <div class="card-footer">
                             <a href="<?php echo site_url('controller_landing/detailBuku/'.$row->b_idbuku) ?>"
-                                class="btn btn-primary btn-lg btn-block btn-sm">Detail Buku
+                                class="btn btn-primary btn-lg btn-block btn-sm">Rincian Buku
                             </a>
                         </div>
                     </div>
@@ -331,16 +331,16 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xl-6">
                 <div class="download-text">
-                    <h2>Download Aplikasi EPERPUS diperangkat Mobile Mu Sekarang!</h2>
-                    <p class="py-3">Baca Buku Digital diperangkat mobile lebih mudah dan nyaman dengan edokument
+                    <h2>Unduh Aplikasi EPERPUS diperangkat Mobile mu Sekarang!</h2>
+                    <p class="py-3">Baca Buku Digital diperangkat mobile lebih mudah dan nyaman dengan edocument
                         reader ! Baca Sekarang</p>
                     <div class="download-button d-sm-flex flex-row justify-content-start">
                         <div class="download-btn mb-3 mb-sm-0 flex-row d-flex">
                             <i class="fa fa-apple" aria-hidden="true"></i>
                             <a href="#">
                                 <p>
-                                    <span>Available</span> <br>
-                                    on App Store
+                                    <span>Tersedia </span> <br>
+                                    di App Store
                                 </p>
                             </a>
                         </div>
@@ -348,8 +348,8 @@
                             <i class="fa fa-android" aria-hidden="true"></i>
                             <a href="#">
                                 <p>
-                                    <span>Available</span> <br>
-                                    on Play Store
+                                    <span>Tersedia </span> <br>
+                                    di Play Store
                                 </p>
                             </a>
                         </div>

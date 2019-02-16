@@ -17,8 +17,6 @@
     </div>
 </section>
 <!-- Banner Area End -->
-
-
 <!-- Semua Buku -->
 <section id="blog" class="news-area section-padding3">
     <div class="container">
@@ -37,7 +35,6 @@
                 <?php
                 foreach ($results as $row) {
                 ?>
-                
                 <div class="col-lg-3 col-md-6">
                     <a href="<?php echo site_url('controller_landing/bukuKlasifikasi/'.$row->b_klasifikasi) ?>">
                     <div class="single-category text-center mb-4">
@@ -47,8 +44,6 @@
                 </div>
                 <?php }
                 ?>
-
-            
             <div class="col-lg-12">
                 <p><?php echo $links; ?></p>
             </div>
