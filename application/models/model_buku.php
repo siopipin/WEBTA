@@ -347,6 +347,9 @@ class model_buku extends CI_Model
                 $sigmaSim += (float) $_sim[$i];
             }
 
+            if($sigmaSim==0){
+                $sigmaSim=1;
+            }
             //Tentuan user lain dengan kemiripan tertinggi
             for ($i = 0; $i < sizeof($_K); $i++) {
                 if ($simK[$i] > $simK[$TopIndeks]) {
@@ -509,18 +512,17 @@ class model_buku extends CI_Model
     }
     public function filedek2($id)
     {
-
+ 
         $mysqli = new mysqli("localhost", "root", "", "db_perpus");
         $query2 = $mysqli->query("SELECT * FROM tbl_dokumen WHERE d_idbuku=" . $id);
-
         $data = $query2->fetch_assoc();
         //$data['optjudul'] = $this->model_buku->getdok()->result();
         $password = $data['d_key'];
         $namefile = $data['d_namaenkrip'];
         $iduser = $_SESSION['ses_id'];
         $idbuku = $id;
-        echo "<script type='text/javascript'> alert('Check =".$id.")</script>";
-        $uploadURL = $_SERVER['DOCUMENT_ROOT'] . "/TAPerpus/uploads/";
+        $baseDir = $_SERVER['DOCUMENT_ROOT'] . "/TAPerpus/";
+        $uploadURL = $baseDir."uploads/";
         //$password = "sio";
         $jlh = mysqli_num_rows($query2);
         $namaDekrip = $data['d_namadekrip'];
@@ -528,10 +530,10 @@ class model_buku extends CI_Model
         
         $data2 = $query3->fetch_assoc();
         $tglAkhir = $data2['t_tanggalkembali'];
-
-        $found = file_exists($_SERVER['DOCUMENT_ROOT'] . "/TAPerpus/uploads/tempFile.tmp");
+        $filetmp = $uploadURL."tempFile.tmp";
+        $found = file_exists($filetmp);
         if($found){
-            unlink($namefile) or die("Couldn't delete file");
+            unlink($filetmp) or die("Couldn't delete file");
         }
 
         $dateNow = array(date('Y'), date('n'), date('j'), date('H'), date('i'), date('s'));
@@ -558,29 +560,27 @@ class model_buku extends CI_Model
         // echo "<script type='text/javascript'> alert('Check =".$check."|aktif = ".$aktif."')</script>";
         if ($aktif == 0) { //masa peminjaman berakhir=============================
             
-            $fileDekrip = $_SERVER['DOCUMENT_ROOT'] . "/TAPerpus/decrypt/" . $namaDekrip;
+            $fileDekrip = $baseDir."decrypt/" . $namaDekrip;
             
             $found = file_exists($fileDekrip);
             if($found){
-                unlink($fileDekrip) or die("Couldn't delete file");
+                $tryDelete = unlink($fileDekrip) or die("Couldn't delete file");
             }
             $mysqli->query("UPDATE `tbl_buku` SET b_jumlah = b_jumlah+1 WHERE b_idbuku =".$idbuku);
             $mysqli->query("UPDATE tbl_transaksi SET t_status='N' WHERE t_idbuku=" . $idbuku. " AND t_idpengguna = ".$iduser." AND t_status = 'Y' ");
-            echo "<script type='text/javascript'> alert('Waktu Peminjaman Buku telah Berakhir !')</script>";
         } elseif (strlen($namaDekrip) < 1) { // jika file belum di dekrip, lakukan dekripsi
-
-            $writedir = $_SERVER['DOCUMENT_ROOT'] . "/TAPerpus/uploads";
             //$passhash = hash("SHA256", $password, true);
             $passhash = $password;
             $aesinitv = $this->aesinitvector;
 
             if (true) {
                 //$namefile = $_FILES['file']['tmp_name'];
-
                 //$namefile = "";
                 $allowed = array('encrypted');
                 //$filename = $_FILES['file']['name'];
                 //$filename = $dokumen['d_namaenkrip'];
+        echo "<script type='text/javascript'> alert('".$data['d_namaenkrip']."')</script>";
+                
                 $filename = $namefile;
                 $ext = pathinfo($filename, PATHINFO_EXTENSION); // value="encrypted"
 
@@ -589,6 +589,7 @@ class model_buku extends CI_Model
                 } else {*/
 
                 $tmpFile = tmpfile();
+                
                 copy($uploadURL . $filename, $uploadURL . "tmpFile.tmp");
                 $namefile = $uploadURL . "tmpFile.tmp";
                 //tempnam($uploadURL,"TMP0");

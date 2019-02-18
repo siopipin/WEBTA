@@ -445,7 +445,17 @@ class controller_buku extends CI_Controller
         $query = $mysqli->query("SELECT * FROM tbl_transaksi WHERE t_idtransaksi =".$idtransaksi);
         $data2 = $query->fetch_assoc();
         $idbuku = $data2['t_idbuku'];
+        $querydokumen = $mysqli->query("SELECT * FROM tbl_dokumen WHERE d_idbuku =".$idbuku);
         $mysqli->query("UPDATE `tbl_buku` SET b_jumlah = b_jumlah+1 WHERE b_idbuku =".$idbuku);
+        //Perbarui nama file dekrip
+        $mysqli->query("UPDATE tbl_dokumen SET d_namadekrip = '' WHERE d_idbuku =".$idbuku);
+        $dokumen = $querydokumen->fetch_assoc();
+        //Cek Apakah file buku dekrip masih ada
+        $fileDekrip = $_SERVER['DOCUMENT_ROOT'] . "/TAPerpus/decrypt/".$dokumen['d_namadekrip'];
+        $found = file_exists($fileDekrip);
+            if($found){
+                $tryDelete = unlink($fileDekrip) or die("Couldn't delete file");
+            }
         
         //$statue=$mysqli->query("UPDATE `tbl_transaksi` SET t_status = 'N' WHERE t_idtransaksi = ".$idtransaksi);
         // echo "<script type='text/javascript'>alert('".$idtransaksi."')</script>";

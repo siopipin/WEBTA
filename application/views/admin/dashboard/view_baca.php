@@ -132,7 +132,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tasks-1">
+                    <div class="tab-pane" id="tasks-1"  >
                         <div class="card">
                             <?php  $fileName = $dokumen['d_namadekrip']; ?>
                             <div class="card-content" style="height: 950px;">
