@@ -331,25 +331,24 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xl-6">
                 <div class="download-text">
-                    <h2>Unduh Aplikasi EPERPUS diperangkat Mobile mu Sekarang!</h2>
-                    <p class="py-3">Baca Buku Digital diperangkat mobile lebih mudah dan nyaman dengan edocument
-                        reader ! Baca Sekarang</p>
+                    <h2>Unduh aplikasi E-PERPUS di Smartphone kamu, Sekarang!</h2>
+                    <p class="py-3">Membaca buku sekarang lebih mudah dimanapun dan kapanpun dengan smartphone kamu</p>
                     <div class="download-button d-sm-flex flex-row justify-content-start">
                         <div class="download-btn mb-3 mb-sm-0 flex-row d-flex">
                             <i class="fa fa-apple" aria-hidden="true"></i>
                             <a href="#">
                                 <p>
-                                    <span>Tersedia </span> <br>
-                                    di App Store
+                                    <span>Unduh </span> <br>
+                                    untuk Iphone
                                 </p>
                             </a>
                         </div>
                         <div class="download-btn dark flex-row d-flex">
                             <i class="fa fa-android" aria-hidden="true"></i>
-                            <a href="#">
+                            <a href="http://localhost:8080/TAPerpus/uploads/Eperpus.apk"> 
                                 <p>
-                                    <span>Tersedia </span> <br>
-                                    di Play Store
+                                    <span>Unduh </span> <br>
+                                    untuk Android
                                 </p>
                             </a>
                         </div>

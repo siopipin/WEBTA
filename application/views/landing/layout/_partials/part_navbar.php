@@ -14,7 +14,7 @@
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li class="active"><a href="<?php echo site_url('controller_dashboard/index') ?>">Beranda</a></li>
+                            <li class="active"><a href="<?php echo site_url('controller_landing/index') ?>">Beranda</a></li>
                             <li><a href="<?php echo base_url('controller_landing/tentang') ?>">Tentang</a></li>
                             <li><a href="<?php echo base_url('controller_landing/semuakategori') ?>">Klasifikasi</a></li>
                             <li><a href="<?php echo base_url('controller_landing/kontak') ?>">Kontak</a></li>

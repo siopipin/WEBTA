@@ -37,7 +37,7 @@
                             echo $cetak; 
                         ?>
                     </p>
-                    <a href="#detail" class="secondary-btn">Lebih Rincian<span class="flaticon-next"></span></a>
+                    <a href="#detail" class="secondary-btn">Lebih Rinci<span class="flaticon-next"></span></a>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
                         <?php } ?>
 
                         <?php else : ?>
-                        <a href="<?php echo site_url('controller_auth/login/') ?>" class="btn btn-success btn-block">log in</a>
+                        <a href="<?php echo site_url('controller_auth/login/') ?>" class="btn btn-success btn-block">masuk</a>
                         <?php endif; ?>
 
                     </div>
