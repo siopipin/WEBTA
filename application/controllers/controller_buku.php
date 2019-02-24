@@ -41,6 +41,8 @@ class controller_buku extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Terjadi kesalahan input, silahkan cek masukkan anda !</div>');
+            $data['pesan'] = $this->model_landing->pesan()->result();
+            $data['hitungpesan'] = $this->model_landing->hitungpesan();
             $data['view'] = ('admin/dashboard/_partials/part_tambahbuku.php');
             $this->load->view('layouts/layout_dashboard/template_dashboard', $data);
         } else {
@@ -48,6 +50,8 @@ class controller_buku extends CI_Controller
             $cek = $this->model_buku->cekBuku($judul);
             //jika ada duplikat id buku
             if ($cek->num_rows() > 0) {
+                $data['pesan'] = $this->model_landing->pesan()->result();
+                $data['hitungpesan'] = $this->model_landing->hitungpesan();
                 $url = site_url('controller_page/tambahbuku');
                 echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Buku Telah Tersimpan dalam sistem !</div>');
                 redirect($url);
@@ -64,6 +68,8 @@ class controller_buku extends CI_Controller
                 $this->upload->initialize($config);
 
                 if (!$this->upload->do_upload('sampul')) {
+                    $data['pesan'] = $this->model_landing->pesan()->result();
+                    $data['hitungpesan'] = $this->model_landing->hitungpesan();
                     $url = site_url('controller_page/tambahbuku');
                     echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Terjadi Kesalahan!!</div>');
                     redirect($url);

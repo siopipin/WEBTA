@@ -326,8 +326,8 @@ class controller_laporan extends CI_Controller
             $data['mfcm'] = $this->model_buku->getMfcm(0);
         } else {
             //$idUser = $_SESSION['ses_id']; 
-            $idUser = 15 // debuging use heru; 
-            echo "<script type='text/javascript'> alert('oke bos')</script>";
+            $idUser = 15; // debuging use heru; 
+          
             $mysqli = new mysqli("localhost", "root", "", "db_perpus");
             $query = $mysqli->query("SELECT * FROM tbl_rating where r_iduser = " . $idUser);
             $jlh = mysqli_num_rows($query);

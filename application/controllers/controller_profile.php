@@ -167,9 +167,10 @@ class controller_profile extends CI_Controller {
         }else{
             $fotoktp = $this->upload->data();
             $idpengguna = $this->session->userdata('ses_id');
-            
+            $status = 0;
             $data = array(
-                'p_fotoktp' => $fotoktp['file_name']
+                'p_fotoktp' => $fotoktp['file_name'],
+                'p_verifikasi' => $status
             );
 
             $g = $this->model_profile->getFotoprofil($idpengguna)->row_array();
