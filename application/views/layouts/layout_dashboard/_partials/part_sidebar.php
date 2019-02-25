@@ -427,7 +427,7 @@ else{
             <li class="<?php echo $ip; ?>">
                 <a href="<?php echo base_url() . 'controller_infovisitor/infoVisitor' ?>">
                     <i class="material-icons">flip</i>
-                    <p>IP Asset Manejemen</p>
+                    <p>Manejemen IP Address</p>
                 </a>
             </li>
             <li class="<?php echo $pesan; ?>">

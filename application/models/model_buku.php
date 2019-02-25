@@ -120,7 +120,7 @@ class model_buku extends CI_Model
     public function getMfcm($valueMFCM)
     {
         $mysqli = new mysqli("localhost", "root", "", "db_perpus");
-        $query2 = $mysqli->query("SELECT * FROM tbl_rating ORDER BY r_iduser ASC");
+        $query2 = $mysqli->query("SELECT * FROM tbl_rating ORDER BY r_idbuku ASC");
         $_R = 0;
         $temp = -1;
         $ListMember = array();
@@ -335,7 +335,10 @@ class model_buku extends CI_Model
                 $_CUBar = (float) $_CUBar / sizeof($ListBuku);
                 $_U1Bar2 = (float) pow($_U1Bar2, 0.5);
                 $_CUBar2 = (float) pow($_CUBar2, 0.5);
-                $simTmp = (float) (($_U1Bar * $_CUBar) / ($_U1Bar2 * $_CUBar2)) * $_K[$i];
+                $tmpPem = (float) ($_U1Bar * $_CUBar);
+                $tmpPen = ($_U1Bar2 * $_CUBar2) * $_K[$i];
+                if($tmpPen==0) $tmpPen = 1;
+                $simTmp = $tmpPem  / $tmpPen;
                 $_sim[$i] = $simTmp;
             }
 
@@ -387,12 +390,13 @@ class model_buku extends CI_Model
             }
 
             //========================= Hybrid ========================================
-            $range = sizeof($Centroid);
+            //$range = sizeof($Centroid); // 3 for real implementation
+            $range = 4; // for debuging
             $ListBuku4 = array();
             $msgMFCM = "";
             for ($i = 0; $i < sizeof($ListBuku); $i++) {
                 $indeksMFCM = array_search($BukuHPRS[$i], $BukuMFCM);
-                if (abs($i - $indeksMFCM) < $range) { //Masukkan buku teratas MFCM dan HPRS dengan jarak urutan < jumlah cluster atau "range"
+                if (abs($i - $indeksMFCM) <= $range ) { //Masukkan buku teratas MFCM dan HPRS dengan jarak urutan < jumlah cluster atau "range"
                     array_push($ListBuku4, $BukuHPRS[$i]);
                     $msgMFCM = $msgMFCM . "| hyb : " . $BukuHPRS[$i];
                 }
@@ -579,7 +583,7 @@ class model_buku extends CI_Model
                 $allowed = array('encrypted');
                 //$filename = $_FILES['file']['name'];
                 //$filename = $dokumen['d_namaenkrip'];
-        echo "<script type='text/javascript'> alert('".$data['d_namaenkrip']."')</script>";
+        //echo "<script type='text/javascript'> alert('".$data['d_namaenkrip']."')</script>";
                 
                 $filename = $namefile;
                 $ext = pathinfo($filename, PATHINFO_EXTENSION); // value="encrypted"
