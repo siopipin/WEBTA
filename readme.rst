@@ -2,14 +2,6 @@
 Aplikasi Perpustakaan menggunakan DRM dengan sistem rekomendasi MFCM berbasis mobile dan web
 ###################
 Merupakan aplikasi yang dikembangkan untuk keperluan Tugas Akhir S1 Jurusan Teknik Informatika STMIK Mikroskil
-Oleh :
-
-Sio Jurnalis Pipin
-
-Albert Prima Laia
-
-Heru Kurniawan
-
 *******************
 Akses
 *******************
